@@ -17,7 +17,7 @@ function StakeholderTable({ Location }) {
     const [contactFilter, setContactFilter] = useState('');
 
     useEffect(() => {
-        axios.get("https://tritonsrm.com/api/stakeholders", {
+        axios.get("http://localhost:5000/api/stakeholders", {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },

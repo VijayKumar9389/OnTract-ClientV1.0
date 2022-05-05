@@ -14,7 +14,7 @@ const Login = ({ LogIn }) => {
   Axios.defaults.withCredentials = true;
 
   const login = () => {
-    Axios.post('https://tritonsrm.com/api/auth/login', {
+    Axios.post('http://localhost:5000/api/auth/login', {
       username: username,
       password: password,
     }).then((response) => {

@@ -19,7 +19,7 @@ function StakeholderForum({ Stakeholder }) {
     const navigate = useNavigate();
 
     const Update = (name) => {
-        axios.put("https://tritonsrm.com/api/stakeholders/update",
+        axios.put("http://localhost:5000/api/stakeholders/update",
             {
                 NAME: name,
                 NEWNAME: newName.trim(),

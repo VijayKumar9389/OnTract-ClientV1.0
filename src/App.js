@@ -14,7 +14,7 @@ function App() {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get('https://tritonsrm.com/api/auth/login').then((response) => {
+    Axios.get('http://localhost:5000/api/auth/login').then((response) => {
       if (response.data.auth) {
         LogIn(response.data.auth);
       }
@@ -26,7 +26,7 @@ function App() {
   }
 
   function Logout() {
-    Axios.get('https://tritonsrm.com/api/auth/logout');
+    Axios.get('http://localhost:5000/api/auth/logout');
     setLoggedIn(false);
   }
 
