@@ -151,11 +151,8 @@ table .td-name {
 }
 
 .contacted-wrapper {
-    width: 80px;
+    width: 100%;
     height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 10px;
     color: #fff;
 }

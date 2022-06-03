@@ -14,7 +14,7 @@ function App() {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/api/auth/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`).then((response) => {
       if (response.data.auth) {
         LogIn(response.data.auth);
       }
@@ -26,7 +26,7 @@ function App() {
   }
 
   function Logout() {
-    Axios.get('http://localhost:5000/api/auth/logout');
+    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
     setLoggedIn(false);
   }
 
