@@ -19,7 +19,7 @@ function StakeholderForum({ Stakeholder }) {
     const navigate = useNavigate();
 
     const Update = (name) => {
-        axios.put("http://localhost:5000/api/stakeholders/update",
+        axios.put("https://tritonsrm.com/api/stakeholders/update",
             {
                 NAME: name,
                 NEWNAME: newName.trim(),
@@ -121,7 +121,7 @@ function StakeholderForum({ Stakeholder }) {
                     </div>
                     <div className='input-wrapper'>
                         
-                        <div className='label-wrapper'><label>Consultation Date</label><button className='label-btn' onClick={() => stampDate()}>+ Stamp Date</button></div>
+                        <div className='label-wrapper'><label>Consultation Date</label><button className='label-btn' onClick={() => stampDate()}>+ Add</button></div>
                         <textarea id='consultation-txt' type="text" defaultValue={Stakeholder.CONSULTATION} onChange={(event) => setNewConsultationDate(event.target.value)}></textarea>
                     </div>
                     <div className='input-wrapper'>
@@ -131,7 +131,7 @@ function StakeholderForum({ Stakeholder }) {
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
-                        <div className='label-wrapper'><label>Attempt Details</label><button className='label-btn' onClick={() => addAttempt()}>+ Add Attempt</button></div>
+                        <div className='label-wrapper'><label>Attempt Details</label><button className='label-btn' onClick={() => addAttempt()}>+ Add</button></div>
                         <textarea id='attempt-txt' type="text" defaultValue={Stakeholder.ATTEMPTS} onChange={(event) => setNewAttemptDetails(event.target.value)}></textarea>
                     </div>
                     <div className="ddl-container">

@@ -1,0 +1,182 @@
+.table-container {
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 50px;
+}
+
+.tract-table {
+    width: 95%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.table-heading {
+    width: 95%;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 80px;
+    text-align: left;
+    color: grey;
+    border-bottom: solid 1px #ddd;
+}
+
+.table-heading h2{
+    margin-right: 40px;
+    position: relative;
+}
+
+.table-heading h2:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 5px #ddd;
+}
+
+.table-heading h2::after{
+    content: '';
+    position: absolute;
+    background-color:gray;
+    height: 5px;
+    width: 0%;
+    left: 0;
+    bottom: -25px;
+    transition: .3s;
+}
+
+.table-heading h2:hover::after {
+    width: 100%;
+}
+
+.tract-table thead {
+    height: 80px;
+    padding: 50px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tract-table tbody tr {
+    height: 80px;
+    padding: 50px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left: 5px solid #68bd45;
+}
+
+.tract-table thead tr {
+    color: grey;
+}
+
+.tract-table tbody tr:nth-child(odd) {
+    background-color: #F7F7F7;
+}
+
+.tract-table th {
+    padding: 20px;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tract-table tbody {
+    font-size: 0.9rem;
+}
+
+.tract-table td {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 1em 10px;
+}
+
+.cell-btn{
+    background-color: #68bd45;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    transition: ease-in .2s;
+    
+}
+
+.cell-btn:hover{
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transform: scale(1.1);
+}
+
+.spacer{
+    height: 80px;
+}
+
+.tract-cell{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 80px;
+}
+
+.ddl-cell{
+    width: 70px;
+}
+
+table td textarea {
+    resize: none;
+    overflow: hidden;
+    height: 60px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+table td input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    height: 20px;
+    width: 50px;
+    text-align: center;
+}
+
+.comment-input{
+    width: 300px;
+    height: 80px;
+}
+
+.tract-input{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+
+.table-ddl {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    border-radius: 20px;
+    height: 40px;
+    width: 80px;
+}
+
+.table-ddl option{
+    font-size: 16px;
+}
+
+.tract-cell h2{
+ color: #68bd45;
+}
+
+.btn-cell:hover{
+    color: #fff;
+    background-color: #68bd45;
+}

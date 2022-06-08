@@ -1,4 +1,4 @@
-import './Table.css';
+import './StakeholderTable.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ function StakeholderTable({ Location }) {
     const [contactFilter, setContactFilter] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/stakeholders", {
+        axios.get("https://tritonsrm.com/api/stakeholders", {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },
@@ -109,9 +109,9 @@ function StakeholderTable({ Location }) {
 
     function getContactStatus(contactStatus) {
         if (contactStatus === 'YES') {
-            return ({ backgroundColor: 'rgb(0,255,0, 0.5)' });
+            return true;
         } else {
-            return ({ backgroundColor: 'rgb(255,0,0, 0.4)' });
+            return false;
         }
     }
 
@@ -143,7 +143,7 @@ function StakeholderTable({ Location }) {
                 </div>
             </div>
 
-            <table>
+            <table className='stakeholder-table'>
                 <thead>
                     <tr>
                         <th><h5>Name</h5></th>
@@ -170,7 +170,7 @@ function StakeholderTable({ Location }) {
                                     <td>{checkMissing(location) ? location[location.length - 2] : 'MISSING'}</td>
                                     <td>{checkMissing(location) ? location[location.length - 3] : 'MISSING'}</td>
                                     <td>{stakeholder.ATTEMPTS}</td>
-                                    <td><div style={getContactStatus(stakeholder.CONTACTED)} className='contacted-wrapper'>{stakeholder.CONTACTED}</div></td>
+                                    <td>{getContactStatus(stakeholder.CONTACTED) ? <div className='contacted-yes'><p>YES</p></div> : <div className='contacted-no'><p>NO</p></div>}</td>
                                     <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
                                 </tr>
                             );

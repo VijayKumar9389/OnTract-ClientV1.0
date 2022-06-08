@@ -14,7 +14,8 @@ function App() {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`).then((response) => {
+    Axios.get(`https://tritonsrm.com/api/auth/login`).then((response) => {
+      console.log(response);
       if (response.data.auth) {
         LogIn(response.data.auth);
       }
@@ -23,6 +24,10 @@ function App() {
 
   function LogIn(Auth) {;
     setLoggedIn(Auth);
+  }
+
+  function downloadFile(){
+    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getexcel/download`)
   }
 
   function Logout() {

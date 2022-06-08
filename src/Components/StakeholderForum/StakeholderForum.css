@@ -3,25 +3,24 @@
     height: 800px;
     margin: auto;
     background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     overflow: hidden;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .forum-header{
-    background-color: #F7F7F7;
     height: 80px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: solid 1px #ddd;
     text-align: left;
 }
 
 .forum-header h3{
     color: gray;
-    margin-left: 50px;
-    
+    margin-left: 20px;
 }
 
 .forum-body {

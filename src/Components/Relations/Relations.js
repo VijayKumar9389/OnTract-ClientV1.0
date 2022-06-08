@@ -14,13 +14,12 @@ function Relations({ Stakeholder }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/stakeholders/connections/" + Stakeholder, {
+        axios.get("https://tritonsrm.com/api/stakeholders/connections/" + Stakeholder, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },
         }).then((response) => setData(response.data));
     }, [Stakeholder]);
-
 
     return (
         <div className='relations-container'>
