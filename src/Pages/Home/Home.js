@@ -17,16 +17,18 @@ function Home({ Logout }) {
     }
 
     function downloadFile() {
-          axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
             method: 'GET',
-            responseType: 'blob', // important
+            responseType: 'arraybuffer',
+            headers: { 'Content-Type': 'blob' },
         }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${Date.now()}.xlsx`);
+            const fileName = 'Project.xlsx';
+            link.setAttribute('download', fileName);
+            link.href = URL.createObjectURL(new Blob([response.data]));
             document.body.appendChild(link);
             link.click();
+            link.remove();
         });
     }
 

@@ -2,6 +2,7 @@ import './StakeholderForum.css';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 function StakeholderForum({ Stakeholder }) {
@@ -35,7 +36,7 @@ function StakeholderForum({ Stakeholder }) {
             headers: { "x-access-token": localStorage.getItem("x-access-token") }
         }
         ).then((response) => {
-            // successtoast(name);
+            successtoast(name);
             navigate(`/${newName}`, {
                 replace: true,
                 state: {
@@ -52,6 +53,12 @@ function StakeholderForum({ Stakeholder }) {
                     }
                 }
             });
+        });
+    }
+
+    function successtoast(name) {
+        toast.success(`Successfully updated ${name}`, {
+            position: toast.POSITION.TOP_RIGHT
         });
     }
 

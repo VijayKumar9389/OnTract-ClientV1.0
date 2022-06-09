@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import './TractTable.css';
 import { FaRegSave } from 'react-icons/fa';
@@ -33,7 +34,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
             })
             .then(
                 (response) => {
-                    // successtoast("Successfully Updated Tract " + Stakeholder.TRACT + " for " + Stakeholder.NAME);
+                   successtoast("Successfully Updated Tract " + Stakeholder.TRACT + " for " + Stakeholder.NAME);
                 }
             );
     }
@@ -44,6 +45,12 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
             state: {
                 stakeholder: stakeholderInfo
             }
+        });
+    }
+
+    function successtoast(name) {
+        toast.success(name, {
+            position: toast.POSITION.TOP_RIGHT
         });
     }
 

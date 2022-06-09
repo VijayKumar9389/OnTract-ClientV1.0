@@ -1,7 +1,9 @@
 import { Route, Router, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 import Profile from './Pages/Profile/Profile';
@@ -40,6 +42,7 @@ function App() {
 
   return (
     <div className='app-container'>
+      <ToastContainer />
       <Routes>
         <Route path='/' element={<Home Logout={Logout} />} />
         <Route path='/:name' element={<Profile Logout={Logout} />} />
