@@ -19,7 +19,7 @@ function Home({ Logout }) {
     function downloadFile() {
           axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getexcel/download`, {
             method: 'GET',
-            responseType: 'blob', // important
+            responseType: 'blob',
         }).then((response) => {
             console.log(response)
             console.log(response.data)
@@ -29,7 +29,7 @@ function Home({ Logout }) {
             link.setAttribute('download', `Wascana.xlsx`);
             document.body.appendChild(link);
             link.click();
-        });
+        }).catch((error) => console.log(error));
     }
 
     return (
