@@ -9,11 +9,12 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 
 function App() {
+  
   const [loggedIn, setLoggedIn] = useState(false);
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get(`https://tritonsrm.com/api/auth/login`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`).then((response) => {
       console.log(response);
       if (response.data.auth) {
         LogIn(response.data.auth);

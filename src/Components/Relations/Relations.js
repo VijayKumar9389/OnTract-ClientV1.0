@@ -14,7 +14,7 @@ function Relations({ Stakeholder }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("https://tritonsrm.com/api/stakeholders/connections/" + Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/` + Stakeholder, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },

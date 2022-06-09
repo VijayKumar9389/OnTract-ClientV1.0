@@ -17,7 +17,7 @@ function Home({ Logout }) {
     }
 
     function downloadFile() {
-          axios.get('https://tritonsrm.com/api/tracts/getexcel/download', {
+          axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getexcel/download`, {
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
