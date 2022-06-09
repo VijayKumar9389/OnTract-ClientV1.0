@@ -17,19 +17,17 @@ function Home({ Logout }) {
     }
 
     function downloadFile() {
-          axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getexcel/download`, {
+          axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
             method: 'GET',
-            responseType: 'blob',
+            responseType: 'blob', // important
         }).then((response) => {
-            console.log(response)
-            console.log(response.data)
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', `Wascana.xlsx`);
+            link.setAttribute('download', `${Date.now()}.xlsx`);
             document.body.appendChild(link);
             link.click();
-        }).catch((error) => console.log(error));
+        });
     }
 
     return (
