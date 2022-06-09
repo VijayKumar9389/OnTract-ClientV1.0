@@ -8,7 +8,6 @@ import Profile from './Pages/Profile/Profile';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   Axios.defaults.withCredentials = true;
@@ -22,12 +21,8 @@ function App() {
     });
   }, [loggedIn]);
 
-  function LogIn(Auth) {;
+  function LogIn(Auth) {
     setLoggedIn(Auth);
-  }
-
-  function downloadFile(){
-    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getexcel/download`)
   }
 
   function Logout() {
@@ -39,12 +34,12 @@ function App() {
     return <Login LogIn={obj => LogIn(obj)} />
 
   return (
-      <div className='app-container'>
-          <Routes>
-              <Route path='/' element={<Home Logout={Logout}/>} />
-              <Route path='/:name' element={<Profile Logout={Logout}/>} />
-          </Routes>
-      </div>
+    <div className='app-container'>
+      <Routes>
+        <Route path='/' element={<Home Logout={Logout} />} />
+        <Route path='/:name' element={<Profile Logout={Logout} />} />
+      </Routes>
+    </div>
   );
 }
 
