@@ -36,7 +36,6 @@ const Login = ({ LogIn }) => {
 
         <div id="login-heading">
           <h2>LOG IN</h2>
-          <h3>{process.env.REACT_APP_BACKEND_URL}</h3>
         </div>
 
         <div className="inputs">
