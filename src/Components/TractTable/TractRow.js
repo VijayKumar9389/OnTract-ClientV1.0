@@ -20,7 +20,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
     const pin = Stakeholder.PIN.split("/");
 
     const Update = (id) => {
-        axios.put("https://tritonsrm.com/api/tracts/update",
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/update`,
             {
                 ID: id,
                 STRUCTURE_TYPE: newStructure,

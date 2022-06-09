@@ -17,12 +17,12 @@ function TractTable({ Stakeholder }) {
     const [btnClearSearch, setbtnClearSearch] = useState(false);
 
     useEffect(() => {
-        axios.get('https://tritonsrm.com/api/tracts/cluster/' + Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/cluster/` + Stakeholder, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },
         }).then((response) => setData(response.data));
-        axios.get("https://tritonsrm.com/api/tracts/", {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/`, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },

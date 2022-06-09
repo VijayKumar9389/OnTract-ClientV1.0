@@ -11,7 +11,7 @@ function Report() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        Axios.get(process.env.REACT_APP_BACKEND_URL + `/api/tracts/report`, {
+        Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/report`, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },

@@ -17,7 +17,7 @@ function StakeholderTable({ Location }) {
     const [contactFilter, setContactFilter] = useState('');
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_BACKEND_URL + `/api/stakeholders`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders`, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },

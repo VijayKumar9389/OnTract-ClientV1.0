@@ -9,10 +9,6 @@ import Relations from '../../Components/Relations/Relations';
 
 function Profile() {
 
-    function test() {
-        console.log(window.document.referrer);
-    }
-
     const { state } = useLocation();
     const { stakeholder } = state;
     const { name } = useParams();
@@ -22,7 +18,6 @@ function Profile() {
             <div className='profile-heading'>
                 <Link className='profile-link' to='/'><BiArrowToLeft size='2rem' /><h2>&nbsp;STAKEHOLDERS&nbsp;</h2></Link><h2>/{name}</h2>
             </div>
-            {test()}
             <div className='profile-wrapper'>
                 <StakeholderForum key={name} Stakeholder={stakeholder} />
                 <Relations Stakeholder={name} />

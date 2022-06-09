@@ -13,7 +13,7 @@ function Sidebar({ setLocation }) {
     const [city, setCity] = useState('');
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_BACKEND_URL + "api/stakeholders/sidebar/locations", {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/locations`, {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },
