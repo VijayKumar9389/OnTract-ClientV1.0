@@ -24,6 +24,7 @@ const Login = ({ LogIn }) => {
         LogIn(response.data);
         console.log(response)
         localStorage.setItem("x-access-token", response.data.token);
+        localStorage.setItem("x-access-refresh-token", response.data.refreshToken);
       } else {
         setMessage(response.data.message);
       }

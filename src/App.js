@@ -18,11 +18,13 @@ function App() {
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
       headers: {
-        "x-access-token": localStorage.getItem("x-access-token"),
+        "x-access-refresh-token": localStorage.getItem("x-access-refresh-token"),
       },
     }).then((response) => {
       console.log(response);
       if (response.data.auth) {
+        console.log(response.data)
+        localStorage.setItem("x-access-token", response.data.token);
         LogIn(response.data.auth);
       }
     });
@@ -34,6 +36,8 @@ function App() {
 
   function Logout() {
     Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
+    window.localStorage.removeItem("x-access-refresh-token");
+    window.localStorage.removeItem("x-access-token");
     setLoggedIn(false);
   }
 

@@ -7,6 +7,7 @@ import { MdLogout } from 'react-icons/md';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/StakeholderTable/StakeholderTable';
 import Report from '../../Components/Reports/Report';
+import CompareBook from '../../Components/CompareBook/CompareBook';
 
 function Home({ Logout }) {
 
@@ -20,8 +21,8 @@ function Home({ Logout }) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
             method: 'GET',
             responseType: 'arraybuffer',
-            headers: { 
-                'Content-Type': 'blob',  
+            headers: {
+                'Content-Type': 'blob',
                 "x-access-token": localStorage.getItem("x-access-token")
             },
         }).then((response) => {
@@ -52,6 +53,8 @@ function Home({ Logout }) {
                     </div>
                 </div>
                 <Report />
+
+                <CompareBook />
                 <StakeholderTable Location={location} />
             </div>
         </div>
