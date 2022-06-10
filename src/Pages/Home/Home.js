@@ -20,7 +20,10 @@ function Home({ Logout }) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
             method: 'GET',
             responseType: 'arraybuffer',
-            headers: { 'Content-Type': 'blob' },
+            headers: { 
+                'Content-Type': 'blob',  
+                "x-access-token": localStorage.getItem("x-access-token")
+            },
         }).then((response) => {
             const link = document.createElement('a');
             const fileName = 'Project.xlsx';

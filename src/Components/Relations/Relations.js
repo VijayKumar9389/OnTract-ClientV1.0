@@ -18,7 +18,11 @@ function Relations({ Stakeholder }) {
             headers: {
                 "x-access-token": localStorage.getItem("x-access-token"),
             },
-        }).then((response) => setData(response.data));
+        }).then((response) => {
+            setData(response.data)
+            console.log(response)
+        })
+
     }, [Stakeholder]);
 
     return (
