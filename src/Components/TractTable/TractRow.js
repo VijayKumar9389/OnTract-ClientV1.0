@@ -8,7 +8,7 @@ import { FaRegSave } from 'react-icons/fa';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { CgSearch } from 'react-icons/cg';
 
-function TractRow({ Stakeholder, stakeholderProfile, Search }) {
+function TractRow({ Stakeholder, stakeholderProfile, Search, Index }) {
 
     const nav = useNavigate();
 
@@ -30,7 +30,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
                 WORKED: newWorksLand,
                 COMMENTS: newComments
             },{
-                headers: { "x-access-token": localStorage.getItem("x-access-token") }
+                headers: { "access-token": localStorage.getItem("access-token") }
             })
             .then(
                 (response) => {
@@ -56,17 +56,17 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
 
     return (
         <>
-        {stakeholderProfile & !Search ? <div className='spacer'></div> : null}
+        {/* {Index === 0 ? <div className='spacer'></div> : null} */}
         <tr>
-            <td className='tract-cell'>
+            <td className='tract-cells'>
                 <a><h2>{Stakeholder.TRACT}</h2></a>
                 <a>{pin[1]}</a>
             </td>
             <td><textarea className='tract-input' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea></td>
-            <td>{Stakeholder.NAME}</td>
+            <td className='name-cell'>{Stakeholder.NAME}</td>
             <td>{Stakeholder.INTEREST}</td>
             <td><input defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></input></td>
-            <td className='ddl-cell'>
+            <td>
                 <select className="table-ddl" defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>
                     <option value="">N/A</option>
                     <option value="YES">YES</option>
@@ -76,8 +76,8 @@ function TractRow({ Stakeholder, stakeholderProfile, Search }) {
             <td>{Stakeholder.COMMODITY}</td>
             <td>{Stakeholder.PIPLINESTATUS}</td>
             <td><textarea className='comment-input' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea></td>
-            <td><button className='cell-btn' onClick={() => Update(Stakeholder.ID)}><FaRegSave size='1.5rem'/> SAVE</button></td>
-            <td>{stakeholderProfile ? null : <button onClick={() => selectStakeholder(Stakeholder)} className='cell-btn'><BiRightArrowAlt size='1.5rem'/> VIEW</button>}</td>
+            <td><button className='cell-btn' onClick={() => Update(Stakeholder.ID)}> SAVE</button></td>
+            <td>{stakeholderProfile ? null : <button onClick={() => selectStakeholder(Stakeholder)} className='cell-btn'>VIEW</button>}</td>
         </tr>
         </>
     );

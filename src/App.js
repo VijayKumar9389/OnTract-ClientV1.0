@@ -1,7 +1,7 @@
-import { Route, Router, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
+import { Route, Router, Routes, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import axios from 'axios';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -13,19 +13,18 @@ import Login from './Pages/Login/Login';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
       headers: {
-        "x-access-refresh-token": localStorage.getItem("x-access-refresh-token"),
+        "refresh-token": localStorage.getItem("refresh-token"),
       },
     }).then((response) => {
-      console.log(response);
       if (response.data.auth) {
-        console.log(response.data)
-        localStorage.setItem("x-access-token", response.data.token);
-        LogIn(response.data.auth);
+        localStorage.setItem("access-token", response.data.token);
+        setLoggedIn(response.data.auth)
+      } else {
+        Logout();
       }
     });
   }, [loggedIn]);
@@ -35,21 +34,19 @@ function App() {
   }
 
   function Logout() {
-    Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
-    window.localStorage.removeItem("x-access-refresh-token");
-    window.localStorage.removeItem("x-access-token");
+    window.localStorage.removeItem("refresh-token");
+    window.localStorage.removeItem("access-token");
     setLoggedIn(false);
   }
 
-  if (!loggedIn)
-    return <Login LogIn={obj => LogIn(obj)} />
+  if (!loggedIn) return <Login LogIn={obj => LogIn(obj)} />
 
   return (
     <div className='app-container'>
       <ToastContainer />
       <Routes>
-        <Route path='/' element={<Home Logout={Logout} />} />
-        <Route path='/:name' element={<Profile Logout={Logout} />} />
+        <Route path='/' element={<Home LogOut={Logout} />} />
+        <Route path='/:name' element={<Profile />} />
       </Routes>
     </div>
   );

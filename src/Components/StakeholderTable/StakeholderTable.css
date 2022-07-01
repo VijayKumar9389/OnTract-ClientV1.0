@@ -1,7 +1,7 @@
 .table-container {
     width: 100%;
     height: fit-content;
-    padding-bottom: 50px
+    padding-bottom: 50px;
 }
 
 .stakeholder-table {
@@ -9,30 +9,35 @@
     margin: auto;
     margin-top: 20px;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .stakeholder-table thead {
-    height: 50px;
+    height: 80px;
     padding: 50px;
     text-align: center;
     position: sticky;
     top: 0;
     background-color: #fff;
-    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
 }
 
-.stakeholder-table tr {
-    height: 80px;
-    padding: 50px;
+.stakeholder-table thead th{
+    padding: 20px;
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: gray;
 }
 
-.stakeholder-table thead tr {
-    color: grey;
+.stakeholder-table tbody {
+    font-size: 0.9rem;
+}
+
+.stakeholder-table tbody tr {
+    height: 80px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
 }
 
 .stakeholder-table tbody tr:hover {
@@ -41,30 +46,8 @@
     align-items: center;
 }
 
-.stakeholder-table tbody tr:nth-child(odd) {
-    background-color: #F7F7F7;
-}
-
-.stakeholder-table tbody tr:nth-child(odd):hover {
-    background-color: #ddd;
-}
-
-.stakeholder-table th {
-    padding: 20px;
-    text-align: center;
-    letter-spacing: 0.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.stakeholder-table tbody {
-    font-size: 0.9rem;
-}
-
 .stakeholder-table td {
-    justify-content: center;
     text-align: center;
-    align-items: center;
     padding: 1em 10px;
 }
 
@@ -125,8 +108,6 @@
     border: none;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     margin-right: -5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
     position: relative;
     z-index: 200;
     color: gray;
@@ -154,8 +135,6 @@
     outline: none;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    margin-right: -5px;
-    border-radius: 5px;
     position: relative;
     z-index: 100;
 }

@@ -13,7 +13,7 @@ function Report() {
     useEffect(() => {
         Axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/report`, {
             headers: {
-                "x-access-token": localStorage.getItem("x-access-token"),
+                "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setData(response.data));
     }, []);

@@ -1,4 +1,4 @@
-.table-container {
+.tract-table-container {
     width: 100%;
     height: fit-content;
     padding-bottom: 50px;
@@ -10,71 +10,26 @@
     border-collapse: collapse;
 }
 
-.table-heading {
-    width: 95%;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: auto;
-    margin-bottom: 80px;
-    text-align: left;
-    color: grey;
-    border-bottom: solid 1px #ddd;
-}
-
-.table-heading h2{
-    margin-right: 40px;
-    position: relative;
-}
-
-.table-heading h2:hover {
-    cursor: pointer;
-    text-shadow: 0px 0px 5px #ddd;
-}
-
-.table-heading h2::after{
-    content: '';
-    position: absolute;
-    background-color:gray;
-    height: 5px;
-    width: 0%;
-    left: 0;
-    bottom: -25px;
-    transition: .3s;
-}
-
-.table-heading h2:hover::after {
-    width: 100%;
-}
-
 .tract-table thead {
-    height: 80px;
-    padding: 50px;
+    height: 100px;
     text-align: center;
     position: sticky;
     top: 0;
     background-color: #fff;
-    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
 }
 
 .tract-table tbody tr {
     height: 80px;
     padding: 50px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-left: 5px solid #68bd45;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .tract-table thead tr {
+    position: relative;
     color: grey;
-}
-
-.tract-table tbody tr:nth-child(odd) {
-    background-color: #F7F7F7;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .tract-table th {
@@ -90,19 +45,22 @@
 }
 
 .tract-table td {
-    justify-content: center;
     text-align: center;
-    align-items: center;
     padding: 1em 10px;
 }
 
 .cell-btn{
-    background-color: #68bd45;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    width: 80px;
+    height: 40px;
     border: none;
-    color: #fff;
     border-radius: 5px;
-    padding: 10px;
-    transition: ease-in .2s;
+    color: #fff;
+    background-color: #68bd45;
     
 }
 
@@ -174,9 +132,4 @@ table td input {
 
 .tract-cell h2{
  color: #68bd45;
-}
-
-.btn-cell:hover{
-    color: #fff;
-    background-color: #68bd45;
 }

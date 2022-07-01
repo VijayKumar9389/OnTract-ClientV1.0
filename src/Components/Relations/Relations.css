@@ -6,14 +6,12 @@
     height: 800px;
     margin: auto;
     overflow: auto;
-    border: 1px solid #ddd;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .relations-container ul {
-    height: 90%;
+    height: 100%;
     width: 100%;
     list-style-type: none;
     display: inline-block;
@@ -22,27 +20,26 @@
 }
 
 .relations-container ul li {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
     margin: 20px auto;
     border-radius: 10px;
     width: 90%;
     height: fit-content;
-    min-height: 200px;
+    min-height: 160px;
     color: gray;
     text-align: left;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-color: #fff;
+    /* transition: ease-in-out .2s; */
 }
 
 .relations-container ul li:hover{
     cursor: pointer;
-    background-color: #ddd;
-    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: scale(1.01);
 }
 
 .relations-container ul li h3 {
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .relations-container ul li a {
@@ -60,7 +57,7 @@
     justify-content: center;
     align-items: center;
     grid-template-columns: 10% 90%;
-    margin: 10px auto;
+    margin: 10px 20px;
 }
 
 .relation-link {
@@ -68,5 +65,15 @@
     margin: auto;
     font-size: 12px;
     text-decoration: none;
+}
+
+.relations-container label{
+    margin-top: 35px;
+    margin-left: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: gray;
+    width: 90%;
 }
 

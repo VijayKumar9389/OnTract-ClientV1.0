@@ -16,20 +16,19 @@ function Relations({ Stakeholder }) {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/` + Stakeholder, {
             headers: {
-                "x-access-token": localStorage.getItem("x-access-token"),
+                "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => {
             setData(response.data)
-            console.log(response)
         })
 
     }, [Stakeholder]);
 
     return (
         <div className='relations-container'>
-            <div className='forum-header'>
-                <h3>RELATIONS</h3>
-            </div>
+
+            <label>Relations</label>
+
             <ul>
                 {data.map((record, index) => {
                     return (

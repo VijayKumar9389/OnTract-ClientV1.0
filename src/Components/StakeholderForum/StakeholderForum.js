@@ -1,9 +1,9 @@
-import './StakeholderForum.css';
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+
+import './StakeholderForum.css';
 
 function StakeholderForum({ Stakeholder }) {
 
@@ -33,9 +33,8 @@ function StakeholderForum({ Stakeholder }) {
                 CONSULTATION: newConsultationDate.trim(),
                 FOLLOWUP: newFollowUp.trim()
             }, {
-            headers: { "x-access-token": localStorage.getItem("x-access-token") }
-        }
-        ).then((response) => {
+            headers: { "access-token": localStorage.getItem("access-token") }
+        }).then((response) => {
             successtoast(name);
             navigate(`/${newName}`, {
                 replace: true,
@@ -62,24 +61,24 @@ function StakeholderForum({ Stakeholder }) {
         });
     }
 
-    function addAttempt(){
+    function addAttempt() {
 
         let date = new Date();
-        let today = date.getDate() + "-"+ parseInt(date.getMonth()+1) +"-"+date.getFullYear();
+        let today = date.getDate() + "-" + parseInt(date.getMonth() + 1) + "-" + date.getFullYear();
 
-        if(document.getElementById('attempt-txt').value !== ''){
-            today = ", "+date.getDate() + "/"+ ('0' + (date.getMonth()+1)).slice(-2) +"/"+date.getFullYear();
+        if (document.getElementById('attempt-txt').value !== '') {
+            today = ", " + date.getDate() + "/" + ('0' + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
         } else {
-            today = date.getDate() + "/"+ ('0' + (date.getMonth()+1)).slice(-2) +"/"+date.getFullYear();
+            today = date.getDate() + "/" + ('0' + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
         }
 
         setNewAttemptDetails(document.getElementById('attempt-txt').value + today);
         document.getElementById('attempt-txt').value = document.getElementById('attempt-txt').value + today;
     }
 
-    function stampDate(){
+    function stampDate() {
         let date = new Date();
-        let today = date.getDate() + "/"+ ('0' + (date.getMonth()+1)).slice(-2) +"/"+date.getFullYear();
+        let today = date.getDate() + "/" + ('0' + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
 
         setNewConsultationDate(today);
         document.getElementById('consultation-txt').value = today;
@@ -99,9 +98,6 @@ function StakeholderForum({ Stakeholder }) {
 
     return (
         <div className='forum-container'>
-            <div className='forum-header'>
-                <h3>STAKEHOLDER INFORMATION</h3>
-            </div>
             <div className='forum-body'>
                 <div className='column'>
                     <div className='input-wrapper'>
@@ -116,10 +112,7 @@ function StakeholderForum({ Stakeholder }) {
                         <label>Home Address</label>
                         <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                     </div>
-                    <div className="btn-container">
                         <button className="btn-save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
-                        <div></div>
-                    </div>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
@@ -127,7 +120,7 @@ function StakeholderForum({ Stakeholder }) {
                         <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
                     </div>
                     <div className='input-wrapper'>
-                        
+
                         <div className='label-wrapper'><label>Consultation Date</label><button className='label-btn' onClick={() => stampDate()}>+ Add</button></div>
                         <textarea id='consultation-txt' type="text" defaultValue={Stakeholder.CONSULTATION} onChange={(event) => setNewConsultationDate(event.target.value)}></textarea>
                     </div>

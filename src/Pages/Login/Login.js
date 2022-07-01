@@ -12,8 +12,6 @@ const Login = ({ LogIn }) => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState('');
 
-  Axios.defaults.withCredentials = true;
-
   const login = () => {
     Axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
       username: username,
@@ -21,10 +19,10 @@ const Login = ({ LogIn }) => {
     }).then((response) => {
       console.log(response)
       if (response.data.auth) {
-        LogIn(response.data);
+        LogIn(response.data.auth);
         console.log(response)
-        localStorage.setItem("x-access-token", response.data.token);
-        localStorage.setItem("x-access-refresh-token", response.data.refreshToken);
+        localStorage.setItem("access-token", response.data.token);
+        localStorage.setItem("refresh-token", response.data.refreshToken);
       } else {
         setMessage(response.data.message);
       }
@@ -33,10 +31,10 @@ const Login = ({ LogIn }) => {
 
   return (
     <div className="login-page">
-      <div id="login-container">
+      <div className="login-container">
 
-        <div id="login-heading">
-          <h2>LOG IN</h2>
+        <div className="login-heading">
+          <h2>Login Your Account</h2>
         </div>
 
         <div className="inputs">
@@ -49,10 +47,10 @@ const Login = ({ LogIn }) => {
           <input type="password" onChange={(e) => setPassword(e.target.value)}></input>
         </div>
 
-        <p id='login-message'>{message}</p>
+        <p className='login-message'>{message}</p>
 
-        <button id="login-btn" onClick={login}>Log In</button>
-        
+        <button className="login-btn" onClick={login}>Log In</button>
+
       </div>
     </div>
   );

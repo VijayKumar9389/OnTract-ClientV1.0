@@ -4,6 +4,7 @@
   width: 100%;
   background-color: #f5f8fa;
 }
+
 .App {
   text-align: center;
   height: 100%;
@@ -15,15 +16,16 @@ html, body, #root, .App {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #888;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

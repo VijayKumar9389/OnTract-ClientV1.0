@@ -1,85 +1,93 @@
-.home-body{
-    padding-left: 300px;
-    height: fit-content;
-    min-height: 100%;
+.home-body {
+  padding-left: 300px;
+  height: fit-content;
+  min-height: 100%;
 }
 
-.home-heading{
-    width: 100%;
-    
-    background-color: #fff;
-    height: 80px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-    
+.home-heading {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 50px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+
 }
 
-.heading-wrapper h2{
-    color: gray;
+.heading-wrapper h2 {
+  color: gray;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  background-color: grey;
 }
 
 .heading-wrapper {
-    width: 95%;
-    height: inherit;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 95%;
+  height: inherit;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-  .logout-container{
-    width: 80px;
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 50px;
-  }
+.btn-container {
+  width: fit-content;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
 
-  .logout-container:hover{
-    cursor: pointer;
-    background-color: #ddd;
-  }
 
-  .logout-info-container{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
-      width: 40%;
-      margin: auto;
-  }
+.logout-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 40%;
+  margin: auto;
+}
 
-  .logout-btn-container{
-    background-color: #fff;
-    width: 150px;
-    height: 40px;
-    margin-top: 80px;
-    display: none;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd; /* Add a grey border */
-    border-radius: 10px;
-  }
+.btn-logout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 
-  .logout-container:hover .logout-btn-container{
-    display: block;
-  }
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: red;
+}
 
-  .btn-logout{
-    list-style-type: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    border-radius: 10px;
-  }
+.btn-download{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-right: 20px;
 
-  .btn-logout:hover{
-    cursor: pointer;
-    background-color: #68bd45;
-    color: #fff;
-  }
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #68bd45;
+}
+
+.btn-download:hover{
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transform: scale(1.1);
+}
+
+.btn-logout:hover{
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transform: scale(1.1);
+}

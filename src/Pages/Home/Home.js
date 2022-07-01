@@ -3,13 +3,13 @@ import axios from 'axios';
 
 import './Home.css';
 import { MdLogout } from 'react-icons/md';
+import { BiDownload } from 'react-icons/bi';
 
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/StakeholderTable/StakeholderTable';
 import Report from '../../Components/Reports/Report';
-import CompareBook from '../../Components/CompareBook/CompareBook';
 
-function Home({ Logout }) {
+function Home({ LogOut }) {
 
     const [location, setLocation] = useState({ province: '', city: '' });
 
@@ -23,7 +23,7 @@ function Home({ Logout }) {
             responseType: 'arraybuffer',
             headers: {
                 'Content-Type': 'blob',
-                "x-access-token": localStorage.getItem("x-access-token")
+                "access-token": localStorage.getItem("access-token")
             },
         }).then((response) => {
             const link = document.createElement('a');
@@ -43,18 +43,12 @@ function Home({ Logout }) {
                 <div className='home-heading'>
                     <div className='heading-wrapper'>
                         <h2>STAKEHOLDERS</h2>
-                        <button onClick={() => downloadFile()}>Download Project</button>
-                        <div className='logout-container'>
-                            <div className='logout-info-container'>< MdLogout color='gray' size='3rem' /></div>
-                            <div className='logout-btn-container'>
-                                <li className='btn-logout' onClick={Logout}>Log Out</li>
-                            </div>
+                        <div className='btn-container'>
+                            <button className='btn-download' onClick={() => downloadFile()}>Download&nbsp;< BiDownload color='#fff' size='1rem' /></button>
+                            <button className='btn-logout' onClick={LogOut}>Logout&nbsp;< MdLogout color='#fff' size='1rem' /></button>
                         </div>
                     </div>
                 </div>
-                <Report />
-
-                <CompareBook />
                 <StakeholderTable Location={location} />
             </div>
         </div>

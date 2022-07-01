@@ -15,7 +15,7 @@ function Sidebar({ setLocation }) {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/locations`, {
             headers: {
-                "x-access-token": localStorage.getItem("x-access-token"),
+                "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setData(response.data));
     }, []);
@@ -80,7 +80,7 @@ function Sidebar({ setLocation }) {
             <div className='sidebar-heading'>
                 <SiCivicrm size="3rem" color='#68bd45' />
                 <p>Triton</p>
-                <h1>SRM</h1>
+                <h1>CRM</h1>
             </div>
             <div className='sidebar-body'>
                 {province ? printCityList() : printProvinceList()}
