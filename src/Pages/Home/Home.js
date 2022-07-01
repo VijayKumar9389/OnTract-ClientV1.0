@@ -49,6 +49,7 @@ function Home({ LogOut }) {
                         </div>
                     </div>
                 </div>
+                <Report />
                 <StakeholderTable Location={location} />
             </div>
         </div>
