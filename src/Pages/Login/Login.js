@@ -17,15 +17,15 @@ const Login = ({ LogIn }) => {
       username: username,
       password: password,
     }).then((response) => {
-      console.log(response)
+
       if (response.data.auth) {
         LogIn(response.data.auth);
-        console.log(response)
         localStorage.setItem("access-token", response.data.token);
         localStorage.setItem("refresh-token", response.data.refreshToken);
       } else {
         setMessage(response.data.message);
       }
+      
     });
   }
 

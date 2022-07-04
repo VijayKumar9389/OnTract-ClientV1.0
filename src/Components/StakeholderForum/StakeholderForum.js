@@ -112,7 +112,7 @@ function StakeholderForum({ Stakeholder }) {
                         <label>Home Address</label>
                         <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                     </div>
-                        <button className="btn-save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
+                    <button className="btn-save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
@@ -128,6 +128,7 @@ function StakeholderForum({ Stakeholder }) {
                         <label>Follow Up</label>
                         <textarea type="text" defaultValue={Stakeholder.FOLLOWUP} onChange={(event) => setNewFollowUp(event.target.value)}></textarea>
                     </div>
+                    <button className="btn-survey" onClick={() => { window.open('https://www.surveymonkey.com/r/73ZNH82') }}>Survey</button>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>

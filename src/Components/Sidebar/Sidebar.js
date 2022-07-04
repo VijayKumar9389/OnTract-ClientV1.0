@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import './Sidebar.css';
-
 import { BiArrowToLeft } from "react-icons/bi";
 import { SiCivicrm } from "react-icons/si";
 

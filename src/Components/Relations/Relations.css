@@ -32,7 +32,7 @@
     /* transition: ease-in-out .2s; */
 }
 
-.relations-container ul li:hover{
+.relations-container ul li:hover {
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transform: scale(1.01);
@@ -46,12 +46,12 @@
     display: flex;
 }
 
-.relation-info{
+.relation-info {
     display: grid;
     grid-template-columns: 10% 90%;
 }
 
-.info-wrapper{
+.info-wrapper {
     margin: auto;
     display: grid;
     justify-content: center;
@@ -67,7 +67,7 @@
     text-decoration: none;
 }
 
-.relations-container label{
+.relations-container label {
     margin-top: 35px;
     margin-left: 10px;
     font-size: 14px;
@@ -76,4 +76,3 @@
     color: gray;
     width: 90%;
 }
-

@@ -19,6 +19,7 @@
     position: sticky;
     top: 0;
     background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .stakeholder-table thead th{
@@ -70,33 +71,6 @@
 .clear-btn-clear {
     position: absolute;
     z-index: 300;
-}
-
-.contacted-yes {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-
-    width: 80px;
-    height: 30px;
-    border-radius: 5px;
-    color: #407945;
-    background-color: #c1e3c4;
-}
-
-.contacted-no {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-
-    width: 80px;
-    height: 30px;
-    border-radius: 5px;
-    color: #a4484c;
-    background-color: #FFC6CD;
 }
 
 .ddl-filter select{
