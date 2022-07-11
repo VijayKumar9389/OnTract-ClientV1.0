@@ -42,7 +42,7 @@ function TractTable({ Stakeholder }) {
             <>
                 {ind > 0 ? <div className='spacer'></div> : null}
                 {arr.map((stakeholder, index) => {
-                    return <TractRow key={ind} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)}/>
+                    return <TractRow key={stakeholder.ID} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)}/>
                 })}
             </>
         )
