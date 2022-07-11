@@ -7,7 +7,7 @@ import { BsPersonXFill } from 'react-icons/bs';
 import { BsFillPersonDashFill } from 'react-icons/bs';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 
-function Report() {
+function Report({ setFilter, Filter }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -18,41 +18,46 @@ function Report() {
         }).then((response) => setData(response.data));
     }, []);
 
+    function checkActive(num){
+        if (Filter !== num) {
+            return ('report-item');
+        } else {
+            return ('report-item-active');
+        }
+    }
+
     return (
-        <div id='report-container'>
-            <div className='report-item'>
-                <div className='report-item-wrapper'>
-                    <a><BsFillPersonCheckFill size='3rem' /></a>
-                    <p>CONTACTED</p>
-                    <h1>{data.contacted}</h1>
+        <div className='report-container'>
+            <div className='report-wrapper'>
+                <div className={checkActive(0)} onClick={() => setFilter(0)}>
+                    <div className='report-item-wrapper'>
+                        <p>TOTAL</p>
+                        <h1>{data.total}</h1>
+                    </div>
                 </div>
-            </div>
-            <div className='report-item'>
-                <div className='report-item-wrapper'>
-                    <a><BsPersonXFill size='3rem' /></a>
-                    <p>REMAINING</p>
-                    <h1>{data.remaining}</h1>
+                <div className={checkActive(1)}>
+                    <div className='report-item-wrapper' onClick={() => setFilter(1)}>
+                        <p>CONTACTED</p>
+                        <h1>{data.contacted}</h1>
+                    </div>
                 </div>
-            </div>
-            <div className='report-item'>
-                <div className='report-item-wrapper'>
-                    <a><BsFillPersonFill size='3rem' /></a>
-                    <p>TOTAL</p>
-                    <h1>{data.total}</h1>
+                <div className={checkActive(2)} onClick={() => setFilter(2)}>
+                    <div className='report-item-wrapper'>
+                        <p>REMAINING</p>
+                        <h1>{data.remaining}</h1>
+                    </div>
                 </div>
-            </div>
-            <div className='report-item'>
-                <div className='report-item-wrapper'>
-                    <a><BsFillPersonDashFill size='3rem' /></a>
-                    <p>SINGLE-TRACT</p>
-                    <h1>{data.single}</h1>
+                <div className={checkActive(3)} onClick={() => setFilter(3)}>
+                    <div className='report-item-wrapper'>
+                        <p>SINGLE-TRACT</p>
+                        <h1>{data.single}</h1>
+                    </div>
                 </div>
-            </div>
-            <div className='report-item-nb'>
-                <div className='report-item-wrapper'>
-                    <a><BsFillPersonPlusFill size='3rem' /></a>
-                    <p>MULTI-TRACT</p>
-                    <h1>{data.multi}</h1>
+                <div className={checkActive(4)} onClick={() => setFilter(4)}>
+                    <div className='report-item-wrapper'>
+                        <p>MULTI-TRACT</p>
+                        <h1>{data.multi}</h1>
+                    </div>
                 </div>
             </div>
         </div>

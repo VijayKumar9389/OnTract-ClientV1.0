@@ -8,6 +8,34 @@ import { FaHome } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
 
+const colors = [
+    "#ADFF2F",
+    "#7FFF00",
+    "#7CFC00",
+    "#00FF00",
+    "#32CD32",
+    "#98FB98",
+    "#00FA9A",
+    "#00FF7F",
+    "#3CB371",
+    "#2E8B57",
+    "#228B22",
+    "#008000",
+    "#006400",
+    "#9ACD32",
+    "#6B8E23",
+    "#556B2F",
+    "#66CDAA",
+    "#8FBC8F",
+    "#20B2AA",
+    "#008B8B",
+    "#008080",
+    "#00FFFF",
+    "#00FFFF",
+    "#7FFFD4"
+  ];
+
+  var randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 function Relations({ Stakeholder }) {
 
@@ -34,7 +62,7 @@ function Relations({ Stakeholder }) {
                     return (
                         <Link key={index} className='relation-link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
                             <li>
-                                <h3>{record.stakeholder.NAME}</h3>
+                                <h3 style={{borderBottom: `3px solid ${colors[index]}`}}>{record.stakeholder.NAME}</h3>
                                 <div className='info-wrapper'>
                                     <FaPhone size='1.2rem' />
                                     {record.phone ? <a>{record.stakeholder.PHONE}</a> : <a></a>}

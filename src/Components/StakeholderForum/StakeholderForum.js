@@ -35,28 +35,39 @@ function StakeholderForum({ Stakeholder }) {
             }, {
             headers: { "access-token": localStorage.getItem("access-token") }
         }).then((response) => {
-            successtoast(name);
-            navigate(`/${newName}`, {
-                replace: true,
-                state: {
-                    stakeholder: {
-                        NAME: newName.trim(),
-                        CONTACT: newContactStatus.trim(),
-                        STREET: newHomeAddress.trim(),
-                        MAILING: newMailingAddress.trim(),
-                        PHONE: newPhoneNo.trim(),
-                        CONTACTED: newContacted.trim(),
-                        ATTEMPTS: newAttemptDetails.trim(),
-                        CONSULTATION: newConsultationDate.trim(),
-                        FOLLOWUP: newFollowUp.trim()
+            console.log(response)
+            if (!response.data.status) {
+                failtoast(name);
+            } else {
+                successtoast(name);
+                navigate(`/${newName}`, {
+                    replace: true,
+                    state: {
+                        stakeholder: {
+                            NAME: newName.trim(),
+                            CONTACT: newContactStatus.trim(),
+                            STREET: newHomeAddress.trim(),
+                            MAILING: newMailingAddress.trim(),
+                            PHONE: newPhoneNo.trim(),
+                            CONTACTED: newContacted.trim(),
+                            ATTEMPTS: newAttemptDetails.trim(),
+                            CONSULTATION: newConsultationDate.trim(),
+                            FOLLOWUP: newFollowUp.trim()
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     }
 
     function successtoast(name) {
         toast.success(`Successfully updated ${name}`, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+    function failtoast(name) {
+        toast.error(`Failed to updated ${name}`, {
             position: toast.POSITION.TOP_RIGHT
         });
     }

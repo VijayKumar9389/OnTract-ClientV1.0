@@ -1,18 +1,41 @@
 #report-container{
-    border-radius: 20px;
+    border-radius: 10px;
     width: 95%;
     margin: 40px auto;
+}
+
+.report-wrapper{
+    border-radius: 10px;
+    width: 95%;
+    margin: 40px auto;
+    padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: #e5e8ed;
 }
 
 .report-item{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
+    height: 100px;
     width: 100%;
-    border-right: 1px solid #ddd;
+    margin: auto;
+}
+
+.report-item-active{
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+    margin: auto;
+}
+
+.report-item:hover{
+    cursor: pointer
 }
 
 .report-item-nb{

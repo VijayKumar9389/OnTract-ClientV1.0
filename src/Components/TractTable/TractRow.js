@@ -8,7 +8,7 @@ import { FaRegSave } from 'react-icons/fa';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { CgSearch } from 'react-icons/cg';
 
-function TractRow({ Stakeholder, stakeholderProfile, Search, Index }) {
+function TractRow({ Stakeholder, stakeholderProfile, Index }) {
 
     const nav = useNavigate();
 
@@ -64,7 +64,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Search, Index }) {
             </td>
             <td><textarea className='tract-input' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea></td>
             <td className='name-cell'>{Stakeholder.NAME}</td>
-            <td>{Stakeholder.INTEREST}</td>
+            <td><div className={Index === 0 ? 'owner-wrapper' : ''}>{Stakeholder.INTEREST}</div></td>
             <td><input defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></input></td>
             <td>
                 <select className="table-ddl" defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>

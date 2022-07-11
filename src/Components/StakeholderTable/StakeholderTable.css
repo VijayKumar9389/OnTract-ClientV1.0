@@ -93,12 +93,19 @@
 }
 
 .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    width: 95%;
     margin: auto;
+}
+
+.filt-wrapper{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 25px;
-    width: 95%;
+    width: 100%;
 }
 
 .input-container input{

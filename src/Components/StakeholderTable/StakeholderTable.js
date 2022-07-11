@@ -9,7 +9,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineCheck } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
 
-function StakeholderTable({ Location }) {
+function StakeholderTable({ Location, Filter }) {
 
     const nav = useNavigate();
 
@@ -98,10 +98,40 @@ function StakeholderTable({ Location }) {
         return false;
     }
 
+    function checkTableFilter() {
+
+        var print = false
+
+        switch(Filter) {
+
+            case 0:
+            print = true;
+            break;
+
+            case 1: 
+            print = false;
+            break
+
+            case 2: 
+            print = false;
+            break
+
+            case 3: 
+            print = false;
+            break
+
+            case 4: 
+            print = false;
+            break
+        }
+
+        return print
+    }
+
     function Filter(stakeholder) {
         if (stakeholder.NAME.toLowerCase().includes(search.toLowerCase())) {
             if (checkLocation(stakeholder.MAILING)) {
-                if (checkContactStatus(stakeholder.CONTACTED)) {
+                if (checkContactStatus(stakeholder.CONTACT)) {
                     return true;
                 }
             }
@@ -129,22 +159,26 @@ function StakeholderTable({ Location }) {
         <>
             <div className="input-container">
 
-                <div className="ddl-filter">
-                    <select defaultValue={contactFilter} onChange={(event) => setContactFilter(event.target.value)}>
-                        <option value="">All</option>
-                        <option value="YES">Contacted</option>
-                        <option value="NO">No Contact</option>
-                    </select>
+                <div className='filt-wrapper'>
+                    <div className="ddl-filter">
+                        <select defaultValue={contactFilter} onChange={(event) => setContactFilter(event.target.value)}>
+                            <option value="">All</option>
+                            <option value="YES">Contacted</option>
+                            <option value="NO">No Contact</option>
+                        </select>
+                    </div>
+
+                    <input type="text" id="table-input" defaultValue="" required onChange={(e) => handleSearch(e.target.value)} placeholder="Search Stakeholders..." />
+
+                    <div className="clearbtn-container">
+                        {btnClearSearch ?
+                            <div className="clear-btn-clear"><BiX size='2.5rem' cursor='pointer' color='grey' onClick={clearSearch} /></div>
+                            :
+                            <div className="clear-btn-search"><CgSearch size='2rem' color='grey' /></div>}
+                    </div>
                 </div>
 
-                <input type="text" id="table-input" defaultValue="" required onChange={(e) => handleSearch(e.target.value)} placeholder="Search Stakeholders..." />
-
-                <div className="clearbtn-container">
-                    {btnClearSearch ?
-                        <div className="clear-btn-clear"><BiX size='2.5rem' cursor='pointer' color='grey' onClick={clearSearch} /></div>
-                        :
-                        <div className="clear-btn-search"><CgSearch size='2rem' color='grey' /></div>}
-                </div>
+                            <button>Filters</button>
 
             </div>
             <div className='table-container'>

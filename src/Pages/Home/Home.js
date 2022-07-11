@@ -12,9 +12,15 @@ import Report from '../../Components/Reports/Report';
 function Home({ LogOut }) {
 
     const [location, setLocation] = useState({ province: '', city: '' });
+    const [filter, setFilter] = useState(0);
 
     function setLocationFilter(location) {
         setLocation(location);
+    }
+
+    function setTableFilter(Filter) {
+        console.log(filter)
+        setFilter(Filter);
     }
 
     function downloadFile() {
@@ -44,13 +50,13 @@ function Home({ LogOut }) {
                     <div className='heading-wrapper'>
                         <h2>STAKEHOLDERS</h2>
                         <div className='btn-container'>
-                            <button className='btn-download' onClick={() => downloadFile()}>Download&nbsp;< BiDownload color='#fff' size='1rem' /></button>
-                            <button className='btn-logout' onClick={LogOut}>Logout&nbsp;< MdLogout color='#fff' size='1rem' /></button>
+                            <button className='btn-download' onClick={() => downloadFile()}>Download&nbsp;< BiDownload color='#5B8A5F' size='1rem' /></button>
+                            <button className='btn-logout' onClick={LogOut}>Logout&nbsp;< MdLogout color='#C1676E' size='1rem' /></button>
                         </div>
                     </div>
                 </div>
-                <Report />
-                <StakeholderTable Location={location} />
+                <Report setFilter={Filter => setTableFilter(Filter)} Filter={filter}/>
+                <StakeholderTable Location={location} Filter={filter}/>
             </div>
         </div>
     );

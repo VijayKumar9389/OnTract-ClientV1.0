@@ -39,7 +39,9 @@
 }
 
 .relations-container ul li h3 {
-    padding: 10px 20px;
+    margin: 0 20px;
+    padding: 5px 0;
+    /* border-bottom: 3px solid red; */
 }
 
 .relations-container ul li a {
