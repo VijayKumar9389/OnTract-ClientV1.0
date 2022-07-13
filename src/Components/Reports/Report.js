@@ -28,7 +28,7 @@ function Report({ setFilter, Filter }) {
 
     return (
         <div className='report-container'>
-            <div className='report-wrapper'>
+{console.log(data)}
                 <div className={checkActive(0)} onClick={() => setFilter(0)}>
                     <div className='report-item-wrapper'>
                         <p>TOTAL</p>
@@ -59,7 +59,12 @@ function Report({ setFilter, Filter }) {
                         <h1>{data.multi}</h1>
                     </div>
                 </div>
-            </div>
+                <div className={checkActive(5)}>
+                    <div className='report-item-wrapper' onClick={() => setFilter(5)}>
+                        <p>MISSING PHONE</p>
+                        <h1>{data.missingPhone}</h1>
+                    </div>
+                </div>
         </div>
     );
 }

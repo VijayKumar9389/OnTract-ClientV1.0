@@ -1,31 +1,31 @@
-#report-container{
+.report-container {
     border-radius: 10px;
     width: 95%;
     margin: 40px auto;
-}
-
-.report-wrapper{
-    border-radius: 10px;
-    width: 95%;
-    margin: 40px auto;
-    padding: 5px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    background-color: #e5e8ed;
-}
-
-.report-item{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    width: 100%;
-    margin: auto;
-}
-
-.report-item-active{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: #fff;
-    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    overflow: hidden;
+}
+
+
+.report-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    border-right: 1px solid #ddd;
+}
+
+.report-item:last-child {
+    border-right: none;
+}
+
+.report-item-active {
+    background-color: #e5e8ed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,11 +34,11 @@
     margin: auto;
 }
 
-.report-item:hover{
+.report-item:hover {
     cursor: pointer
 }
 
-.report-item-nb{
+.report-item-nb {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +46,7 @@
     width: 100%;
 }
 
-.report-item-wrapper{
+.report-item-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,11 +54,11 @@
     color: grey;
 }
 
-.report-item-wrapper h4{
+.report-item-wrapper h4 {
     font-size: larger;
     margin-bottom: 10px;
 }
 
-.report-item-wrapper h1{
+.report-item-wrapper h1 {
     color: #68bd45;
 }

@@ -9,7 +9,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineCheck } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
 
-function StakeholderTable({ Location, Filter }) {
+function StakeholderTable({ Location, Filters }) {
 
     const nav = useNavigate();
 
@@ -25,6 +25,7 @@ function StakeholderTable({ Location, Filter }) {
             },
         }).then((response) => setData(response.data));
     }, []);
+
 
     function selectStakeholder(stakeholderInfo) {
         window.scrollTo(0, 0);
@@ -61,6 +62,7 @@ function StakeholderTable({ Location, Filter }) {
             if (Address === '') {
                 return true;
             }
+
         }
 
         let location = { province: stakeholderLocation[stakeholderLocation.length - 2], city: stakeholderLocation[stakeholderLocation.length - 3] };
@@ -84,54 +86,84 @@ function StakeholderTable({ Location, Filter }) {
         else return false;
     }
 
-    function checkContactStatus(contactStatus) {
-        if (contactFilter === '') {
+    function checkNum(phoneNo){
+        if(phoneNo.length === 0){
             return true;
-        }
-        if (contactFilter === 'YES' && contactStatus === 'YES') {
-            return true;
-        }
-        if (contactFilter === 'NO' && contactStatus !== 'YES') {
-            return true;
+            
+        } else {
+            return false;
         }
 
-        return false;
     }
 
-    function checkTableFilter() {
+    function checkCount(count, single) {
 
-        var print = false
-
-        switch(Filter) {
-
-            case 0:
-            print = true;
-            break;
-
-            case 1: 
-            print = false;
-            break
-
-            case 2: 
-            print = false;
-            break
-
-            case 3: 
-            print = false;
-            break
-
-            case 4: 
-            print = false;
-            break
+        if (single){
+            if (count === 1){
+                return true;
+            } else {
+                return false;
+            }
         }
 
-        return print
+        if (!single) {
+            if (count > 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    }
+
+
+    function checkContactStatus(contactStatus, filter) {
+        if (filter === 'YES') {
+            if (contactStatus === 'YES') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (filter !== 'YES') {
+
+            if (contactStatus !== 'YES') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    function checkTableFilter(filters, stakeholder) {
+
+        switch (Filters) {
+
+            case 0:
+                return true;
+
+            case 1:
+                return checkContactStatus(stakeholder.CONTACTED, 'YES');
+
+            case 2:
+                return checkContactStatus(stakeholder.CONTACTED, '');
+
+            case 3:
+                return checkCount(stakeholder.count, true);
+
+            case 4:
+                return checkCount(stakeholder.count, false);
+
+            case 5:
+                return checkNum(stakeholder.PHONE)
+        }
+
     }
 
     function Filter(stakeholder) {
         if (stakeholder.NAME.toLowerCase().includes(search.toLowerCase())) {
             if (checkLocation(stakeholder.MAILING)) {
-                if (checkContactStatus(stakeholder.CONTACT)) {
+                if (checkTableFilter(Filters, stakeholder)) {
                     return true;
                 }
             }
@@ -162,9 +194,9 @@ function StakeholderTable({ Location, Filter }) {
                 <div className='filt-wrapper'>
                     <div className="ddl-filter">
                         <select defaultValue={contactFilter} onChange={(event) => setContactFilter(event.target.value)}>
-                            <option value="">All</option>
-                            <option value="YES">Contacted</option>
-                            <option value="NO">No Contact</option>
+                            <option value="">Stakeholders</option>
+                            <option value="YES">Tracts</option>
+                            <option value="NO">Numbers</option>
                         </select>
                     </div>
 
@@ -178,7 +210,7 @@ function StakeholderTable({ Location, Filter }) {
                     </div>
                 </div>
 
-                            <button>Filters</button>
+                <button>Filters</button>
 
             </div>
             <div className='table-container'>
@@ -198,9 +230,7 @@ function StakeholderTable({ Location, Filter }) {
                     </thead>
                     <tbody>
                         {data.map((stakeholder, index) => {
-
                             let location = stakeholder.MAILING.split(",");
-
                             if (Filter(stakeholder)) {
                                 return (
                                     <tr key={index} onClick={() => selectStakeholder(stakeholder)}>

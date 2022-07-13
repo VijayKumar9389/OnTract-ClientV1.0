@@ -42,7 +42,7 @@
 }
 
 .stakeholder-table tbody tr:hover {
-    background-color: #ddd;
+    background-color: #e5e8ed;
     cursor: pointer;
     align-items: center;
 }
@@ -75,7 +75,7 @@
 
 .ddl-filter select{
     height: 46px;
-    width: 130px;
+    width: 150px;
     padding-left: 15px;
     font-size: 16px;
     outline: none;

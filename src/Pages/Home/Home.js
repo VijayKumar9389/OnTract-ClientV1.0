@@ -19,7 +19,7 @@ function Home({ LogOut }) {
     }
 
     function setTableFilter(Filter) {
-        console.log(filter)
+        console.log(Filter)
         setFilter(Filter);
     }
 
@@ -56,7 +56,7 @@ function Home({ LogOut }) {
                     </div>
                 </div>
                 <Report setFilter={Filter => setTableFilter(Filter)} Filter={filter}/>
-                <StakeholderTable Location={location} Filter={filter}/>
+                <StakeholderTable Location={location} Filters={filter}/>
             </div>
         </div>
     );
