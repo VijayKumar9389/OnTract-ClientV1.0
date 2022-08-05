@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './StakeholderForum.css';
+import './StakeholderForum.scss';
 
 function StakeholderForum({ Stakeholder }) {
 
@@ -123,7 +123,7 @@ function StakeholderForum({ Stakeholder }) {
                         <label>Home Address</label>
                         <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                     </div>
-                    <button className="btn-save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
+                    <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
@@ -131,19 +131,18 @@ function StakeholderForum({ Stakeholder }) {
                         <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
                     </div>
                     <div className='input-wrapper'>
-
-                        <div className='label-wrapper'><label>Consultation Date</label><button className='label-btn' onClick={() => stampDate()}>+ Add</button></div>
+                        <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
                         <textarea id='consultation-txt' type="text" defaultValue={Stakeholder.CONSULTATION} onChange={(event) => setNewConsultationDate(event.target.value)}></textarea>
                     </div>
                     <div className='input-wrapper'>
                         <label>Follow Up</label>
                         <textarea type="text" defaultValue={Stakeholder.FOLLOWUP} onChange={(event) => setNewFollowUp(event.target.value)}></textarea>
                     </div>
-                    <button className="btn-survey" onClick={() => { window.open('https://www.surveymonkey.com/r/73ZNH82') }}>Survey</button>
+                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/73ZNH82') }}>Survey</button>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
-                        <div className='label-wrapper'><label>Attempt Details</label><button className='label-btn' onClick={() => addAttempt()}>+ Add</button></div>
+                        <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
                         <textarea id='attempt-txt' type="text" defaultValue={Stakeholder.ATTEMPTS} onChange={(event) => setNewAttemptDetails(event.target.value)}></textarea>
                     </div>
                     <div className="ddl-container">

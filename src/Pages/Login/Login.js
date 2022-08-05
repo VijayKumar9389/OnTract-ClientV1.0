@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Axios from 'axios';
 
-import './Login.css';
+import './Login.scss';
 import { SiCivicrm } from "react-icons/si";
 
 const Login = ({ LogIn }) => {
@@ -30,19 +30,18 @@ const Login = ({ LogIn }) => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-
-        <div className="login-heading">
+    <div className="login-container">
+      <div className="login-wrapper">
+        <div className="heading">
           <h2>Login Your Account</h2>
         </div>
 
-        <div className="inputs">
+        <div className="input-wrapper">
           <label>Username</label>
           <input onChange={(e) => setUsername(e.target.value)}></input>
         </div>
 
-        <div className="inputs">
+        <div className="input-wrapper">
           <label>Password</label>
           <input type="password" onChange={(e) => setPassword(e.target.value)}></input>
         </div>

@@ -1,78 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-import './Sidebar.css';
-import { BiArrowToLeft } from "react-icons/bi";
+import './Sidebar.scss';
 import { SiCivicrm } from "react-icons/si";
 
-function Sidebar({ setLocation }) {
+import ProvinceList from './ProvinceList';
+import CityList from './CityList';
 
-    const [data, setData] = useState([]);
-    const [province, setProvince] = useState(null);
-    const [city, setCity] = useState('');
+function Sidebar() {
+
+    const [locationList, setLocationList] = useState([]);
+    const location = useSelector((state) => state.location.value);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/locations`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
-        }).then((response) => setData(response.data));
+        }).then((response) => setLocationList(response.data));
     }, []);
-
-    function selectProvince(location) {
-        setLocation({ province: location.province, city: '' });
-        setProvince(location);
-        window.scrollTo(0, 0);
-    }
-
-    function selectCity(city) {
-        if (city) {
-            setLocation({ province: province.province, city: city });
-        } else {
-            setLocation({ province: '', city: '' });
-            setProvince(null);
-            setCity('')
-        }
-        setCity(city);
-        window.scrollTo(0, 0);
-    }
-
-    function checkActive(cityName) {
-        if (city === cityName) {
-            return {backgroundColor: '#68bd45', color: '#fff'};
-        } else {
-            return {backgroundColor: ''};
-        }
-    }
-
-    function printProvinceList() {
-        return (
-            <ul>
-                {data.map((location, index) => {
-                    return (
-                        <li key={index} onClick={() => selectProvince(location)}>
-                            <a>{location.province}</a><a>({location.count})</a>
-                        </li>
-                    );
-                })}
-            </ul>
-        );
-    }
-
-    function printCityList() {
-        return (
-            <ul>
-                <li className='li-exit' onClick={() => selectCity(null)}><BiArrowToLeft size='2rem' /><a>{province.province}</a></li>
-                {province.cities.map((city, index) => {
-                    return (
-                        <li key={index} style={checkActive(city.name)} onClick={() => selectCity(city.name)}>
-                            <a>{city.name}</a><a>({city.count})</a>
-                        </li>
-                    );
-                })}
-            </ul>
-        );
-    }
 
     return (
         <div className='sidebar-container'>
@@ -82,7 +29,11 @@ function Sidebar({ setLocation }) {
                 <h1>CRM</h1>
             </div>
             <div className='sidebar-body'>
-                {province ? printCityList() : printProvinceList()}
+                {location.province !== '' ?
+                    <CityList Location={location} />
+                    :
+                    <ProvinceList ProvinceList={locationList} />
+                }
             </div>
         </div>
     );

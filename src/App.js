@@ -22,7 +22,8 @@ function App() {
     }).then((response) => {
       if (response.data.auth) {
         localStorage.setItem("access-token", response.data.token);
-        setLoggedIn(response.data.auth)
+        setLoggedIn(response.data.auth);
+        console.log(response.data);
       } else {
         Logout();
       }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import './Relations.css';
+import './Relations.scss';
 
 import { FaHome } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
@@ -60,7 +60,7 @@ function Relations({ Stakeholder }) {
             <ul>
                 {data.map((record, index) => {
                     return (
-                        <Link key={index} className='relation-link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
+                        <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
                             <li>
                                 <h3 style={{borderBottom: `3px solid ${colors[index]}`}}>{record.stakeholder.NAME}</h3>
                                 <div className='info-wrapper'>

@@ -1,0 +1,56 @@
+.report-container {
+    border-radius: 10px;
+    width: 95%;
+    height: 100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    overflow: hidden;
+
+    .report-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        border-right: 1px solid #ddd;
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &:hover {
+            cursor: pointer
+        }
+    }
+
+    .report-item-active {
+        background-color: #e5e8ed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .report-item-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: grey;
+
+        h4 {
+            font-size: larger;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #68bd45;
+        }
+    }
+}
