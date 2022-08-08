@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { checkLocation, searchName, checkTableFilter } from '../../../Helpers/utils';
+import { checkLocation, searchName, checkTableFilter, checkNum } from '../../../Helpers/utils';
 
 import './StakeholderTable.scss';
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -58,6 +58,7 @@ function StakeholderTable() {
                         <th><h5>Province</h5></th>
                         <th><h5>City</h5></th>
                         <th><h5>Attempts</h5></th>
+                        <th><h5>Phone?</h5></th>
                         <th><h5>Contacted</h5></th>
                         <th></th>
                     </tr>
@@ -76,6 +77,7 @@ function StakeholderTable() {
                                     <td>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</td>
                                     <td>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</td>
                                     <td>{stakeholder.ATTEMPTS}</td>
+                                    <td>{checkNum(stakeholder.PHONE) ? <h3>False</h3> : <h3>True</h3>} </td>
                                     <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon'/> : <MdOutlineClose size='2rem' color='grey' className='icon'/>}</td>
                                     <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
                                 </tr>
