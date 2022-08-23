@@ -138,7 +138,7 @@ function StakeholderForum({ Stakeholder }) {
                         <label>Follow Up</label>
                         <textarea type="text" defaultValue={Stakeholder.FOLLOWUP} onChange={(event) => setNewFollowUp(event.target.value)}></textarea>
                     </div>
-                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/73ZNH82') }}>Survey</button>
+                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/VN6JS3X') }}>Survey</button>
                 </div>
                 <div className='column'>
                     <div className='input-wrapper'>
