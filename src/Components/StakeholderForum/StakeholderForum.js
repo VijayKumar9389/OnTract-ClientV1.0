@@ -176,6 +176,10 @@ function StakeholderForum({ Stakeholder }) {
                             <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/VN6JS3X') }}>Survey</button>
+>>>>>>> 9a8ec786d88051082f40e3c732e9c2ab863402f9
                 </div>
 
                 <div className='column'>
