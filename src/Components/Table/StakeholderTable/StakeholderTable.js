@@ -9,15 +9,17 @@ import './StakeholderTable.scss';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineCheck } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
+import { FaPhoneSlash } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
 
 function StakeholderTable() {
 
     const [data, setData] = useState([]);
 
     const nav = useNavigate();
-    const tblSearch = useSelector((state) => state.search.value);
-    const tblFilter = useSelector((state) => state.filter.value);
-    const Location = useSelector((state) => state.location.value);
+    const tblSearch = useSelector((state) => state.filter.search.txt);
+    const filters = useSelector((state) => state.filter.value);
+    const Location = useSelector((state) => state.filter.location);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders`, {
@@ -28,6 +30,7 @@ function StakeholderTable() {
     }, []);
 
     function selectStakeholder(stakeholderInfo) {
+        console.log(stakeholderInfo)
         window.scrollTo(0, 0);
         nav(`/${stakeholderInfo.NAME}`, {
             state: {
@@ -37,11 +40,11 @@ function StakeholderTable() {
     }
 
     function Filter(stakeholder) {
-        if (searchName(stakeholder.NAME.toLowerCase(), tblSearch.txt)) {
-            if (checkLocation(stakeholder.MAILING, Location)) {
-                if (checkTableFilter(tblFilter, stakeholder)) {
+        if (searchName(stakeholder.NAME.toLowerCase(), tblSearch)) {
+            if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
+                // if (checkTableFilter(filters, stakeholder)) {
                     return true;
-                }
+                // }
             }
         }
         return false;
@@ -55,10 +58,8 @@ function StakeholderTable() {
                         <th><h5>Name</h5></th>
                         <th><h5>Tracts</h5></th>
                         <th><h5>Contact Staus</h5></th>
-                        <th><h5>Province</h5></th>
-                        <th><h5>City</h5></th>
+                        <th><h5>Location</h5></th>
                         <th><h5>Attempts</h5></th>
-                        <th><h5>Phone?</h5></th>
                         <th><h5>Contacted</h5></th>
                         <th></th>
                     </tr>
@@ -73,12 +74,20 @@ function StakeholderTable() {
                                 <tr key={index} onClick={() => selectStakeholder(stakeholder)}>
                                     <td className='name'>{stakeholder.NAME}</td>
                                     <td>{stakeholder.count}</td>
-                                    <td>{stakeholder.CONTACT}</td>
-                                    <td>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</td>
-                                    <td>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</td>
+                                    <td>
+                                        <div className='status-wrapper'>
+                                            {checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}
+                                            {stakeholder.CONTACT}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className='status-wrapper'>
+                                            <a>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</a>
+                                            <a>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</a>
+                                        </div>
+                                    </td>
                                     <td>{stakeholder.ATTEMPTS}</td>
-                                    <td>{checkNum(stakeholder.PHONE) ? <h3>False</h3> : <h3>True</h3>} </td>
-                                    <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon'/> : <MdOutlineClose size='2rem' color='grey' className='icon'/>}</td>
+                                    <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon' /> : <MdOutlineClose size='2rem' color='grey' className='icon' />}</td>
                                     <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
                                 </tr>
                             );

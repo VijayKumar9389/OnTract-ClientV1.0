@@ -20,7 +20,7 @@ export function verifyCluster(cluster, Filters) {
 //use this method to determine if a row is valid
 export function Filter(stakeholder, Filters) {
 
-    console.log(stakeholder); 
+    console.log(stakeholder);
 
     switch (Filters) {
         case 1:
@@ -95,12 +95,13 @@ export function serachTract(tractNo, Search) {
 }
 
 // Filter Location 
-export function checkLocation(Address, Location) {
+export function checkLocation(Name, Address, Location) {
 
     var stakeholderLocation = Address.split(',');
     var stakeholderProvince = stakeholderLocation[stakeholderLocation.length - 2];
     var stakeholderCity = stakeholderLocation[stakeholderLocation.length - 3];
     var location = { province: stakeholderProvince, city: stakeholderCity };
+
 
     if (Location.province === 'MISSING') {
         if (stakeholderLocation.length < 3) {
@@ -111,16 +112,24 @@ export function checkLocation(Address, Location) {
         }
     }
 
-    if (Location.province === '' && Location.city === '') {
+    if (Location.province === null && Location.city === null) {
         return true
     }
+
+    if(stakeholderLocation.length < 3){
+        return false;
+    }
+
     if (Address !== '') {
-        if (Location.province !== '' && Location.city === '') {
+
+        if (Location.province !== null && Location.city === null) {
             if (location.province.includes(Location.province)) {
                 return true;
             }
         }
-        if (Location.province !== '' && Location.city !== '') {
+
+
+        if (Location.province !== null && Location.city !== null) {
             if (location.province.includes(Location.province) && location.city.includes(Location.city)) {
                 return true;
             }

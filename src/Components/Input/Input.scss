@@ -1,10 +1,11 @@
 .clearbtn-container {
     position: relative;
-    right: 50px;
+    left: 10px;
     bottom: 20px;
+    border-color: 1px solid #ddd;
 }
 
-.clear-btn-search {
+.clear-btn-search { 
     position: absolute;
     margin-top: 5px;
     z-index: 300;
@@ -34,29 +35,59 @@
     font-size: 20px;
 }
 
+.filterbtn{
+    position: absolute;
+    margin: 0;
+    z-index: 300;
+}
+
 .input-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px auto;
     width: 95%;
+    margin: 0 auto;
+    padding: 0;
+
+    .filt-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+
+        input {
+            height: 50px;
+            width: 60%;
+            padding-left: 60px;
+            font-size: 16px;
+            outline: none;
+            border: none;
+            position: relative;
+            z-index: 100;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        z-index: 1200;
+        position: relative;
+        right: 0;
+        top: 0;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #68bd45;
+            color: #fff;
+        }
+    }
 }
 
-.filt-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-}
 
-.input-container input {
-    height: 44px;
-    width: 50%;
-    padding-left: 15px;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    position: relative;
-    z-index: 100;
-}
+
