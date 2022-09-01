@@ -9,6 +9,7 @@ import './App.css';
 import Profile from './Pages/Profile/Profile';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import Analytics from './Pages/Analytics/Analytics';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home LogOut={Logout} />} />
         <Route path='/:name' element={<Profile />} />
+        <Route path='/Analytics' element={<Analytics />} />
       </Routes>
     </div>
   );

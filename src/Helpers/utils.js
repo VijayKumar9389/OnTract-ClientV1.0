@@ -177,23 +177,27 @@ export function searchName(name, inputTxt) {
 }
 
 export function checkTableFilter(filter, stakeholder) {
-    switch (filter) {
-        case 0:
-            return true;
-
-        case 1:
-            return checkContactStatus(stakeholder.CONTACTED, 'YES');
-
-        case 2:
-            return checkContactStatus(stakeholder.CONTACTED, '');
-
-        case 3:
-            return checkCount(stakeholder.count, true);
-
-        case 4:
-            return checkCount(stakeholder.count, false);
-
-        case 5:
-            return checkPhoneNo(stakeholder.PHONE)
-    }
+    
 }
+
+// export function checkTableFilter(filter, stakeholder) {
+//     switch (filter) {
+//         case 0:
+//             return true;
+
+//         case 1:
+//             return checkContactStatus(stakeholder.CONTACTED, 'YES');
+
+//         case 2:
+//             return checkContactStatus(stakeholder.CONTACTED, '');
+
+//         case 3:
+//             return checkCount(stakeholder.count, true);
+
+//         case 4:
+//             return checkCount(stakeholder.count, false);
+
+//         case 5:
+//             return checkPhoneNo(stakeholder.PHONE)
+//     }
+// }

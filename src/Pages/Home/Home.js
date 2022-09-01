@@ -3,16 +3,13 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import './Home.scss';
-import { MdLogout } from 'react-icons/md';
-import { BiDownload } from 'react-icons/bi';
-import { FaAngleDown } from 'react-icons/fa'
+import { SiCivicrm } from "react-icons/si";
+
+
 
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
-import Report from '../../Components/Reports/Report';
-import MasterTable from '../../Components/Table/MasterTable/MasterTable';
 import Input from '../../Components/Input/Input';
-import Filter from '../../Components/Filters/Filter';
 import FilterMenu from '../../Components/Filters/Filter';
 
 function Home({ LogOut }) {
@@ -23,8 +20,6 @@ function Home({ LogOut }) {
     const Location = useSelector((state) => state.filter.location);
     const tblSearch = useSelector((state) => state.filter.search.txt);
     const searchType = useSelector((state) => state.filter.search.type);
-    
-
 
     function downloadFile() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
@@ -47,24 +42,25 @@ function Home({ LogOut }) {
 
     return (
         <div className='home-container'>
-            <Sidebar />
+            {/* <Sidebar /> */}
             <div className='home-body'>
-                {/* <div className='heading'>
+                <div className='header-home'>
                     <div className='heading-wrapper'>
-                        <h2>STAKEHOLDERS</h2>
-                        <div className='btn-container'>
-                            <button className='download' onClick={() => downloadFile()}>Download&nbsp;< BiDownload color='#5B8A5F' size='1rem' /></button>
-                            <button className='logout' onClick={LogOut}>Logout&nbsp;< MdLogout color='#C1676E' size='1rem' /></button>
+                        <div className='sidebar-heading'>
+                            <SiCivicrm size="3rem" color='#68bd45' />
+                            <p>Triton</p>
+                            <a>CRM</a>
                         </div>
                     </div>
-                </div> */}
-                {/* <Report /> */}
-                <div className='header-home'>
-                    {/* <h1>{Location.province}</h1>
-                    <h1>{Location.city}</h1>
-                    <h1>{tblSearch}</h1>
-                    <h1>{searchType}</h1> */}
-                    
+                    <div className='menu-wrapper'>
+                        <div className='nav-wrapper'>
+                            <ul className='nav-menu'>
+                                <li>Stakeholders</li>
+                                <li>Reports</li>
+                                <li>Project</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <FilterMenu isOpen={false} />
                 <Input />

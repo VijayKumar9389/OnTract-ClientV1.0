@@ -23,7 +23,8 @@ function Sidebar() {
             <div className='sidebar-body'>
                 <ul>
                     <li>Stakeholders</li>
-                    <li>Search</li>
+                    <li>Analytics</li>
+                    <li>Report</li>
                 </ul>
                 {/* {location.province !== '' ?
                     <CityList Location={location} />
