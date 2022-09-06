@@ -11,6 +11,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
 import Input from '../../Components/Input/Input';
 import FilterMenu from '../../Components/Filters/Filter';
+import Report from '../../Components/Reports/Report';
 
 function Home({ LogOut }) {
 
@@ -62,6 +63,7 @@ function Home({ LogOut }) {
                         </div>
                     </div>
                 </div>
+                <Report />
                 <FilterMenu isOpen={false} />
                 <Input />
                 <StakeholderTable Search={search} />
