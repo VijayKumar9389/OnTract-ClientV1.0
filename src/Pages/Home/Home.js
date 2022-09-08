@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
+
 import './Home.scss';
-import { SiCivicrm } from "react-icons/si";
+
 
 
 
@@ -12,6 +13,7 @@ import StakeholderTable from '../../Components/Table/StakeholderTable/Stakeholde
 import Input from '../../Components/Input/Input';
 import FilterMenu from '../../Components/Filters/Filter';
 import Report from '../../Components/Reports/Report';
+import Navbar from '../../Components/Navbar/Navbar';
 
 function Home({ LogOut }) {
 
@@ -45,25 +47,8 @@ function Home({ LogOut }) {
         <div className='home-container'>
             {/* <Sidebar /> */}
             <div className='home-body'>
-                <div className='header-home'>
-                    <div className='heading-wrapper'>
-                        <div className='sidebar-heading'>
-                            <SiCivicrm size="3rem" color='#68bd45' />
-                            <p>Triton</p>
-                            <a>CRM</a>
-                        </div>
-                    </div>
-                    <div className='menu-wrapper'>
-                        <div className='nav-wrapper'>
-                            <ul className='nav-menu'>
-                                <li>Stakeholders</li>
-                                <li>Reports</li>
-                                <li>Project</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <Report />
+                <Navbar />
+                {/* <Report /> */}
                 <FilterMenu isOpen={false} />
                 <Input />
                 <StakeholderTable Search={search} />
