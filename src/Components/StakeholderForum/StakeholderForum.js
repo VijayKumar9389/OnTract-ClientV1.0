@@ -24,6 +24,7 @@ function StakeholderForum({ Stakeholder }) {
     const navigate = useNavigate();
 
     const Update = (name) => {
+        console.log(typeof(newEmail))
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/update`,
             {
                 NAME: name,

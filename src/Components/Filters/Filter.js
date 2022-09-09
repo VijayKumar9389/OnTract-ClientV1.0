@@ -7,11 +7,14 @@ import axios from 'axios';
 import ProvinceList from './ProvinceList';
 import CityList from './CityList';
 import { setSearchType } from '../../Store/Filter';
+import { BsNutFill } from 'react-icons/bs';
+import { IoIosArrowForward } from 'react-icons/io';
 
-function FilterMenu() {
+function FilterMenu({ isOpen }) {
 
     const Filters = useSelector((state) => state.filter.value);
     const Location = useSelector((state) => state.filter.location);
+    const searchType = useSelector((state) => state.filter.search.type);
 
     const [locationList, setLocationList] = useState([]);
     const [menu, setMenu] = useState(null);
@@ -86,7 +89,14 @@ function FilterMenu() {
                             <ul>
                                 <li onClick={() => setMenu(0)}>Province<IoAdd /></li>
                                 {Location.province === null ? <li className='null-item'>City<IoAdd /></li> : <li onClick={() => setMenu(1)}>City<IoAdd /></li>}
-                                <li onClick={() => setMenu(2)}>Search<IoAdd /></li>
+                                <li>
+                                    Search
+                                    <div>
+                                        <input type="radio" value="Name" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))}/> Name
+                                        <input type="radio" value="Phone" checked={searchType === 1} onChange={() => dispatch(setSearchType(0))}/> Phone
+                                        <input type="radio" value="Tract" checked={searchType === 2} onChange={() => dispatch(setSearchType(0))}/> Tract
+                                    </div>
+                                </li>
                                 <li onClick={() => setMenu(4)}>Stakeholder Type<IoAdd /></li>
                                 <li onClick={() => setMenu(3)}>Contacted<IoAdd /></li>
                                 <li onClick={() => setMenu(5)}>Attempted<IoAdd /></li>
@@ -94,7 +104,9 @@ function FilterMenu() {
                         }
                     </div>
                     <div className='filter-btn-container'>
-                        {menu == null ? <button className='btn-close' onClick={() => dispatch(toggle(false))}>Close</button> : <button className='btn-cancel' onClick={() => setMenu(null)}>Cancel</button>}
+                        {menu == null ? null : <button className='btn-cancel' onClick={() => setMenu(null)}>Cancel</button>}
+                        {Filters ? <button className='btn-close' onClick={() => dispatch(toggle(false))}><IoIosArrowForward /></button> : null}
+
                     </div>
                 </div>
 
