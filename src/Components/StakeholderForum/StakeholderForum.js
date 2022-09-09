@@ -37,9 +37,9 @@ function StakeholderForum({ Stakeholder }) {
                 ATTEMPTS: newAttemptDetails.trim(),
                 CONSULTATION: newConsultationDate.trim(),
                 FOLLOWUP: newFollowUp.trim(),
-                EMAIL: newEmail.trim(),
-                STAKEHOLDERCOMMENT: newStakeholderComment.trim(),
-                CORPERATION: newCorperation.trim()
+                EMAIL: newEmail,
+                STAKEHOLDERCOMMENT: newStakeholderComment,
+                CORPERATION: newCorperation
             }, {
             headers: { "access-token": localStorage.getItem("access-token") }
         }).then((response) => {
