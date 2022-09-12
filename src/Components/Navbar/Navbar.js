@@ -15,7 +15,7 @@ function Navbar() {
                     <a>CRM</a>
                 </div>
             </div>
-            <div className='menu-wrapper'>
+            {/* <div className='menu-wrapper'>
                 <div className='nav-wrapper'>
                     <ul className='nav-menu'>
                         <Link to={`/`}><li>Stakeholders</li></Link>
@@ -23,7 +23,7 @@ function Navbar() {
                         <Link to={`/Analytics`}><li>Project</li></Link>
                     </ul>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

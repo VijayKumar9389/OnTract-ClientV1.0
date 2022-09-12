@@ -1,57 +1,30 @@
-//Master Table Functions
+//Filter stakeholders by type
+export function stakeholderType(stakeholder, filter) {
+    switch (filter) {
+        case 0:
+            return true;
 
-//determine if Tract has any stakeholders the match the filter 
-export function verifyCluster(cluster, Filters) {
-
-    var print = [];
-
-    for (let i = 0; i < cluster.length; i++) {
-        print.push(Filter(cluster[i], Filters));
-    }
-
-    if (print !== true) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
-//use this method to determine if a row is valid
-export function Filter(stakeholder, Filters) {
-
-    console.log(stakeholder);
-
-    switch (Filters) {
+        //single tract
         case 1:
-            return checkContactStatus(stakeholder.CONTACTED, "YES");
+            return checkCount(stakeholder.count, true);
 
+        //multi tract
         case 2:
-            return checkContactStatus(stakeholder.CONTACTED, "NO");
+            return checkCount(stakeholder.count, false);
 
-        // case 3:
-        //     if (arr.length <= 1) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
+        //corperation 
+        case 3:
+            return checkCorperation(stakeholder.CORPERATION, true);
 
-        // case 4:
-        //     if (arr.length > 1) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
+        case 4:
+            return checkCorperation(stakeholder.CORPERATION, false);
 
         case 5:
-            return checkNum(stakeholder.PHONE);
-
-        default:
-            return true;
+            return checkPhoneNo(stakeholder.PHONE)
     }
 }
 
-//Check phone number
+//Check if stakeholder has a phone number 
 export function checkNum(phoneNo) {
     if (phoneNo.length === 0) {
         return true;
@@ -63,14 +36,18 @@ export function checkNum(phoneNo) {
 
 //Filter contacted and non-contacted stakeholders
 export function checkContactStatus(contactStatus, filter) {
-    if (filter === 'YES') {
+    console.log(filter)
+    if (filter === null) {
+        return true;
+    }
+    if (filter === true) {
         if (contactStatus === 'YES') {
             return true;
         } else {
             return false;
         }
     }
-    if (filter !== 'YES') {
+    if (filter !== true) {
 
         if (contactStatus !== 'YES') {
             return true;
@@ -80,18 +57,45 @@ export function checkContactStatus(contactStatus, filter) {
     }
 }
 
-//check the Tract number by typing
-export function serachTract(tractNo, Search) {
-
-    if (Search === '') {
+//filter attempted and not-attempted stakeholders
+export function checkAttempts(attempts, filter) {
+    console.log(filter)
+    if (filter === null) {
         return true;
     }
-
-    if (tractNo === Number(Search)) {
-        return true;
+    if (filter === true) {
+        if (attempts.length > 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    if (filter !== true) {
+        if (attempts.length < 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
-    return false;
+//check corprate and non corprate stakeholders
+export function checkCorperation(corperation, filter) {
+    if (filter === true) {
+        if (corperation === 'YES') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (filter !== true) {
+
+        if (corperation !== 'YES') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 // Filter Location 
@@ -116,7 +120,7 @@ export function checkLocation(Name, Address, Location) {
         return true
     }
 
-    if(stakeholderLocation.length < 3){
+    if (stakeholderLocation.length < 3) {
         return false;
     }
 
@@ -166,38 +170,55 @@ export function checkCount(count, single) {
     }
 }
 
+export function search(stakeholder, filter) {
+    console.log(stakeholder.TRACT)
+
+    if (filter.search.type == 0) {
+        if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {
+            return true
+        }
+    }
+    if (filter.search.type == 1) {
+        if (searchNumber(stakeholder.PHONE, filter.search.txt)) {
+            return true
+        }
+    }
+
+    return false;
+
+}
+
 export function searchName(name, inputTxt) {
+
     if (inputTxt === '') {
         return true;
     }
-    if (name.includes(inputTxt.toLowerCase())) {
+    if (name.includes(inputTxt)) {
         return true;
     }
     return false;
 }
 
-export function checkTableFilter(filter, stakeholder) {
-    
+export function searchNumber(phoneNo, inputTxt) {
+
+
+    if (inputTxt === '') {
+        return true
+    } else {
+        var numbers = phoneNo.split(',');
+
+        for (let index = 0; index < numbers.length; index++) {
+
+            var cleanOne = numbers[index].replace('(', '').replace(')', '').replace(/-/g, '');
+            var cleanTwo = cleanOne.split(':')
+
+            if (cleanTwo[1] !== undefined && cleanTwo[1].includes(inputTxt)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
-// export function checkTableFilter(filter, stakeholder) {
-//     switch (filter) {
-//         case 0:
-//             return true;
 
-//         case 1:
-//             return checkContactStatus(stakeholder.CONTACTED, 'YES');
 
-//         case 2:
-//             return checkContactStatus(stakeholder.CONTACTED, '');
-
-//         case 3:
-//             return checkCount(stakeholder.count, true);
-
-//         case 4:
-//             return checkCount(stakeholder.count, false);
-
-//         case 5:
-//             return checkPhoneNo(stakeholder.PHONE)
-//     }
-// }

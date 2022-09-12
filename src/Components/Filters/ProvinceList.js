@@ -1,10 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { setProvince } from '../../Store/Filter';
 
 export default function ProvinceList({ ProvinceList }) {
 
     const dispatch = useDispatch();
+    const Province = useSelector((state) => state.filter.location.province);
 
     return (
         <ul>

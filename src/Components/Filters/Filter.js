@@ -1,23 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { toggle } from '../../Store/Filter';
-import './Filter.scss';
-import { IoAdd } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProvinceList from './ProvinceList';
-import CityList from './CityList';
-import { setSearchType } from '../../Store/Filter';
-import { BsNutFill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggle, clear } from '../../Store/Filter';
+import { setSearchType, setStakeholderType, setProvince, setCity, setAttempted, setContacted } from '../../Store/Filter';
+
+import './Filter.scss';
 import { IoIosArrowForward } from 'react-icons/io';
 
 function FilterMenu({ isOpen }) {
 
     const Filters = useSelector((state) => state.filter.value);
-    const Location = useSelector((state) => state.filter.location);
+    const Province = useSelector((state) => state.filter.location.province);
+    const City = useSelector((state) => state.filter.location.city);
+    const Attempted = useSelector((state) => state.filter.attempted);
+    const Contacted = useSelector((state) => state.filter.contacted);
     const searchType = useSelector((state) => state.filter.search.type);
+    const stakeholderType = useSelector((state) => state.filter.stakeholder);
 
     const [locationList, setLocationList] = useState([]);
-    const [menu, setMenu] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,47 +36,13 @@ function FilterMenu({ isOpen }) {
         right: '-500px'
     };
 
-    function subMenu() {
-        switch (menu) {
-            case 0:
-                return (
-                    <ProvinceList ProvinceList={locationList} />
-                )
-            case 1:
-                return (
-                    <CityList Location={Location} />
-                )
-            case 2:
-                return (
-                    <ul>
-                        <li onClick={() => dispatch(setSearchType(0))}>Name</li>
-                        <li onClick={() => dispatch(setSearchType(1))}>Phone</li>
-                        <li onClick={() => dispatch(setSearchType(2))}>Tract</li>
-                    </ul>
-                )
-            case 3:
-                return (
-                    <ul>
-                        <li>Yes</li>
-                        <li>No</li>
-                    </ul>
-                )
-            case 4:
-                return (
-                    <ul>
-                        <li>Single-Tract</li>
-                        <li>Multi-Multi</li>
-                        <li>Corperation</li>
-                    </ul>
-                )
-            case 5:
-                return (
-                    <ul>
-                        <li>Yes</li>
-                        <li>No</li>
-                    </ul>
-                )
+    function getCities() {
+        for (let index = 0; index < locationList.length; index++) {
+            if (locationList[index].province === Province) {
+                return locationList[index].cities;
+            }
         }
+        return [];
     }
 
     return (
@@ -85,31 +51,67 @@ function FilterMenu({ isOpen }) {
             <div className='filter-container' style={Filters ? open : closed}>
                 <div className='filter-menu'>
                     <div className='filter-location'>
-                        {menu != null ? subMenu() :
-                            <ul>
-                                <li onClick={() => setMenu(0)}>Province<IoAdd /></li>
-                                {Location.province === null ? <li className='null-item'>City<IoAdd /></li> : <li onClick={() => setMenu(1)}>City<IoAdd /></li>}
-                                <li>
-                                    Search
-                                    <div>
-                                        <input type="radio" value="Name" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))}/> Name
-                                        <input type="radio" value="Phone" checked={searchType === 1} onChange={() => dispatch(setSearchType(0))}/> Phone
-                                        <input type="radio" value="Tract" checked={searchType === 2} onChange={() => dispatch(setSearchType(0))}/> Tract
-                                    </div>
-                                </li>
-                                <li onClick={() => setMenu(4)}>Stakeholder Type<IoAdd /></li>
-                                <li onClick={() => setMenu(3)}>Contacted<IoAdd /></li>
-                                <li onClick={() => setMenu(5)}>Attempted<IoAdd /></li>
-                            </ul>
-                        }
-                    </div>
-                    <div className='filter-btn-container'>
-                        {menu == null ? null : <button className='btn-cancel' onClick={() => setMenu(null)}>Cancel</button>}
-                        {Filters ? <button className='btn-close' onClick={() => dispatch(toggle(false))}><IoIosArrowForward /></button> : null}
+                        <ul>
+                            <div className='ddl-container'>
+                                Province:
+                                <select defaultValue={Province} onChange={(event) => dispatch(setProvince(event.target.value))}>
+                                    <option value={null}>All</option>
+                                    {locationList.map((location, index) => {
+                                        return <option key={index} value={location.province}>{location.province}</option>
+                                    })}
+                                </select>
+                            </div>
+                            <div className='ddl-container'>
+                                City:
+                                {!Province ? null :
+                                    <select defaultValue={City} onChange={(event) => dispatch(setCity(event.target.value))}>
+                                        <option value={null}>All</option>
+                                        {getCities().map((city, index) => {
+                                            return <option key={index} value={city.name}>{city.name}</option>
+                                        })}
+                                    </select>}
+                            </div>
+                            <div className='radio-container'>
+                                Search:
+                                <div className='ddl-wrapper'>
+                                    <div className='input-wrapper'><input type="radio" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))} /> Name</div>
+                                    <div className='input-wrapper'><input type="radio" checked={searchType === 1} onChange={() => dispatch(setSearchType(1))} /> Phone</div>
+                                </div>
+                            </div>
+                            <div className='radio-container'>
+                                Type:
+                                <div className='ddl-wrapper'>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 0} onChange={() => dispatch(setStakeholderType(0))} /> All</div>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 1} onChange={() => dispatch(setStakeholderType(1))} /> Single-Tract</div>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 2} onChange={() => dispatch(setStakeholderType(2))} /> Multi-Tract</div>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 3} onChange={() => dispatch(setStakeholderType(3))} /> Corperation</div>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 4} onChange={() => dispatch(setStakeholderType(4))} /> Person</div>
+                                    <div className='input-wrapper'><input type="radio" checked={stakeholderType === 5} onChange={() => dispatch(setStakeholderType(5))} /> No Phone</div>
+                                </div>
+                            </div>
+                            <div className='radio-container'>
+                                Contacted:
+                                <div className='ddl-wrapper'>
+                                    <div className='input-wrapper'><input type="radio" checked={Contacted === null} onChange={() => dispatch(setContacted(null))} /> All</div>
+                                    <div className='input-wrapper'><input type="radio" checked={Contacted === true} onChange={() => dispatch(setContacted(true))} /> Yes</div>
+                                    <div className='input-wrapper'><input type="radio" checked={Contacted === false} onChange={() => dispatch(setContacted(false))} /> No</div>
+                                </div>
+                            </div>
+                            <div className='radio-container'>
+                                Attempted:
+                                <div className='ddl-wrapper'>
+                                    <div className='input-wrapper'><input type="radio" checked={Attempted === null} onChange={() => dispatch(setAttempted(null))} /> All</div>
+                                    <div className='input-wrapper'><input type="radio" checked={Attempted === true} onChange={() => dispatch(setAttempted(true))} /> Yes</div>
+                                    <div className='input-wrapper'><input type="radio" checked={Attempted === false} onChange={() => dispatch(setAttempted(false))} /> No</div>
+                                </div>
+                            </div>
+                        </ul>
 
                     </div>
                 </div>
-
+                <div className='filter-btn-container'>
+                    {Filters ? <button className='btn-close' onClick={() => dispatch(toggle(false))}><IoIosArrowForward /></button> : null}
+                </div>
             </div>
         </>
 

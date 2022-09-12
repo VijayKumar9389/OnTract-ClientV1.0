@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-
 import './Home.scss';
-
-
-
 
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
@@ -16,13 +12,6 @@ import Report from '../../Components/Reports/Report';
 import Navbar from '../../Components/Navbar/Navbar';
 
 function Home({ LogOut }) {
-
-    const [filter, setFilter] = useState(0);
-    const [search, setSearch] = useState("");
-    const [tableSearch, setTableSearch] = useState('1');
-    const Location = useSelector((state) => state.filter.location);
-    const tblSearch = useSelector((state) => state.filter.search.txt);
-    const searchType = useSelector((state) => state.filter.search.type);
 
     function downloadFile() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
@@ -45,13 +34,12 @@ function Home({ LogOut }) {
 
     return (
         <div className='home-container'>
-            {/* <Sidebar /> */}
             <div className='home-body'>
                 <Navbar />
                 {/* <Report /> */}
                 <FilterMenu isOpen={false} />
                 <Input />
-                <StakeholderTable Search={search} />
+                <StakeholderTable/>
             </div>
         </div>
     );

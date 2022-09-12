@@ -19,6 +19,20 @@
             background-color: #ddd;
             color: grey;
 
+            button{
+                border-radius: 50px;
+                height: 40px;
+                width: 40px;
+                border: none;
+                color: grey;
+
+                &:hover{
+                    color: #fff;
+                    background-color: #68bd45;
+                    cursor: pointer;
+                }
+            }
+
             th {
                 padding: 20px;
                 text-align: center;

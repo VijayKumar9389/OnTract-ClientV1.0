@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { checkLocation, searchName, checkTableFilter, checkNum } from '../../../Helpers/utils';
+import { checkLocation, search, stakeholderType, checkNum, checkContactStatus, checkAttempts } from '../../../Helpers/utils';
 
 import './StakeholderTable.scss';
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -11,14 +11,14 @@ import { MdOutlineCheck } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
 import { FaPhoneSlash } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
+import { AiOutlineArrowUp } from "react-icons/ai";
 
 function StakeholderTable() {
 
     const [data, setData] = useState([]);
 
     const nav = useNavigate();
-    const tblSearch = useSelector((state) => state.filter.search.txt);
-    const filters = useSelector((state) => state.filter.value);
+    const tblFilter = useSelector((state) => state.filter);
     const Location = useSelector((state) => state.filter.location);
 
     useEffect(() => {
@@ -39,12 +39,28 @@ function StakeholderTable() {
         });
     }
 
-    function Filter(stakeholder) {
-        if (searchName(stakeholder.NAME.toLowerCase(), tblSearch)) {
+    // function Filter(stakeholder) {
+    //     if (searchName(stakeholder.NAME.toLowerCase(), tblSearch)) {
+    //         if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
+    //             // if (checkTableFilter(filters, stakeholder)) {
+    //                 return true;
+    //             // }
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    function Filter(stakeholder, filtersgiven) {
+
+        if (search(stakeholder, tblFilter)) {
             if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
-                // if (checkTableFilter(filters, stakeholder)) {
-                    return true;
-                // }
+                if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
+                    if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
+                        if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
+                            return true;
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -61,7 +77,7 @@ function StakeholderTable() {
                         <th><h5>Location</h5></th>
                         <th><h5>Attempts</h5></th>
                         <th><h5>Contacted</h5></th>
-                        <th></th>
+                        <th><button className='bnt-up' onClick={() => window.scrollTo(0, 0)}><AiOutlineArrowUp size='1rem' className='icon' /></button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,7 +85,7 @@ function StakeholderTable() {
 
                         let location = stakeholder.MAILING.split(",");
 
-                        if (Filter(stakeholder)) {
+                        if (Filter(stakeholder, tblFilter)) {
                             return (
                                 <tr key={index} onClick={() => selectStakeholder(stakeholder)}>
                                     <td className='name'>{stakeholder.NAME}</td>
