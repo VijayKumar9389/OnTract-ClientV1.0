@@ -36,7 +36,7 @@ function Home({ LogOut }) {
         <div className='home-container'>
             <div className='home-body'>
                 <Navbar />
-                {/* <Report /> */}
+                <Report />
                 <FilterMenu isOpen={false} />
                 <Input />
                 <StakeholderTable/>
