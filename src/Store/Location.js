@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateValue = { province: "", city: "", cityList: [] }
+const initialStateValue = { user: "" }
 
-export const locationSlice = createSlice({
+export const userSlice = createSlice({
     name: "location",
     initialState: { value: initialStateValue },
     reducers: {
@@ -17,6 +17,6 @@ export const locationSlice = createSlice({
     }
 });
 
-export const { change, clear } = locationSlice.actions;
+export const { change, clear } = userSlice.actions;
 
-export default locationSlice.reducer;
+export default userSlice.reducer;

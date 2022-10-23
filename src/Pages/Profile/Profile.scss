@@ -2,55 +2,16 @@
     min-height: 100%;
     height: fit-content;
     width: 100%;
-    background-color: #F3F3F3;;
+    background-color: #F3F3F3;
 
-    .heading {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        background-color: #fff;
-        color: #68bd45;;
-        height: 80px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-        overflow: hidden;
 
-        .link {
-            display: flex;
-            align-items: flex-start;
-            text-decoration: none;
-            transition: ease-in-out .2s;
-            margin: auto 2.5%;
-            border: 1px solid #ddd;
-            color: #ddd;
-            border-radius: 5px;
-            padding: 5px;
 
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.05);
-                border: 1px solid #68bd45;
-                color: #68bd45;
-            }
-        }
-    }
 
     .profile-wrapper {
         height: fit-content;
-        width: 95%;
-        margin: 50px auto;
-        display: grid;
-        grid-gap: 20px;
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        grid-template-columns: 2fr 1fr;
     }
 }
-
-
-
-
-
-
-

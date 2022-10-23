@@ -36,7 +36,6 @@ export function checkNum(phoneNo) {
 
 //Filter contacted and non-contacted stakeholders
 export function checkContactStatus(contactStatus, filter) {
-    console.log(filter)
     if (filter === null) {
         return true;
     }
@@ -59,7 +58,6 @@ export function checkContactStatus(contactStatus, filter) {
 
 //filter attempted and not-attempted stakeholders
 export function checkAttempts(attempts, filter) {
-    console.log(filter)
     if (filter === null) {
         return true;
     }
@@ -171,7 +169,6 @@ export function checkCount(count, single) {
 }
 
 export function search(stakeholder, filter) {
-    console.log(stakeholder.TRACT)
 
     if (filter.search.type == 0) {
         if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {

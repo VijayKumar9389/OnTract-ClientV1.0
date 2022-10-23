@@ -12,8 +12,6 @@ function Sidebar() {
     const [locationList, setLocationList] = useState([]);
     const location = useSelector((state) => state.location.value);
 
-
-
     return (
         <div className='sidebar-container'>
             <div className='sidebar-heading'>
@@ -26,11 +24,6 @@ function Sidebar() {
                     <li>Analytics</li>
                     <li>Report</li>
                 </ul>
-                {/* {location.province !== '' ?
-                    <CityList Location={location} />
-                    :
-                    <ProvinceList ProvinceList={locationList} />
-                } */}
             </div>
         </div>
     );

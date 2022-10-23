@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
@@ -6,7 +6,7 @@ import { BrowserRouter as Router, BrowserRouter } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import locationReducer from './Store/Location';
+import userReducer from './Store/Location';
 import searchReducer from './Store/Search';
 import filterReducer from './Store/Filter';
 
@@ -14,7 +14,7 @@ import './index.css';
 
 const store = configureStore({
   reducer: {
-    location: locationReducer,
+    user: userReducer,
     search: searchReducer,
     filter: filterReducer
   }

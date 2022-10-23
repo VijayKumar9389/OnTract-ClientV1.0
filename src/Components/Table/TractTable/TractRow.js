@@ -53,26 +53,44 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
 
     return (
         <tr>
-            <td className='tract'>
-                <a><h2>{Stakeholder.TRACT}</h2></a>
-                <a>{pin[1]}</a>
-            </td>
-            <td><textarea className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea></td>
-            <td className='name-cell'>{Stakeholder.NAME}</td>
-            <td><div className={Index === 0 ? 'highlight' : ''}>{Stakeholder.INTEREST}</div></td>
-            <td><input defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></input></td>
             <td>
-                <select defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>
-                    <option value="">N/A</option>
-                    <option value="YES">YES</option>
-                    <option value="NO">NO</option>
-                </select>
+                <div className='name'>
+                    <h4>{Stakeholder.NAME}</h4>
+                    <label>{Stakeholder.INTEREST}</label>
+                </div>
             </td>
-            <td>{Stakeholder.COMMODITY}</td>
-            <td>{Stakeholder.PIPLINESTATUS}</td>
-            <td><textarea className='comment' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea></td>
-            <td><button onClick={() => Update(Stakeholder.ID)}> SAVE</button></td>
-            <td>{stakeholderProfile ? null : <button onClick={() => selectStakeholder(Stakeholder)}>VIEW</button>}</td>
+
+            <td>
+                <div className='input-wrapper'>
+                    Works land:
+                    <select defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>
+                        <option value="">N/A</option>
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                    Occupants:
+                    <input defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></input>
+                </div>
+            </td>
+
+            <td>
+                <div className='comment-wrapper'>
+                    Structure:
+                    <textarea className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea>
+                </div>
+            </td>
+
+            <td>
+                <div className='comment-wrapper'>
+                Comments: 
+                <textarea className='comment' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea>
+                </div>
+            </td>
+
+            <td>
+                <button onClick={() => Update(Stakeholder.ID)}> SAVE</button>
+                {stakeholderProfile ? null : <button onClick={() => selectStakeholder(Stakeholder)}>VIEW</button>}
+            </td>
         </tr>
     );
 }

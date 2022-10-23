@@ -33,9 +33,9 @@ const colors = [
     "#00FFFF",
     "#00FFFF",
     "#7FFFD4"
-  ];
+];
 
-  var randomColor = Math.floor(Math.random()*16777215).toString(16);
+var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
 function Relations({ Stakeholder }) {
 
@@ -54,15 +54,13 @@ function Relations({ Stakeholder }) {
 
     return (
         <div className='relations-container'>
-
-            <label>Relations</label>
-
+            <h3>Connections</h3>
             <ul>
                 {data.map((record, index) => {
                     return (
                         <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
                             <li>
-                                <h3 style={{borderBottom: `3px solid ${colors[index]}`}}>{record.stakeholder.NAME}</h3>
+                                <h3>{record.stakeholder.NAME}</h3>
                                 <div className='info-wrapper'>
                                     <FaPhone size='1.2rem' />
                                     {record.phone ? <a>{record.stakeholder.PHONE}</a> : <a></a>}

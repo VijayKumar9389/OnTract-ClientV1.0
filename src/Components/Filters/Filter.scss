@@ -163,12 +163,13 @@
             background-color: #fff;
 
             position: absolute;
-            top: 40%;
+            top: 45%;
             left: -25PX;
 
             &:hover {
-                border: 3px solid #68bd45;
-                color: #68bd45 !important;
+                border: 1px solid #68bd45;
+                color: #fff !important;
+                background-color: #68bd45;
                 letter-spacing: 1px;
                 transition: all 0.4s ease 0s;
                 cursor: pointer;

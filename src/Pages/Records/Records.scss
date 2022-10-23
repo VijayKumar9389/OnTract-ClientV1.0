@@ -1,0 +1,11 @@
+.records-container {
+    background-color: #F3F3F3;
+    min-height: 100vh;
+    height: fit-content;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}

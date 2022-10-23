@@ -2,52 +2,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
     margin: auto;
     overflow: auto;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: #fff;
-    border-bottom-right-radius: 10px;
+    padding-right: 2.5%;
 
-    label {
-        margin-top: 35px;
-        margin-left: 10px;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-weight: 600;
-        color: gray;
-        width: 90%;
+    h3 {
+        height: 90px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     ul {
-        height: 100%;
+        height: 890px;
         width: 100%;
         list-style-type: none;
         display: inline-block;
         padding-left: 0;
+        padding: 5px 20px;
         overflow-y: auto;
 
         .link {
-            height: 10px;
             margin: auto;
             font-size: 12px;
             text-decoration: none;
 
             li {
-                margin: 20px auto;
-                border-radius: 10px;
-                width: 90%;
+                width: 100%;
                 height: fit-content;
-                min-height: 160px;
                 color: gray;
                 text-align: left;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
                 background-color: #fff;
+                padding: 20px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                display: grid;
+                grid-template-rows: auto auto auto auto;
 
                 h3 {
-                    margin: 0 20px;
-                    padding: 5px 0;
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: flex-start;
+                    height: fit-content;
                     /* border-bottom: 3px solid red; */
                 }
 
@@ -62,12 +64,13 @@
                 }
 
                 .info-wrapper {
+                    height: fit-content;
                     margin: auto;
                     display: grid;
                     justify-content: center;
                     align-items: center;
                     grid-template-columns: 10% 90%;
-                    margin: 10px 20px;
+                    margin: 10px 0;
                 }
             }
         }

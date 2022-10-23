@@ -1,75 +1,115 @@
 .tract-table-container {
-    width: 100%;
+    width: 95%;
+    margin: auto;
     height: fit-content;
     padding-bottom: 50px;
 
     .tract-table {
-        width: 95%;
-        margin: auto;
-        border-collapse: collapse;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 50px auto;
+        border-left: 3px solid #ddd;
 
-        thead {
-            height: 100px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            background-color: #fff;
+        .tract-header {
+            display: flex;
+            background-color: #F3F3F3;
+            margin-bottom: 20px;
 
-            tr {
+            .tract{
                 position: relative;
-                color: grey;
-                background-color: #fff;
-                box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+                top: -10px;
+            }
 
-                th {
-                    padding: 20px;
-                    text-align: center;
-                    letter-spacing: 0.1rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                }
+            h2 {
+                background-color: #68bd45;
+                color: #fff;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50px;
+                position: relative;
+                left: -26px;
+                top: -10px;
             }
         }
 
-        tbody {
+        ul {
             font-size: 0.9rem;
+            padding-left: 20px;
+            padding-bottom: 20px;
 
             tr {
                 height: 80px;
-                padding: 50px;
+                margin: 10px auto;
                 background-color: #fff;
-                box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+                &:hover {
+                    background-color: #e5e8ed;
+                }
 
                 td {
-                    text-align: center;
                     padding: 1em 10px;
+                    width: 100%;
 
-                    &.tract {
+                    .input-wrapper {
+                        display: grid;
+                        grid-gap: 15px;
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-rows: 1fr 1fr;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+
+                    .comment-wrapper {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        justify-content: space-around;
+                        height: 120px;
+                    }
+
+                    .tract {
+                        display: flex;
+                        flex-direction: column;
                         justify-content: center;
-                        width: 140px;
-                        height: 80px;
+                        align-items: center;
+                        text-align: center;
+
+                        h2 {
+                            color: #68bd45;
+                            height: 40px;
+                            width: 40px;
+                            border-radius: 50px;
+                            transition: ease-in-out .2s;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: #68bd45;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                    .name {
 
                         h2 {
                             color: #68bd45;
                         }
                     }
 
-                    .highlight {
-                        color: #5B8A5F;
-                        background-color: #C1E3C4;
-                        border-radius: 10px;
-                        padding: 10px;
-                    }
-
                     input {
                         padding: 10px;
                         border: 1px solid #ddd;
-                        border-radius: 20px;
-                        height: 20px;
-                        width: 50px;
+                        height: 40px;
+                        width: 75px;
                         text-align: center;
                     }
 
@@ -78,12 +118,11 @@
                         height: 60px;
                         padding: 10px;
                         border: 1px solid #ddd;
-                        border-radius: 10px;
                         font-size: 14px;
 
                         &.structure {
                             width: 100px;
-                            height: 40px;
+                            height: 80px;
                             text-align: center;
                         }
 
@@ -96,21 +135,27 @@
                     select {
                         padding: 10px;
                         border: 1px solid #ddd;
-                        text-align: left;
-                        border-radius: 20px;
+                        text-align: center;
                         height: 40px;
-                        width: 80px;
+                        width: 75px;
 
                         option {
                             font-size: 16px;
                         }
                     }
 
+                    .highlight {
+                        color: #5B8A5F;
+                        background-color: #C1E3C4;
+                        border-radius: 10px;
+                        padding: 10px;
+                    }
+
                     button {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        margin: auto;
+                        margin: 10px;
 
                         width: 80px;
                         height: 40px;

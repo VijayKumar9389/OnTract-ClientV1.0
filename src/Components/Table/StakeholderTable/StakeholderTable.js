@@ -39,17 +39,6 @@ function StakeholderTable() {
         });
     }
 
-    // function Filter(stakeholder) {
-    //     if (searchName(stakeholder.NAME.toLowerCase(), tblSearch)) {
-    //         if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
-    //             // if (checkTableFilter(filters, stakeholder)) {
-    //                 return true;
-    //             // }
-    //         }
-    //     }
-    //     return false;
-    // }
-
     function Filter(stakeholder, filtersgiven) {
 
         if (search(stakeholder, tblFilter)) {

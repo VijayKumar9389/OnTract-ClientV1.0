@@ -29,15 +29,24 @@ function TractTable({ Stakeholder }) {
 
     function PrintRow(arr, ind) {
 
-        const pin = arr[0].PIN.split("/");
+        // const pin = arr[0].PIN.split("/");
 
         return (
-            <>
-                {ind > 0 ? <div className='blank-space'></div> : null}
-                {arr.map((stakeholder, index) => {
-                    return <TractRow key={stakeholder.ID} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)} />
-                })}
-            </>
+            <div className='tract-table'>
+                <div className='tract-header'>
+                    <a><h2>{arr[0].TRACT}</h2></a>
+                    <div className='tract'>
+                        <a>Lot: {arr[0].PIN}</a>
+                        <h5>Comodity: {arr[0].COMMODITY}</h5>
+                        <h5>Pipline: {arr[0].PIPLINESTATUS}</h5>
+                    </div>
+                </div>
+                <ul>
+                    {arr.map((stakeholder, index) => {
+                        return <TractRow key={stakeholder.ID} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)} />
+                    })}
+                </ul>
+            </div>
         )
     }
 
@@ -52,28 +61,9 @@ function TractTable({ Stakeholder }) {
     return (
         <>
             <div className='tract-table-container'>
-                <table className='tract-table'>
-                    <thead>
-                        <tr>
-                            <th><h5>Tract</h5></th>
-                            <th><h5>Structure</h5></th>
-                            <th><h5>Name</h5></th>
-                            <th><h5>Status</h5></th>
-                            <th><h5>Occupants</h5></th>
-                            <th><h5>Works Land</h5></th>
-                            <th><h5>Commodity</h5></th>
-                            <th><h5>Pipeline Status</h5></th>
-                            <th><h5>Comment</h5></th>
-                            <th><h5>Manage</h5></th>
-                            <th><h5></h5></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((stakeholder, index) => {
-                            return PrintRow(stakeholder, index)
-                        })}
-                    </tbody>
-                </table>
+                {data.map((stakeholder, index) => {
+                    return PrintRow(stakeholder, index)
+                })}
             </div>
         </>
 

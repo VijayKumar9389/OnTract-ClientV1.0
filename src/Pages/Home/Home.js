@@ -14,7 +14,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 function Home({ LogOut }) {
 
     function downloadFile() {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/getExcel/download`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/logs/test`, {
             method: 'GET',
             responseType: 'arraybuffer',
             headers: {
@@ -35,11 +35,11 @@ function Home({ LogOut }) {
     return (
         <div className='home-container'>
             <div className='home-body'>
-                <Navbar />
-                <Report />
+                
+                {/* <Report /> */}
                 <FilterMenu isOpen={false} />
                 <Input />
-                <StakeholderTable/>
+                <StakeholderTable />
             </div>
         </div>
     );
