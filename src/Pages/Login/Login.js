@@ -34,7 +34,6 @@ const Login = ({ LogIn }) => {
       <div className="login-wrapper">
         <div className="heading">
           <h2>Login Your Account</h2>
-          <h1>{message}</h1>
         </div>
 
         <div className="input-wrapper">
