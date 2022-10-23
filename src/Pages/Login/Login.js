@@ -18,7 +18,6 @@ const Login = ({ LogIn }) => {
       password: password,
     }).then((response) => {
       console.log(response.data);
-
       if (response.data.auth) {
         LogIn(response.data.auth);
         localStorage.setItem("access-token", response.data.token);
@@ -35,7 +34,7 @@ const Login = ({ LogIn }) => {
       <div className="login-wrapper">
         <div className="heading">
           <h2>Login Your Account</h2>
-          <h1>test</h1>
+          <h1>{message}</h1>
         </div>
 
         <div className="input-wrapper">

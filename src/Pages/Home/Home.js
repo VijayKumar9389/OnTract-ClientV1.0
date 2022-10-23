@@ -1,15 +1,9 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import './Home.scss';
-
-import Sidebar from '../../Components/Sidebar/Sidebar';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
 import Input from '../../Components/Input/Input';
 import FilterMenu from '../../Components/Filters/Filter';
-import Report from '../../Components/Reports/Report';
-import Navbar from '../../Components/Navbar/Navbar';
 
 function Home({ LogOut }) {
 
@@ -35,8 +29,6 @@ function Home({ LogOut }) {
     return (
         <div className='home-container'>
             <div className='home-body'>
-                
-                {/* <Report /> */}
                 <FilterMenu isOpen={false} />
                 <Input />
                 <StakeholderTable />
