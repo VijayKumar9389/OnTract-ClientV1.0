@@ -17,6 +17,7 @@ const Login = ({ LogIn }) => {
       username: username,
       password: password,
     }).then((response) => {
+      console.log(response.data);
 
       if (response.data.auth) {
         LogIn(response.data.auth);
