@@ -55,7 +55,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
         <tr>
             <td>
                 <div className='name'>
-                    <h4>{Stakeholder.NAME}</h4>
+                    {Index === 0 ? <h4 style={{color: 'red'}} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4> }
                     <label>{Stakeholder.INTEREST}</label>
                 </div>
             </td>
