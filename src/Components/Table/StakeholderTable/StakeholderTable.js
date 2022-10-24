@@ -39,8 +39,21 @@ function StakeholderTable() {
         });
     }
 
-    function Filter(stakeholder, filtersgiven) {
+    function createReport(arr,tblFilter) {
 
+        let test = [];
+
+        for (let index = 0; index < arr.length; index++) {
+            if (Filter(arr[0], tblFilter)){
+                test.push();
+            }
+        }
+        
+        return test
+
+    }
+
+    function Filter(stakeholder, filtersgiven) {
         if (search(stakeholder, tblFilter)) {
             if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
                 if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
@@ -57,6 +70,7 @@ function StakeholderTable() {
 
     return (
         <div className='table-container'>
+            {console.log(createReport(data, tblFilter))}
             <table className='stakeholder-table'>
                 <thead>
                     <tr>

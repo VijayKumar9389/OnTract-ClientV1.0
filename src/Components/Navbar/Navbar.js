@@ -20,6 +20,7 @@ function Navbar() {
                     <ul className='nav-menu'>
                         <Link className='menu-item' to={`/`}><li>Stakeholders</li></Link>
                         <Link className='menu-item' to={`/Records`}><li>Records</li></Link>
+                        <Link className='menu-item' to={`/Analytics`}><li>Analytics</li></Link>
                     </ul>
                 </div>
             </div>

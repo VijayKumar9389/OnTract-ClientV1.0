@@ -9,9 +9,8 @@ import './App.css';
 import Profile from './Pages/Profile/Profile';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
-import Analytics from './Pages/Report/Report';
+import Analytics from './Pages/Analytics/Analytics';
 import Records from './Pages/Records/Records';
-import Report from './Components/Reports/Report';
 import Reports from './Pages/Report/Report';
 import Navbar from './Components/Navbar/Navbar';
 
@@ -56,6 +55,7 @@ function App() {
         <Route path='/:name' element={<Profile />} />
         <Route path='/Records' element={<Records />} />
         <Route path='/Reports' element={ <Reports /> } />
+        <Route path='/Analytics' element={ <Analytics /> } />
       </Routes>
     </div>
   );

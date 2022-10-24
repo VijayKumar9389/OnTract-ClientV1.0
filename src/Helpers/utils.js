@@ -170,14 +170,17 @@ export function checkCount(count, single) {
 
 export function search(stakeholder, filter) {
 
-    if (filter.search.type == 0) {
-        if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {
-            return true
+    if (stakeholder.NAME !== '') {
+        console.log(stakeholder.NAME)
+        if (filter.search.type == 0) {
+            if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {
+                return true
+            }
         }
-    }
-    if (filter.search.type == 1) {
-        if (searchNumber(stakeholder.PHONE, filter.search.txt)) {
-            return true
+        if (filter.search.type == 1) {
+            if (searchNumber(stakeholder.PHONE, filter.search.txt)) {
+                return true
+            }
         }
     }
 
