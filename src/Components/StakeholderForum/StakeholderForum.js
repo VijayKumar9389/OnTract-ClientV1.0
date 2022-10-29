@@ -176,25 +176,15 @@ function StakeholderForum({ Stakeholder }) {
 
             <div className='heading'>
                 <Link className='link' to='/'><BsArrowLeftShort size='2rem' /></Link><h3>{Stakeholder.NAME}</h3>
-
                 <div className='btn-wrapper'>
                     <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/VN6JS3X') }}>Survey</button>
                     <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
                 </div>
             </div>
 
-            {/* <div className='forum-header'>
-                <h2>Stakeholder Information</h2>
-                <div className='btn-wrapper'>
-                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/VN6JS3X') }}>Survey</button>
-                    <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
-                </div>
-            </div> */}
-
             <div className='forum-wrapper'>
 
                 <div className='forum-body'>
-
                     <div className='stakeholder-column'>
                         <div className='column-header'><h3>General</h3><FaUserAlt /></div>
                         <div className='stakeholder-wrapper'>
@@ -231,7 +221,6 @@ function StakeholderForum({ Stakeholder }) {
                     </div>
 
                     <div className='location-column'>
-
                         <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
                         <div className='input-container'>
                             <div className='input-wrapper'>
@@ -284,8 +273,6 @@ function StakeholderForum({ Stakeholder }) {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
                 <Relations Stakeholder={Stakeholder.NAME} />

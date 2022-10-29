@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Logs.scss';
+import * as XLSX from 'xlsx'
+import  {FileSaver, fileType, saveAs } from 'file-saver'
 
 function Logs() {
 
@@ -31,6 +33,28 @@ function Logs() {
         return false
     }
 
+    function createReport(arr) {
+
+        var test = [];
+
+        for (let index = 0; index < arr.length; index++) {
+            if (FilterLogs(arr[index])) {
+                test.push(arr[index]);
+            }
+        }
+
+        return test;
+
+    }
+
+    const Export = (arr) => {
+        const ws = XLSX.utils.json_to_sheet(arr);
+        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+        const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+        const data = new Blob([excelBuffer], { type: fileType });
+        saveAs(data, 'test.xlsx' );
+      }; 
+
     function compareDate(logDate) {
         if (date === '') {
             return true
@@ -57,6 +81,7 @@ function Logs() {
 
     return (
         <div className='log-container'>
+            <button onClick={() => {Export(createReport(data))}}>Download</button>
             <input type="date" id="start" name="trip-start" onChange={(e) => setDate(e.target.value)}></input>
             <select defaultValue={userFilter} onChange={(e) => setUserFilter(e.target.value)}>
                 <option value={null}>All</option>

@@ -6,10 +6,10 @@ function Analytics() {
 
 
     return (
-    <div className='analytics-container'>
-        <Report />
-        <Locations />
-    </div>
+        <div className='analytics-container'>
+            <Report />
+            <Locations />
+        </div>
     )
 }
 

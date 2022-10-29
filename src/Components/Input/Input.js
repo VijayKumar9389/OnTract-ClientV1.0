@@ -6,6 +6,7 @@ import './Input.scss';
 import { BiX } from 'react-icons/bi';
 import { CgSearch } from 'react-icons/cg';
 import { BsFilterRight } from 'react-icons/bs'
+import { BsDownload } from 'react-icons/bs'
 
 export default function Input() {
 
@@ -40,6 +41,7 @@ export default function Input() {
                 </div>
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
+            <button onClick={() => dispatch(toggle(true))}>< BsDownload size='2rem' /></button>
             <button onClick={() => dispatch(toggle(true))}>< BsFilterRight size='2rem' /></button>
         </div>
     )

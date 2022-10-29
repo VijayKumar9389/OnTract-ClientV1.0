@@ -1,3 +1,18 @@
+export function Filter(stakeholder, tblFilter) {
+    if (search(stakeholder, tblFilter)) {
+        // if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
+            if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
+                if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
+                    if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
+                        return true;
+                    }
+                }
+            }
+        // }
+    }
+    return false;
+}
+
 //Filter stakeholders by type
 export function stakeholderType(stakeholder, filter) {
     switch (filter) {
@@ -171,7 +186,6 @@ export function checkCount(count, single) {
 export function search(stakeholder, filter) {
 
     if (stakeholder.NAME !== '') {
-        console.log(stakeholder.NAME)
         if (filter.search.type == 0) {
             if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {
                 return true

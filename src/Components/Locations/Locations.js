@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import './Locations.scss';
-import { SiCivicrm } from "react-icons/si";
-
-import CityList from '../Filters/CityList';
 
 function Locations() {
 
@@ -22,7 +18,17 @@ function Locations() {
     return (
         <div className='location-container'>
             {locationList.map((location, index) => {
-                return (<h3>{location.province}</h3>)
+                return (
+                    <div>
+                        <h3>{location.province}</h3>
+                        <h2>{location.count}</h2>
+                        <ul>
+                            {location.cities.map((city, index) => {
+                                return <li>{city.name} - {city.count}</li>
+                            })}
+                        </ul>
+                    </div>
+                )
             })}
         </div>
     );

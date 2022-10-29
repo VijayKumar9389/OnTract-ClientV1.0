@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import * as XLSX from 'xlsx'
+import  { fileType, saveAs } from 'file-saver'
 
-import { checkLocation, search, stakeholderType, checkNum, checkContactStatus, checkAttempts } from '../../../Helpers/utils';
+import { checkLocation, search, stakeholderType, checkNum, Filter} from '../../../Helpers/utils';
 
 import './StakeholderTable.scss';
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -39,38 +41,35 @@ function StakeholderTable() {
         });
     }
 
-    function createReport(arr,tblFilter) {
+    const Export = (arr) => {
+        const ws = XLSX.utils.json_to_sheet(arr);
+        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+        const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+        const data = new Blob([excelBuffer], { type: fileType });
+        saveAs(data, 'test.xlsx' );
+      }; 
 
-        let test = [];
+    function createReport(arr, filte) {
+
+        var test = [];
 
         for (let index = 0; index < arr.length; index++) {
-            if (Filter(arr[0], tblFilter)){
-                test.push();
+            if (Filter(arr[index], filte)) {
+                test.push(arr[index]);
             }
         }
-        
-        return test
+
+        return test;
 
     }
 
-    function Filter(stakeholder, filtersgiven) {
-        if (search(stakeholder, tblFilter)) {
-            if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
-                if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
-                    if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
-                        if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
+
 
     return (
         <div className='table-container'>
-            {console.log(createReport(data, tblFilter))}
+            <label>Results: {createReport(data, tblFilter).length}</label>
+            {console.log(tblFilter)}
+            {/* <button onClick={() => {Export(createReport(data))}}>downloadFile</button> */}
             <table className='stakeholder-table'>
                 <thead>
                     <tr>

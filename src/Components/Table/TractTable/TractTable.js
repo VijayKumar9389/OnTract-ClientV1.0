@@ -28,26 +28,27 @@ function TractTable({ Stakeholder }) {
     }, [Stakeholder]);
 
     function PrintRow(arr, ind) {
-
         // const pin = arr[0].PIN.split("/");
-
-        return (
-            <div className='tract-table'>
-                <div className='tract-header'>
-                    <a><h2>{arr[0].TRACT}</h2></a>
-                    <div className='tract'>
-                        <a>Lot: {arr[0].PIN}</a>
-                        <h5>Comodity: {arr[0].COMMODITY}</h5>
-                        <h5>Pipline: {arr[0].PIPLINESTATUS}</h5>
+        if (arr[0] !== undefined) {
+            return (
+                <div className='tract-table'>
+                    <div className='tract-header'>
+                        <a><h2>{arr[0].TRACT}</h2></a>
+                        <div className='tract'>
+                            <a>Lot: {arr[0].PIN}</a>
+                            <h5>Comodity: {arr[0].COMMODITY}</h5>
+                            <h5>Pipline: {arr[0].PIPLINESTATUS}</h5>
+                        </div>
                     </div>
+                    <ul>
+                        {arr.map((stakeholder, index) => {
+                            return <TractRow key={stakeholder.ID} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)} />
+                        })}
+                    </ul>
                 </div>
-                <ul>
-                    {arr.map((stakeholder, index) => {
-                        return <TractRow key={stakeholder.ID} Index={index} Stakeholder={stakeholder} stakeholderProfile={checkStakeholder(stakeholder.NAME)} />
-                    })}
-                </ul>
-            </div>
-        )
+            )
+        }
+
     }
 
     function checkStakeholder(name) {

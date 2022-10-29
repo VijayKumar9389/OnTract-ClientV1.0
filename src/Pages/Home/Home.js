@@ -4,7 +4,6 @@ import './Home.scss';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
 import Input from '../../Components/Input/Input';
 import FilterMenu from '../../Components/Filters/Filter';
-import Report from '../../Components/Reports/Report';
 
 function Home({ LogOut }) {
 
@@ -30,7 +29,7 @@ function Home({ LogOut }) {
     return (
         <div className='home-container'>
             <div className='home-body'>
-                <Report /> 
+                <button onClick={() => downloadFile()}>download</button>
                 <FilterMenu isOpen={false} />
                 <Input />
                 <StakeholderTable />
