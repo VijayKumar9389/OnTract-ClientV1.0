@@ -80,7 +80,7 @@ function StakeholderTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {data.map((stakeholder, index) => {
+                    {data.map((stakeholder, index) => {
 
                         let location = stakeholder.MAILING.split(",");
                         let attemps = stakeholder.ATTEMPTS.split(",");
@@ -105,7 +105,7 @@ function StakeholderTable() {
                                 </tr>
                             );
                         }
-                    })} */}
+                    })}
                 </tbody>
             </table>
         </div>
