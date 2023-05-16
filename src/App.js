@@ -51,8 +51,7 @@ function App() {
     <div className='app-container'>
       {/* <ToastContainer /> */}
       {/* <Navbar /> */}
-      <Sidebar />
-      <div className='app-body'>
+      {/* <Sidebar /> */}
         <Routes>
           <Route path='/' element={<Home LogOut={Logout} />} />
           <Route path='/:name' element={<Profile />} />
@@ -60,7 +59,6 @@ function App() {
           <Route path='/Reports' element={<Reports />} />
           <Route path='/Analytics' element={<Analytics />} />
         </Routes>
-      </div>
 
     </div>
   );

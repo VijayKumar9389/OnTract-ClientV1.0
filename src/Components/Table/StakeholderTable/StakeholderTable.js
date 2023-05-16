@@ -27,7 +27,7 @@ function StakeholderTable() {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
-        }).then((response) => console.log(response.data));
+        }).then((response) => setData(response.data));
     }, []);
 
     function selectStakeholder(stakeholderInfo) {
@@ -80,7 +80,7 @@ function StakeholderTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {data.map((stakeholder, index) => {
+                    {data.map((stakeholder, index) => {
 
                         let location = stakeholder.MAILING.split(",");
                         let attemps = stakeholder.ATTEMPTS.split(",");
@@ -93,6 +93,7 @@ function StakeholderTable() {
                                     <td>
                                         <div className='status-wrapper'>
                                             {stakeholder.CONTACT}
+                                            {console.log(data)}
                                         </div>
                                     </td>
                                     <td>{checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}</td>
@@ -105,7 +106,7 @@ function StakeholderTable() {
                                 </tr>
                             );
                         }
-                    })} */}
+                    })}
                 </tbody>
             </table>
         </div>
