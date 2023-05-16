@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Axios from 'axios';
+import axios from 'axios';
 
 import './Login.scss';
 import { SiCivicrm } from "react-icons/si";
@@ -29,10 +30,19 @@ const Login = ({ LogIn }) => {
     });
   }
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/report`, {
+      headers: {
+        "access-token": localStorage.getItem("access-token"),
+      },
+    }).then((response) => setData(response.data));
+  }, []);
+
   return (
     <div className="login-container">
       <div className="login-wrapper">
         <div className="heading">
+          {console.log(data)};
           <h2>Login Your Account</h2>
           <label>wi</label>
         </div>
