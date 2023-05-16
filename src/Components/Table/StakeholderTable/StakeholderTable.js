@@ -61,7 +61,7 @@ function StakeholderTable() {
         return stakeholders;
     }
 
-    return (
+    if (data) return (
         <div className='table-container'>
             <label>Results: {createReport(data, tblFilter).length}</label>
             {/* <button onClick={() => Export(createReport(data, tblFilter))}>Download</button> */}
