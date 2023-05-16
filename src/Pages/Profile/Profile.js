@@ -5,6 +5,7 @@ import './Profile.scss';
 import StakeholderForum from '../../Components/StakeholderForum/StakeholderForum';
 import TractTable from '../../Components/Table/TractTable/TractTable';
 import TractIndex from '../../Components/TractIndex/TractIndex';
+import Relations from '../../Components/Relations/Relations';
 
 function Profile() {
 
@@ -14,7 +15,11 @@ function Profile() {
 
     return (
         <div className='profile-container'>
+            <div className='form-'>
+
+            </div>
             <StakeholderForum key={name} Stakeholder={stakeholder} />
+            <Relations Stakeholder={stakeholder.NAME} />
             <TractTable Stakeholder={name} />
             {/* <TractIndex /> */}
         </div>

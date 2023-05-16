@@ -183,7 +183,6 @@ function StakeholderForum({ Stakeholder }) {
             </div>
 
             <div className='forum-wrapper'>
-
                 <div className='forum-body'>
                     <div className='stakeholder-column'>
                         <div className='column-header'><h3>General</h3><FaUserAlt /></div>
@@ -274,9 +273,6 @@ function StakeholderForum({ Stakeholder }) {
                         </div>
                     </div>
                 </div>
-
-                <Relations Stakeholder={Stakeholder.NAME} />
-
             </div>
         </div>
     );

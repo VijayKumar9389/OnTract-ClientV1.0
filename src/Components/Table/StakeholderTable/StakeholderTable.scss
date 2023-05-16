@@ -1,10 +1,5 @@
 .table-container {
-    width: 95%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    width: 100%;
 
     label {
         color: grey;
@@ -17,9 +12,11 @@
 
     .stakeholder-table {
         width: 100%;
-        margin: auto;
+        margin: 0;
         border-collapse: separate;
-        border-spacing: 0 .5em;
+        border-spacing: 0;
+        background-color: #fff;
+        border-radius: 5px;
 
         thead {
             height: 60px;
@@ -43,21 +40,7 @@
             }
 
             th {
-                padding: 20px;
-                text-align: center;
-                text-transform: uppercase;
-                color: gray;
 
-
-                &:first-child {
-                    border-top-left-radius: 10px;
-                    border-bottom-left-radius: 10px;
-                }
-
-                &:last-child {
-                    border-top-right-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                }
 
             }
         }
@@ -89,7 +72,7 @@
             }
 
             td {
-                text-align: center;
+                text-align: left;
                 padding: 1em 10px;
 
                 &.name-wrapper {

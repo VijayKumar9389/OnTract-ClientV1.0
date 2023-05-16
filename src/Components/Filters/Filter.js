@@ -9,6 +9,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 function FilterMenu({ isOpen }) {
 
+    const filter = useSelector((state) => state.filter);
     const Filters = useSelector((state) => state.filter.value);
     const Province = useSelector((state) => state.filter.location.province);
     const City = useSelector((state) => state.filter.location.city);
@@ -52,6 +53,7 @@ function FilterMenu({ isOpen }) {
                 <div className='filter-menu'>
                     <div className='filter-location'>
                         <ul>
+                            {console.log(filter)}
                             <div className='ddl-container'>
                                 Province:
                                 <select defaultValue={Province} onChange={(event) => dispatch(setProvince(event.target.value))}>
@@ -110,6 +112,7 @@ function FilterMenu({ isOpen }) {
                     </div>
                 </div>
                 <div className='filter-btn-container'>
+                    <button onClick={() => dispatch(clear())}>Clear</button>
                     {Filters ? <button className='btn-close' onClick={() => dispatch(toggle(false))}><IoIosArrowForward /></button> : null}
                 </div>
             </div>

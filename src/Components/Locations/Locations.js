@@ -19,12 +19,14 @@ function Locations() {
         <div className='location-container'>
             {locationList.map((location, index) => {
                 return (
-                    <div>
-                        <h3>{location.province}</h3>
-                        <h2>{location.count}</h2>
+                    <div className='location'>
+                        <div className='location-header'>
+                            <h2>{location.province}</h2>
+                            <h3>{location.count}</h3>
+                        </div>
                         <ul>
                             {location.cities.map((city, index) => {
-                                return <li>{city.name} - {city.count}</li>
+                                return <li><label>{city.name}</label><label>{city.count}</label></li>
                             })}
                         </ul>
                     </div>

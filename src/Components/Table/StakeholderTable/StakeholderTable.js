@@ -1,11 +1,11 @@
 import axios from 'axios';
+import * as XLSX from 'xlsx'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import * as XLSX from 'xlsx'
-import  { fileType, saveAs } from 'file-saver'
+import { fileType, saveAs } from 'file-saver'
 
-import { checkLocation, search, stakeholderType, checkNum, Filter} from '../../../Helpers/utils';
+import { checkNum, Filter } from '../../../Helpers/utils';
 
 import './StakeholderTable.scss';
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -18,7 +18,6 @@ import { AiOutlineArrowUp } from "react-icons/ai";
 function StakeholderTable() {
 
     const [data, setData] = useState([]);
-
     const nav = useNavigate();
     const tblFilter = useSelector((state) => state.filter);
     const Location = useSelector((state) => state.filter.location);
@@ -46,37 +45,35 @@ function StakeholderTable() {
         const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
         const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
         const data = new Blob([excelBuffer], { type: fileType });
-        saveAs(data, 'test.xlsx' );
-      }; 
+        saveAs(data, 'test.xlsx');
+    };
 
-    function createReport(arr, filte) {
+    function createReport(array, filters) {
 
-        var test = [];
+        var stakeholders = [];
 
-        for (let index = 0; index < arr.length; index++) {
-            if (Filter(arr[index], filte)) {
-                test.push(arr[index]);
+        for (let index = 0; index < array.length; index++) {
+            if (Filter(array[index], filters)) {
+                stakeholders.push(array[index]);
             }
         }
 
-        return test;
-
+        return stakeholders;
     }
-
-
 
     return (
         <div className='table-container'>
             <label>Results: {createReport(data, tblFilter).length}</label>
-            {console.log(tblFilter)}
-            {/* <button onClick={() => {Export(createReport(data))}}>downloadFile</button> */}
+            {/* <button onClick={() => Export(createReport(data, tblFilter))}>Download</button> */}
             <table className='stakeholder-table'>
                 <thead>
                     <tr>
                         <th><h5>Name</h5></th>
                         <th><h5>Tracts</h5></th>
                         <th><h5>Contact Staus</h5></th>
-                        <th><h5>Location</h5></th>
+                        <th><h5>Number</h5></th>
+                        <th><h5>City</h5></th>
+                        <th><h5>Province</h5></th>
                         <th><h5>Attempts</h5></th>
                         <th><h5>Contacted</h5></th>
                         <th><button className='bnt-up' onClick={() => window.scrollTo(0, 0)}><AiOutlineArrowUp size='1rem' className='icon' /></button></th>
@@ -86,6 +83,7 @@ function StakeholderTable() {
                     {data.map((stakeholder, index) => {
 
                         let location = stakeholder.MAILING.split(",");
+                        let attemps = stakeholder.ATTEMPTS.split(",");
 
                         if (Filter(stakeholder, tblFilter)) {
                             return (
@@ -94,17 +92,14 @@ function StakeholderTable() {
                                     <td>{stakeholder.count}</td>
                                     <td>
                                         <div className='status-wrapper'>
-                                            {checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}
                                             {stakeholder.CONTACT}
                                         </div>
                                     </td>
-                                    <td>
-                                        <div className='status-wrapper'>
-                                            <a>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</a>
-                                            <a>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</a>
-                                        </div>
-                                    </td>
-                                    <td>{stakeholder.ATTEMPTS}</td>
+                                    <td>{checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}</td>
+                                    <td><a>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</a>
+                                           </td>
+                                    <td> <a>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</a></td>
+                                    <td>{attemps.length}</td>
                                     <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon' /> : <MdOutlineClose size='2rem' color='grey' className='icon' />}</td>
                                     <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
                                 </tr>

@@ -4,9 +4,8 @@ import './Analytics.scss';
 
 function Analytics() {
 
-
     return (
-        <div className='analytics-container'>
+        <div className='analytics-wrapper'>
             <Report />
             <Locations />
         </div>

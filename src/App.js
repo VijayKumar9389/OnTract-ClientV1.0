@@ -13,6 +13,7 @@ import Analytics from './Pages/Analytics/Analytics';
 import Records from './Pages/Records/Records';
 import Reports from './Pages/Report/Report';
 import Navbar from './Components/Navbar/Navbar';
+import Sidebar from './Components/Sidebar/Sidebar';
 
 function App() {
 
@@ -48,15 +49,19 @@ function App() {
 
   return (
     <div className='app-container'>
-      <ToastContainer />
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home LogOut={Logout} />} />
-        <Route path='/:name' element={<Profile />} />
-        <Route path='/Records' element={<Records />} />
-        <Route path='/Reports' element={ <Reports /> } />
-        <Route path='/Analytics' element={ <Analytics /> } />
-      </Routes>
+      {/* <ToastContainer /> */}
+      {/* <Navbar /> */}
+      <Sidebar />
+      <div className='app-body'>
+        <Routes>
+          <Route path='/' element={<Home LogOut={Logout} />} />
+          <Route path='/:name' element={<Profile />} />
+          <Route path='/Records' element={<Records />} />
+          <Route path='/Reports' element={<Reports />} />
+          <Route path='/Analytics' element={<Analytics />} />
+        </Routes>
+      </div>
+
     </div>
   );
 }

@@ -58,8 +58,12 @@ export const filterSlice = createSlice({
         },
         clear: (state) => {
             state = initialStateValue;
+            window.alert('hello');
             window.scrollTo(0, 0);
         },
+        export: (state, action) => {
+            
+        }
     }
 });
 

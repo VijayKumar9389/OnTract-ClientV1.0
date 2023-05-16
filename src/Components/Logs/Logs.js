@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Logs.scss';
 import * as XLSX from 'xlsx'
-import  {FileSaver, fileType, saveAs } from 'file-saver'
+import { FileSaver, fileType, saveAs } from 'file-saver'
 
 function Logs() {
 
@@ -52,8 +52,8 @@ function Logs() {
         const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
         const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
         const data = new Blob([excelBuffer], { type: fileType });
-        saveAs(data, 'test.xlsx' );
-      }; 
+        saveAs(data, 'test.xlsx');
+    };
 
     function compareDate(logDate) {
         if (date === '') {
@@ -81,14 +81,17 @@ function Logs() {
 
     return (
         <div className='log-container'>
-            <button onClick={() => {Export(createReport(data))}}>Download</button>
-            <input type="date" id="start" name="trip-start" onChange={(e) => setDate(e.target.value)}></input>
-            <select defaultValue={userFilter} onChange={(e) => setUserFilter(e.target.value)}>
-                <option value={null}>All</option>
-                {user.map((user, index) => {
-                    return <option key={index} value={user.username}>{user.username}</option>
-                })}
-            </select>
+            <>
+                <input type="date" id="start" name="trip-start" onChange={(e) => setDate(e.target.value)}></input>
+                <select defaultValue={userFilter} onChange={(e) => setUserFilter(e.target.value)}>
+                    <option value={null}>All</option>
+                    {user.map((user, index) => {
+                        return <option key={index} value={user.username}>{user.username}</option>
+                    })}
+                </select>
+            </>
+            <button onClick={() => { Export(createReport(data)) }}>Download</button>
+
             <div className='log-wrapper'>
                 {data.map((log, index) => {
                     let change = log.changes.split('\n');
