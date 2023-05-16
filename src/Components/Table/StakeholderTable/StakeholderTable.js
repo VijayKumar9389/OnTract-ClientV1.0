@@ -27,7 +27,7 @@ function StakeholderTable() {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
-        }).then((response) => setData(response.data));
+        }).then((response) => console.log(response.data));
     }, []);
 
     function selectStakeholder(stakeholderInfo) {
@@ -80,7 +80,7 @@ function StakeholderTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((stakeholder, index) => {
+                    {/* {data.map((stakeholder, index) => {
 
                         let location = stakeholder.MAILING.split(",");
                         let attemps = stakeholder.ATTEMPTS.split(",");
@@ -105,7 +105,7 @@ function StakeholderTable() {
                                 </tr>
                             );
                         }
-                    })}
+                    })} */}
                 </tbody>
             </table>
         </div>
