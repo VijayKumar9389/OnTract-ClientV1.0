@@ -44,7 +44,7 @@ function Relations({ Stakeholder }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/` + Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/`+ Stakeholder, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
@@ -56,24 +56,25 @@ function Relations({ Stakeholder }) {
 
     return (
         <div className='relations-container'>
+            <div className='forum-heading'>
             <h3>Connections</h3>
-            {console.log(data)}
+            </div>
             <ul>
                 {data.map((record, index) => {
                     return (
                         <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
-                            <li>
+                            <li className='stakeholder-item'>
                                 <h3>{record.stakeholder.NAME}</h3>
                                 <div className='info-wrapper'>
-                                    <FaPhone size='1.2rem' />
+                                    <FaPhone className={record.phone ? "icon" : "icon-active"} />
                                     {record.phone ? <a>{record.stakeholder.PHONE}</a> : <a></a>}
                                 </div>
                                 <div className='info-wrapper'>
-                                    <MdMail size='1.2rem' />
+                                    <MdMail className={record.address ? "icon" : "icon-active"}/>
                                     {record.address ? <a>{record.stakeholder.MAILING}</a> : <a></a>}
                                 </div>
                                 <div className='info-wrapper'>
-                                    <FaHome size='1.2rem' />
+                                    <FaHome className={record.street ? "icon" : "icon-active"} />
                                     {record.street ? <a>{record.stakeholder.STREET}</a> : <a></a>}
                                 </div>
                             </li>

@@ -28,6 +28,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                color: #8a2be2;
             }
 
             .stakeholder-column {
@@ -293,13 +300,15 @@
 
                                 button {
                                     &.attempt {
-                                        color: #68bd45;
-                                        background: none;
-                                        border: none;
-                                        margin: 0;
-                                        padding: 0;
-                                        font-size: 14px;
-                                        font-weight: 600;
+                                        &.attempt {
+                                            color: #8a2be2;
+                                            background: none;
+                                            border: none;
+                                            margin: 0;
+                                            padding: 0;
+                                            font-size: 14px;
+                                            font-weight: 600;
+                                        }
 
                                         &:hover {
                                             transform: scale(1.08);
@@ -459,28 +468,15 @@
                     background-color: #8a2be2;
                     color: #fff;
                     border: none;
-                    padding: 8px 16px;
-                    /* decrease padding values */
-                    border-radius: 3px;
-                    /* decrease border-radius */
+                    padding: 10px 20px;
+                    border-radius: 5px;
                     display: flex;
                     align-items: center;
-                    font-size: 14px;
-                    /* decrease font-size */
+                    font-size: 16px;
                     font-weight: 500;
                     cursor: pointer;
-                    margin-right: 1rem;
-
-                    &.attempt {
-                        color: #8a2be2;
-                        background: none;
-                        border: none;
-                        margin: 0;
-                        padding: 0;
-                        font-size: 14px;
-                        font-weight: 600;
-                    }
-
+                    margin-left: 1rem;
+                
                     &:hover {
                         background-color: #6927a9;
                     }

@@ -57,9 +57,7 @@ export const filterSlice = createSlice({
             window.scrollTo(0, 0);
         },
         clear: (state) => {
-            state = initialStateValue;
-            window.alert('hello');
-            window.scrollTo(0, 0);
+            return initialStateValue;
         },
         export: (state, action) => {
             

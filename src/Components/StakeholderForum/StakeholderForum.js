@@ -177,7 +177,7 @@ function StakeholderForum({ Stakeholder }) {
             <div className='heading'>
                 <Link className='link' to='/'><BsArrowLeftShort size='2rem' /></Link><h3>{Stakeholder.NAME}</h3>
                 <div className='btn-wrapper'>
-                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/VN6JS3X') }}>Survey</button>
+                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/M9MG3R6') }}>Survey</button>
                     <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
                 </div>
             </div>
@@ -273,7 +273,7 @@ function StakeholderForum({ Stakeholder }) {
                         </div>
                     </div>
                 </div>
-                <Relations Stakeholder={Stakeholder} />
+                <Relations Stakeholder={Stakeholder.NAME} />
             </div>
         </div>
     );

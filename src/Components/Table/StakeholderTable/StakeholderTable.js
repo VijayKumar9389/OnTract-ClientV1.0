@@ -104,7 +104,7 @@ function StakeholderTable() {
                                     <td><a>{location.length >= 3 ? location[location.length - 3] : 'MISSING'}</a>
                                            </td>
                                     <td> <a>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</a></td>
-                                    <td>{attemps.length}</td>
+                                    <td>{attemps[0] !== '' ? attemps.length : 0}</td>
                                     <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon' /> : <MdOutlineClose size='2rem' color='grey' className='icon' />}</td>
                                     <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
                                 </tr>
