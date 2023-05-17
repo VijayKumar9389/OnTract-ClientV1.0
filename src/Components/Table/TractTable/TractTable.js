@@ -33,11 +33,11 @@ function TractTable({ Stakeholder }) {
             return (
                 <div className='tract-table'>
                     <div className='tract-header'>
-                        <a><h2>{arr[0].TRACT}</h2></a>
+                        <h2>Tract: {arr[0].TRACT}</h2>
                         <div className='tract'>
-                            <a>Lot: {arr[0].PIN}</a>
-                            <h5>Comodity: {arr[0].COMMODITY}</h5>
-                            <h5>Pipline: {arr[0].PIPLINESTATUS}</h5>
+                            <label>Lot: {arr[0].PIN}</label>
+                            <label>Comodity: {arr[0].COMMODITY}</label>
+                            <label>Pipline: {arr[0].PIPLINESTATUS}</label>
                         </div>
                     </div>
                     <ul>

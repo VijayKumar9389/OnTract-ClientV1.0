@@ -12,7 +12,6 @@ function Home() {
             <div className='home-body'>
                 <Report />
                 <FilterMenu isOpen={false} />
-                <Input />
                 <StakeholderTable />
             </div>
         </div>

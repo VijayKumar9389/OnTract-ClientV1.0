@@ -273,6 +273,7 @@ function StakeholderForum({ Stakeholder }) {
                         </div>
                     </div>
                 </div>
+                <Relations Stakeholder={Stakeholder} />
             </div>
         </div>
     );

@@ -1,143 +1,104 @@
 .tract-table-container {
-    width: 95%;
-    margin: auto;
+    width: 100%;
     height: fit-content;
-    padding-bottom: 50px;
+    padding: 1rem;
 
     .tract-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
         margin: 50px auto;
-        border-left: 3px solid #ddd;
 
         .tract-header {
             display: flex;
-            background-color: #F3F3F3;
-            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #8a2be2;
+            padding: 1rem;
+            color: #fff;
 
-            .tract{
-                position: relative;
-                top: -10px;
-            }
-
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          
             h2 {
-                background-color: #68bd45;
-                color: #fff;
-                width: 50px;
-                height: 50px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 50px;
-                position: relative;
-                left: -26px;
-                top: -10px;
+              font-size: 24px;
+              font-weight: bold;
             }
-        }
+          
+            .tract {
+              display: flex;
+              justify-content: center;
+          
+              label {
+                margin-right: 16px; /* Adjust as needed */
+                font-size: 16px;
+                font-weight: bold;
+              }
+            }
+          }
+          
 
         ul {
             font-size: 0.9rem;
-            padding-left: 20px;
-            padding-bottom: 20px;
 
-            tr {
-                height: 80px;
-                margin: 10px auto;
+            .tract-row {
+                height: fit-content;
+                min-height: 150px;
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                display: grid;
+                align-items: flex-start;
+                grid-template-columns: 2fr 1fr 1fr 1fr 2fr 1fr;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
                 background-color: #fff;
-                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
-                &:hover {
-                    background-color: #e5e8ed;
-                }
-
-                td {
-                    padding: 1em 10px;
+                .wrapper {
+                    height: 100%;
                     width: 100%;
+                    display: flex;
+                    grid-template-rows: 1rem 1fr;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    border-left: 1px solid #ddd;
+                    border-right: 1px solid #ddd;
 
-                    .input-wrapper {
-                        display: grid;
-                        grid-gap: 15px;
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: 1fr 1fr;
-                        align-items: center;
-                        justify-content: space-between;
+                    &:first-child {
+                        border-left: 2px solid #ddd;
                     }
 
-                    .comment-wrapper {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: space-around;
-                        height: 120px;
-                    }
-
-                    .tract {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        text-align: center;
-
-                        h2 {
-                            color: #68bd45;
-                            height: 40px;
-                            width: 40px;
-                            border-radius: 50px;
-                            transition: ease-in-out .2s;
-
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-
-                            &:hover {
-                                cursor: pointer;
-                                background-color: #68bd45;
-                                color: #fff;
-                            }
-                        }
-                    }
-
-                    .name {
-
-                        h2 {
-                            color: #68bd45;
-                        }
+                    &:last-child {
+                        border-right: 2px solid #ddd;
                     }
 
                     input {
                         padding: 10px;
-                        border: 1px solid #ddd;
-                        height: 40px;
-                        width: 75px;
-                        text-align: center;
+                        border: none;
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 0;
+                        margin: 0;
                     }
 
                     textarea {
                         resize: none;
-                        height: 60px;
                         padding: 10px;
-                        border: 1px solid #ddd;
+                        border: none;
                         font-size: 14px;
-
-                        &.structure {
-                            width: 100px;
-                            height: 80px;
-                            text-align: center;
-                        }
-
-                        &.comment {
-                            width: 300px;
-                            height: 80px;
-                        }
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0;
+                        margin: 0;
                     }
 
                     select {
                         padding: 10px;
-                        border: 1px solid #ddd;
+                        border: 1px none;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0;
+                        margin: 0;
                         text-align: center;
-                        height: 40px;
-                        width: 75px;
 
                         option {
                             font-size: 16px;
@@ -151,30 +112,101 @@
                         padding: 10px;
                     }
 
-                    button {
-                        display: flex;
-                        justify-content: center;
+                    label {
+                        text-align: left;
                         align-items: center;
-                        margin: 10px;
+                        display: flex;
+                        color: grey;
+                        padding: 5px;
+                        border-bottom: 1px solid #ddd;
+                        width: 100%;
+                        margin: 0;
+                    }
+                }
 
-                        width: 80px;
-                        height: 40px;
-                        border: none;
-                        border-radius: 5px;
+                .name {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    text-align: left;
+                    padding: 1rem;
+                }
+
+
+
+                .tract-btn-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+
+                    label {
+                        text-align: left;
+                        align-items: center;
+                        display: flex;
+                        color: grey;
+                        padding: 5px;
+                        border-bottom: 1px solid #ddd;
+                        width: 100%;
+                        margin: 0;
+                        margin-bottom: 1rem;
+                    }
+
+                    button {
+                        background-color: #8a2be2;
                         color: #fff;
-                        background-color: #68bd45;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin-bottom: .5rem;
 
                         &:hover {
-                            cursor: pointer;
-                            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-                            transform: scale(1.1);
+                            background-color: #6927a9;
                         }
                     }
+                }
+
+                .button-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                    justify-items: center;
+                    align-items: center;
+
+                    button {
+                        background-color: #fff;
+                        width: 100%;
+                        color: grey;
+                        border-bottom: 1px solid #ddd;
+                        border-radius: 0;
+                        padding: 1rem;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        transition: background-color 0.2s ease-in-out;
+
+                        &:hover {
+                            color: #8a2be2;
+                        }
+
+                        &:active {
+                            background-color: #4c1465;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
                 }
             }
 
             .blank-space {
-                height: 80px;
+                height: 5rem;
             }
         }
     }

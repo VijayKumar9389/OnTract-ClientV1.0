@@ -37,6 +37,8 @@ const colors = [
 
 var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
+
+
 function Relations({ Stakeholder }) {
 
     const [data, setData] = useState([]);
@@ -55,6 +57,7 @@ function Relations({ Stakeholder }) {
     return (
         <div className='relations-container'>
             <h3>Connections</h3>
+            {console.log(data)}
             <ul>
                 {data.map((record, index) => {
                     return (

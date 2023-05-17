@@ -14,6 +14,7 @@ import { MdOutlineClose } from "react-icons/md";
 import { FaPhoneSlash } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { AiOutlineArrowUp } from "react-icons/ai";
+import Input from '../../Input/Input';
 
 function StakeholderTable() {
 
@@ -65,7 +66,7 @@ function StakeholderTable() {
         <div className='table-container'>
             <label>Results: {createReport(data, tblFilter).length}</label>
             {/* <button onClick={() => Export(createReport(data, tblFilter))}>Download</button> */}
-            <table className='stakeholder-table'>
+            <table className='stakeholder-tbl'>
                 <thead>
                     <tr>
                         <th><h5>Name</h5></th>
@@ -76,8 +77,11 @@ function StakeholderTable() {
                         <th><h5>Province</h5></th>
                         <th><h5>Attempts</h5></th>
                         <th><h5>Contacted</h5></th>
-                        <th><button className='bnt-up' onClick={() => window.scrollTo(0, 0)}><AiOutlineArrowUp size='1rem' className='icon' /></button></th>
+                        <th></th>
                     </tr>
+                </thead>
+                <thead className='thead-input'>
+                   <th className='th-input' colSpan={9}><Input /></th> 
                 </thead>
                 <tbody>
                     {data.map((stakeholder, index) => {

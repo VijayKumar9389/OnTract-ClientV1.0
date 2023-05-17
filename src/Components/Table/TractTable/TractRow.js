@@ -52,46 +52,54 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
     }
 
     return (
-        <tr>
-            <td>
-                <div className='name'>
-                    {Index === 0 ? <h4 style={{color: 'red'}} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4> }
-                    <label>{Stakeholder.INTEREST}</label>
-                </div>
-            </td>
+        <li className='tract-row'>
 
-            <td>
-                <div className='input-wrapper'>
-                    Works land:
-                    <select defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>
-                        <option value="">N/A</option>
-                        <option value="YES">YES</option>
-                        <option value="NO">NO</option>
-                    </select>
-                    Occupants:
-                    <input defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></input>
-                </div>
-            </td>
+            <div className='name'>
+                {Index === 0 ? <h4 style={{ color: 'red' }} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4>}
+                <label>{Stakeholder.INTEREST}</label>
+            </div>
 
-            <td>
-                <div className='comment-wrapper'>
-                    Structure:
-                    <textarea className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea>
-                </div>
-            </td>
+            <div className='wrapper'>
+                <label>Occupants:</label>
+                <textarea defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></textarea>
+            </div>
 
-            <td>
-                <div className='comment-wrapper'>
-                Comments: 
+
+            <div className='wrapper'>
+                <label>Works land:</label>
+                <select defaultValue={Stakeholder.WORKED} onChange={(event) => setnewWorksLand(event.target.value)}>
+                    <option value="">N/A</option>
+                    <option value="YES">YES</option>
+                    <option value="NO">NO</option>
+                </select>
+            </div>
+
+
+            <div className='wrapper'>
+                <label>Structure:</label>
+                <textarea className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea>
+            </div>
+
+
+            <div className='wrapper'>
+                <label>Comments:</label>
                 <textarea className='comment' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea>
-                </div>
-            </td>
+            </div>
 
-            <td>
+
+            <div className='tract-btn-container'>
+                <label>Options: </label>
                 <button onClick={() => Update(Stakeholder.ID)}> SAVE</button>
-                {stakeholderProfile ? null : <button onClick={() => selectStakeholder(Stakeholder)}>VIEW</button>}
-            </td>
-        </tr>
+                {Index === 0 ? null : <button onClick={() => selectStakeholder(Stakeholder)}>VIEW</button>}
+            </div>
+
+            {/* <div class="button-grid">
+                <button class="view-button">View</button>
+                <button class="save-button">Save</button>
+                <button class="related-button">Related</button>
+            </div> */}
+
+        </li>
     );
 }
 
