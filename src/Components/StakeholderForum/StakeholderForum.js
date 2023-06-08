@@ -13,8 +13,11 @@ import { FaTruckMoving } from 'react-icons/fa';
 import { BsChatLeftTextFill } from 'react-icons/bs';
 
 import Relations from '../Relations/Relations';
+import Survey from '../Survey/Survey';
 
 function StakeholderForum({ Stakeholder }) {
+
+    const [data, setData] = useState([]);
 
     const [newName, setNewName] = useState('');
     const [newContactStatus, setNewContactStatus] = useState('');
@@ -29,7 +32,22 @@ function StakeholderForum({ Stakeholder }) {
     const [newStakeholderComment, setNewStakeholderComment] = useState('');
     const [newCorperation, setNewCorperation] = useState('');
 
+    const [isOpen, setIsOpen] = useState(false);
+
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getSurvey();
+    }, []);
+
+    async function getSurvey() {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/survey/get/${Stakeholder.NAME}`, {
+            headers: {
+                "access-token": localStorage.getItem("access-token"),
+            },
+        }).then((response) => setData(response.data));
+    }
 
     const Update = (name) => {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/update`,
@@ -79,6 +97,11 @@ function StakeholderForum({ Stakeholder }) {
         });
     }
 
+    function toggle() {
+        setIsOpen(!isOpen)
+        getSurvey();
+    }
+
     function log(name) {
 
         let date = new Date();
@@ -101,6 +124,12 @@ function StakeholderForum({ Stakeholder }) {
 
     function successtoast(name) {
         toast.success(`Successfully updated ${name}`, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+    function surveytoast(name) {
+        toast.success(`Successfully submitted survey for ${name}`, {
             position: toast.POSITION.TOP_RIGHT
         });
     }
@@ -173,11 +202,15 @@ function StakeholderForum({ Stakeholder }) {
     return (
         <div className='forum-container'>
 
+            <Survey Stakeholder={Stakeholder} isOpen={isOpen} toggle={() => toggle()} triggerSurveyToast={surveytoast} />
+
 
             <div className='heading'>
                 <Link className='link' to='/'><BsArrowLeftShort size='2rem' /></Link><h3>{Stakeholder.NAME}</h3>
                 <div className='btn-wrapper'>
-                    <button className="survey" onClick={() => { window.open('https://www.surveymonkey.com/r/M9MG3R6') }}>Survey</button>
+                    {console.log(data)}
+                    {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>}
+                    <button className="survey" onClick={toggle}>Survey</button>
                     <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
                 </div>
             </div>
@@ -226,6 +259,7 @@ function StakeholderForum({ Stakeholder }) {
                                 <label>Home Address</label>
                                 <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                             </div>
+                            {console.log(data)}
                             <div className='input-wrapper'>
                                 <label>Mailing Address</label>
                                 <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>

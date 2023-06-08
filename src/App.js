@@ -14,6 +14,7 @@ import Records from './Pages/Records/Records';
 import Reports from './Pages/Report/Report';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
+import Survey from './Components/Survey/Survey';
 
 function App() {
 
@@ -58,6 +59,7 @@ function App() {
           <Route path='/Records' element={<Records />} />
           <Route path='/Reports' element={<Reports />} />
           <Route path='/Analytics' element={<Analytics />} />
+          <Route path='/survey' element={<Survey />} />
         </Routes>
 
     </div>

@@ -44,7 +44,7 @@ function Relations({ Stakeholder }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/`+ Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/` + Stakeholder, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
@@ -57,7 +57,7 @@ function Relations({ Stakeholder }) {
     return (
         <div className='relations-container'>
             <div className='forum-heading'>
-            <h3>Connections</h3>
+                <h3>Connections</h3>
             </div>
             <ul>
                 {data.map((record, index) => {
@@ -70,7 +70,7 @@ function Relations({ Stakeholder }) {
                                     {record.phone ? <a>{record.stakeholder.PHONE}</a> : <a></a>}
                                 </div>
                                 <div className='info-wrapper'>
-                                    <MdMail className={record.address ? "icon" : "icon-active"}/>
+                                    <MdMail className={record.address ? "icon" : "icon-active"} />
                                     {record.address ? <a>{record.stakeholder.MAILING}</a> : <a></a>}
                                 </div>
                                 <div className='info-wrapper'>

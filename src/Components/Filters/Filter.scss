@@ -1,186 +1,272 @@
-.filter-container{
+.popup-container {
     position: fixed;
+    padding: 0;
+    margin: 0;
+
     top: 0;
-    right: 0;
-    z-index: 2000;
+    left: 0;
+
+    width: 100%;
     height: 100%;
-    width: 500px;
-    transition: ease-in-out .2s;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    /* apply the same blur effect to the whole background */
+    animation-name: fade-in;
+    z-index: 10000000;
+
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 
-    .filter-menu{
-        width: 100%;
+    .popup-background {
         height: 100%;
-        overflow: hidden;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-
-        .filter-location{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            margin: auto;
-            
-            ul {
-                width: 90%;
-                height: 100%;
-                margin: auto;
-                color: black;
-                list-style-type: none;
-                padding: 20px;
-                text-align: left;
-                overflow-y: auto;
-
-                .ddl-container{
-                    width: 100%;
-                    height: 80px;
-                    padding: 10px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: baseline;
-
-                    select {
-                        position: relative;
-                        font-size: 12px;
-                        border: 1px solid #ddd;
-                        text-align: left;
-                        height: 40px;
-                        min-width: fit-content;
-                        width: 200px;
-                        padding: 10px;
-                        margin: 5px 0;
-                        border-radius: 5px;
-
-                        option {
-                            font-size: 16px;
-                        }
-                    }
-                }
-
-                .radio-container{
-                    padding: 10px;
-
-                    .ddl-wrapper{
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr;
-                        margin: 10px auto;
-    
-                        .input-wrapper{
-                            margin: 10px 0;
-                        }
-
-                    }
-                }
-            }
-    
-            li {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: space-between;
-                width: 90%;
-                height: fit-content;
-                padding: 10px;
-                margin: 0 auto;
-                font-size: 18px;
-                font-weight: 600;
-                color: grey;
-                border-radius: 10px;
-
-
-
-                &.null-item {
-                    opacity: .5;
-                    pointer-events: none;
-                }
-            }
-    
-            .li-exit {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .filter-option{
-            background-color: #68bd45;
-            width: 95%;
-            height: 100px;
-            padding: 10px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-
-            .option-container{
-                display: flex;
-            }
-        }
+        width: 100%;
+        position: relative;
     }
 
-    .filter-btn-container{
+    .popup-wrapper {
 
-        .btn-cancel {
-            background-color: #68bd45 ;
-            color: #fff ;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 5px;
-            width: 200px;
-            height: 50px;
-            border: none;
+        background-color: #fff;
+        width: 40%;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
 
-            &:hover {
-                background-color: #68bd45 !important;
-                letter-spacing: 1px;
-                transition: all 0.4s ease 0s;
-                cursor: pointer;
-            }
-        }
+        display: grid;
+        grid-template-rows: 80px 1fr 80px;
+        animation: slide-leftt .3s;
 
-
-        .btn-close{
-            color: #68bd45 !important;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 50px;
-            width: 50px;
-            height: 50px;
-            border: none;
-            transition: all 0.4s ease 0s;
-            border: 1px solid #ddd;
+        .filter-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
             background-color: #fff;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 5px;
 
-            position: absolute;
-            top: 45%;
-            left: -25PX;
-
-            &:hover {
-                border: 1px solid #68bd45;
-                color: #fff !important;
-                background-color: #68bd45;
+            h2 {
+                margin: 0;
+                font-weight: 500;
+                font-size: 1.5rem;
+                color: #333;
+                text-transform: uppercase;
                 letter-spacing: 1px;
-                transition: all 0.4s ease 0s;
+            }
+
+            button {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                width: 48px;
+                height: 48px;
+                background-color: #8a2be2;
+                color: #fff;
+                border: none;
+                font-size: 1.5rem;
                 cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: #6c1c9e;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .close-filter-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-right: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
+                color: #8a2be2;
+                border: 2px solid #8a2be2;
+                font-size: 1.5rem;
+                text-decoration: none;
+                transition: background-color 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: #8a2be2;
+                    color: #fff;
+                    box-shadow: 0px 0px 10px #8a2be2;
+                }
+
+                .close-icon {
+                    height: 1rem;
+                    width: auto;
+                }
+            }
+        }
+
+
+        .filter-menu {
+            overflow-y: scroll;
+            padding: 1rem;
+            overflow-y: scroll;
+            /* add scrollbar to vertical direction */
+            scrollbar-width: thin;
+            /* make scrollbar thin */
+            scrollbar-color: #8a2be2 transparent;
+
+            /* Hide the scrollbar track */
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            /* Style the scrollbar thumb */
+            &::-webkit-scrollbar-thumb {
+                background-color: #8a2be2;
+                border-radius: 5px;
+            }
+
+            .filter-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                padding: 1rem;
+                align-items: center;
+                text-align: right;
+                grid-gap: 1rem;
+
+                select {
+                    height: 40px;
+                    width: 100%;
+                    padding-left: 1rem;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                }
+            }
+
+            .radio-container {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                grid-gap: 1rem;
+                padding: 1rem 0;
+                align-items: baseline;
+                text-align: right;
+                flex-wrap: wrap;
+
+                .radio-wrapper {
+                    list-style-type: none;
+                    margin: 25px 0 0 0;
+                    padding: 0;
+                    display: flex;
+
+                    .input-wrapper {
+                        position: relative;
+                        margin-right: 1rem;
+
+
+                        input {
+                            opacity: 0;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 100;
+
+                            &:checked+label {
+                                background-color: #8a2be2;
+                                color: #fff;
+                            }
+                        }
+
+                        label {
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            z-index: 90;
+                            transition: background-color ease-in-out .3s, color ease-in-out .3s;
+
+                            &:hover {
+                                background-color: #8a2be2;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .filter-btn-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+
+            button {
+                background-color: #8a2be2;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                margin-left: 1rem;
+            
+                &:hover {
+                    background-color: #6927a9;
+                }
             }
         }
 
     }
-
 
 }
 
+@keyframes slide-leftt {
+    from {
+        right: -500px;
+        opacity: 0;
+    }
 
+    to {
+        right: 0px;
+        opacity: 1;
+    }
+}
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
 
+    to {
+        opacity: 1;
+    }
+}
+
+.filter-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-menu::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.filter-menu::-webkit-scrollbar-thumb {
+    background-color: #8a2be2;
+    border-radius: 20px;
+}
+
+.filter-menu::-webkit-scrollbar-thumb:hover {
+    background-color: darken(#8a2be2, 10%);
+}

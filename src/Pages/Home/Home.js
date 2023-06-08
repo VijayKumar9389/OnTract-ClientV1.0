@@ -11,7 +11,7 @@ function Home() {
         <div className='home-container'>
             <div className='home-body'>
                 <Report />
-                <FilterMenu isOpen={false} />
+                {/* <FilterMenu isOpen={false} /> */}
                 <StakeholderTable />
             </div>
         </div>
