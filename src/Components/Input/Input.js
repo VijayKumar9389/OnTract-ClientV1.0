@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle, setSearch, clearSearch as cs } from '../../Store/Filter';
+import FilterMenu from '../Filters/Filter';
 
 import './Input.scss';
 import { BiX } from 'react-icons/bi';
@@ -10,6 +12,7 @@ import { BsDownload } from 'react-icons/bs'
 
 export default function Input() {
 
+    const [isOpen, setIsOpen] = useState(false);
     const tblSearch = useSelector((state) => state.filter.search.txt);
     const searchType = useSelector((state) => state.filter.search.type);
     const dispatch = useDispatch();
@@ -17,6 +20,10 @@ export default function Input() {
     function clearSearch() {
         document.getElementById("table-input").value = "";
         dispatch(cs());
+    }
+
+    function toggle() {
+        setIsOpen(!isOpen)
     }
 
     function getSearchType() {
@@ -31,7 +38,9 @@ export default function Input() {
     }
 
     return (
+        <><FilterMenu isOpen={isOpen} toggle={toggle} />
         <div className="input-container">
+        
             <div className='filt-wrapper'>
                 <div className="clearbtn-container">
                     {
@@ -43,6 +52,6 @@ export default function Input() {
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
             <button onClick={() => dispatch(toggle(true))}>< BsFilterRight size='2rem' /></button>
-        </div>
+        </div></>
     )
 }

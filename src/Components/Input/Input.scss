@@ -60,7 +60,7 @@
             font-size: 16px;
             outline: none;
             border: none;
-            border: 1px solid #ddd;
+            border: .5px solid #ddd;
             background-color: #fff;
         }
     }
@@ -72,14 +72,13 @@
         position: absolute;
         right: 0;
         top: 0;
-        border: 1px solid #ddd;
+        border: .5px solid #ddd;
         background-color: #fff;
-        border-radius: 5px;
         margin-left: 10px;
 
         &:hover {
             cursor: pointer;
-            background-color: #68bd45;
+            background-color: #8a2be2;
             color: #fff;
         }
     }

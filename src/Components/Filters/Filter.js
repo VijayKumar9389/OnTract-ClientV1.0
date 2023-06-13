@@ -8,7 +8,7 @@ import { setSearchType, setStakeholderType, setProvince, setCity, setAttempted, 
 import './Filter.scss';
 import { IoIosArrowForward } from 'react-icons/io';
 
-function FilterMenu({ isOpen }) {
+function FilterMenu({ isOpen, toggle }) {
 
     const filter = useSelector((state) => state.filter);
     const Filters = useSelector((state) => state.filter.value);
@@ -47,7 +47,7 @@ function FilterMenu({ isOpen }) {
         return [];
     }
 
-    return (
+    if (isOpen) return (
         <>
 
             <div className='popup-container' style={Filters ? open : closed}>
