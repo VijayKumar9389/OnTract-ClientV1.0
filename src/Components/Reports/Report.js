@@ -27,44 +27,45 @@ function Report() {
     }
 
     return (
-        <div className='report-container'>
-            <div className={checkActive(0)}>
-                <div className='report-item-wrapper'>
-                    <p>TOTAL</p>
-                    <h1>{data.total}</h1>
-                </div>
-            </div>
-            <div className={checkActive(1)}>
-                <div className='report-item-wrapper'>
-                    <p>CONTACTED</p>
-                    <h1>{data.contacted}</h1>
-                </div>
-            </div>
-            <div className={checkActive(2)}>
-                <div className='report-item-wrapper'>
-                    <p>REMAINING</p>
-                    <h1>{data.remaining}</h1>
-                </div>
-            </div>
-            <div className={checkActive(3)}>
-                <div className='report-item-wrapper'>
-                    <p>SINGLE-TRACT</p>
-                    <h1>{data.single}</h1>
-                </div>
-            </div>
-            <div className={checkActive(4)}>
-                <div className='report-item-wrapper'>
-                    <p>MULTI-TRACT</p>
-                    <h1>{data.multi}</h1>
-                </div>
-            </div>
-            <div className={checkActive(5)}>
-                <div className='report-item-wrapper'>
-                    <p>MISSING PHONE</p>
-                    <h1>{data.missingPhone}</h1>
-                </div>
-            </div>
-        </div>
+<div className='report-wrapper'>
+  <div className={checkActive(0)}>
+    <div className='report-item-wrapper'>
+      <p>TOTAL</p>
+      <label>{data.total}</label>
+    </div>
+  </div>
+  <div className={checkActive(1)}>
+    <div className='report-item-wrapper'>
+      <p>CONTACTED</p>
+      <label>{data.contacted}</label>
+    </div>
+  </div>
+  <div className={checkActive(2)}>
+    <div className='report-item-wrapper'>
+      <p>REMAINING</p>
+      <label>{data.remaining}</label>
+    </div>
+  </div>
+  <div className={checkActive(3)}>
+    <div className='report-item-wrapper'>
+      <p>SINGLE-TRACT</p>
+      <label>{data.single}</label>
+    </div>
+  </div>
+  <div className={checkActive(4)}>
+    <div className='report-item-wrapper'>
+      <p>MULTI-TRACT</p>
+      <label>{data.multi}</label>
+    </div>
+  </div>
+  <div className={checkActive(5)}>
+    <div className='report-item-wrapper'>
+      <p>MISSING PHONE</p>
+      <label>{data.missingPhone}</label>
+    </div>
+  </div>
+</div>
+
     );
 }
 

@@ -66,7 +66,7 @@ function FilterMenu({ isOpen, toggle }) {
 
                     <div className='filter-menu'>
 
-                        <div className='filter-wrapper'>
+                        {/* <div className='filter-wrapper'>
                             <label>Province:</label>
                             <select defaultValue={Province} onChange={(event) => dispatch(setProvince(event.target.value))}>
                                 <option value={null}>All</option>
@@ -77,19 +77,23 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='filter-wrapper'>
-                        <label>City:</label>
-                            {!Province ? null :
-                                <select defaultValue={City} onChange={(event) => dispatch(setCity(event.target.value))}>
-                                    <option value={null}>All</option>
-                                    {getCities().map((city, index) => {
-                                        return <option key={index} value={city.name}>{city.name}</option>
-                                    })}
-                                </select>}
-                        </div>
+
+                            {!Province
+                                ? null
+                                : <><label>City:</label>
+                                    <select defaultValue={City} onChange={(event) => dispatch(setCity(event.target.value))}>
+                                        <option value={null}>All</option>
+                                        {getCities().map((city, index) => {
+                                            return <option key={index} value={city.name}>{city.name}</option>
+                                        })}
+                                    </select>
+                                </>
+                            }
+                        </div> */}
 
                         <div className='radio-container'>
-                        <label>Search:</label>
-                            
+                            <label>Search:</label>
+
                             <div className='radio-wrapper'>
                                 <div className='input-wrapper'><input type="radio" id="search-name" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))} /> <label for="search-name">Name</label></div>
                                 <div className='input-wrapper'><input type="radio" id="search-phone" checked={searchType === 1} onChange={() => dispatch(setSearchType(1))} /> <label for="search-phone">Phone</label></div>
@@ -97,8 +101,8 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='radio-container'>
-                        <label>Type:</label>
-                          
+                            <label>Type:</label>
+
                             <ul className='radio-wrapper'>
                                 <div className='input-wrapper'><input type="radio" id="type-all" checked={stakeholderType === 0} onChange={() => dispatch(setStakeholderType(0))} /> <label for="type-all">All</label></div>
                                 <div className='input-wrapper'><input type="radio" id="type-single" checked={stakeholderType === 1} onChange={() => dispatch(setStakeholderType(1))} /> <label for="type-single">Single-Tract</label></div>
@@ -108,7 +112,7 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='radio-container'>
-                        <label>Corperation</label>
+                            <label>Corperation</label>
                             <ul className='radio-wrapper'>
                                 <div className='input-wrapper'><input type="radio" id="type-corp" checked={stakeholderType === 3} onChange={() => dispatch(setStakeholderType(3))} /> <label for="type-corp">Corperation</label></div>
                                 <div className='input-wrapper'><input type="radio" id="type-person" checked={stakeholderType === 4} onChange={() => dispatch(setStakeholderType(4))} /> <label for="type-person">Person</label></div>
@@ -118,8 +122,8 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='radio-container'>
-                        <label>Contacted:</label>
-                            
+                            <label>Contacted:</label>
+
                             <ul className='radio-wrapper'>
                                 <div className='input-wrapper'><input type="radio" id="contact-all" checked={Contacted === null} onChange={() => dispatch(setContacted(null))} /> <label for="contact-all">All</label></div>
                                 <div className='input-wrapper'><input type="radio" id="contact-yes" checked={Contacted === true} onChange={() => dispatch(setContacted(true))} /> <label for="contact-yes">Yes</label></div>
@@ -128,8 +132,8 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='radio-container'>
-                        <label>Attempted:</label>
-                            
+                            <label>Attempted:</label>
+
                             <ul className='radio-wrapper'>
                                 <div className='input-wrapper'><input type="radio" id="attempt-all" checked={Attempted === null} onChange={() => dispatch(setAttempted(null))} /> <label for="contact-all">All</label></div>
                                 <div className='input-wrapper'><input type="radio" id="attempt-yes" checked={Attempted === true} onChange={() => dispatch(setAttempted(true))} /> <label for="contact-yes">Yes</label></div>

@@ -1,9 +1,16 @@
 import './StakeholderMobileRow.scss';
 import { useNavigate } from 'react-router-dom';
 
+import { checkNum } from '../../Helpers/utils';
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineCheck } from "react-icons/md";
+import { MdOutlineClose } from "react-icons/md";
+import { FaPhoneSlash } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
+import { AiOutlineArrowUp } from "react-icons/ai";
 import React from 'react'
 
-const StakeholderMobileRow = ({stakeholder}) => {
+const StakeholderMobileRow = ({ stakeholder }) => {
     const nav = useNavigate();
 
     function selectStakeholder(stakeholder) {
@@ -35,19 +42,21 @@ const StakeholderMobileRow = ({stakeholder}) => {
 
     return (
         <li className='stakeholder-list-item' onClick={() => selectStakeholder(stakeholder)}>
-                <h3>{stakeholder.NAME}</h3>
+            <h3>{stakeholder.NAME}</h3>
 
-                <label>{location.length >= 3 ? location[location.length - 3] : "N/A"}, {location.length >= 3 ? location[location.length - 2] : "N/A"}</label>
+            <label>{location.length >= 3 ? location[location.length - 3] : "N/A"}, {location.length >= 3 ? location[location.length - 2] : "N/A"}</label>
 
-                <p>
-                    Affiliated Tracts:&nbsp; <span className="list-item">{getInterestList(stakeholder)}</span>
-                    <span className="separator">|</span>
-                    Number Available:&nbsp; <span className="list-item">{stakeholder.PHONE.length > 1 ? "Yes" : "No"}</span>
-                    <span className="separator">|</span>
-                    Contact Attempts:&nbsp; <span className="list-item">{attemps[0] !== "" ? attemps.length : 0}</span>
-                    <span className="separator">|</span>
-                    Contact Status:&nbsp; <span className="list-item">{stakeholder.CONTACT}</span>
-                </p>
+            <p>
+                Affiliated Tracts:&nbsp; <span className="list-item">{stakeholder.count}</span>
+                <span className="separator">|</span>
+                Contact Status:&nbsp; <span className="list-item">{stakeholder.CONTACT}</span>
+                <span className="separator">|</span>
+                Number Available:&nbsp; <span className="list-item">{!checkNum(stakeholder.PHONE) ? "Yes" : "No"}</span>
+                <span className="separator">|</span>
+                Attempts:&nbsp; <span className="list-item">{attemps[0] !== '' ? attemps.length : 0}</span>
+                <span className="separator">|</span>
+                Contacted:&nbsp; <span className="list-item">{stakeholder.CONTACTED === 'YES'? "Yes" : "No"}</span>
+            </p>
 
 
 

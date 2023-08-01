@@ -218,7 +218,13 @@ function StakeholderForum({ Stakeholder }) {
                 <div className='btn-wrapper'>
                     {/* {console.log(data)}
                     {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>} */}
-                    <button className="survey" onClick={toggle}>Survey</button>
+                   <button
+  className="survey"
+  onClick={() => window.open('https://www.surveymonkey.com/r/57H9WRL', '_blank')}
+>
+  Survey
+</button>
+
                     {checkChanges() === '' ? (
                         <button className="save-inactive" >Save</button>
                     ) : (
@@ -318,11 +324,11 @@ function StakeholderForum({ Stakeholder }) {
                             </div>
                             <div className='comment-container'>
                                 <div className='input-wrapper'>
-                                    <div className='label-wrapper'><label>Route</label></div>
+                                    <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
                                     <input id='attempt-txt' type="text" defaultValue={Stakeholder.ROUTE} onChange={(event) => setNewRoute(event.target.value)}></input>
                                 </div>
                                 <div className='input-wrapper'>
-                                    <label>Location</label>
+                                    <label>Location: (For the exact drop off/mail out location)</label>
                                     <input type="text" defaultValue={Stakeholder.LOCATION} onChange={(event) => setNewLocation(event.target.value)}></input>
                                 </div>
                             </div>

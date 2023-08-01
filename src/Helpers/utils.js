@@ -187,7 +187,7 @@ export function search(stakeholder, filter) {
 
     if (stakeholder.NAME !== '') {
         if (filter.search.type == 0) {
-            if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt)) {
+            if (searchName(stakeholder.NAME.toLowerCase(), filter.search.txt.toLowerCase())) {
                 return true
             }
         }

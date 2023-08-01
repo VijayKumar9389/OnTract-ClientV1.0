@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+
+import {Filter} from '../../Helpers/utils';
+
 
 import './Home.scss';
 import StakeholderTable from '../../Components/Table/StakeholderTable/StakeholderTable';
@@ -11,6 +15,7 @@ const isMobile = window.innerWidth <= 1024;
 function Home() {
 
     const [stakeholders, setStakeholders] = useState([]);
+    const tblFilter = useSelector((state) => state.filter);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders`, {
@@ -24,7 +29,7 @@ function Home() {
         return (
             <ul className='stakeholder-list'>
                 {stakeholders.map((stakeholder, index) => {
-                    return <StakeholderMobileRow key={index} stakeholder={stakeholder} />
+                    if (Filter(stakeholder, tblFilter)) return <StakeholderMobileRow key={index} stakeholder={stakeholder} />
                 })}
             </ul>
         )
@@ -33,7 +38,7 @@ function Home() {
     return (
         <div className='home-container'>
             <div className='home-body'>
-                {/* <Report /> */}
+                <Report />
                 {/* <FilterMenu isOpen={false} /> */}
                 <Input />
                 {isMobile
