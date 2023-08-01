@@ -54,7 +54,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
     return (
         <li className='tract-row'>
 
-            <div className='name'>
+            <div className='name-wrapper'>
                 {Index === 0 ? <h4 style={{ color: 'red' }} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4>}
                 <label>{Stakeholder.INTEREST}</label>
             </div>
@@ -88,7 +88,6 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
 
 
             <div className='tract-btn-container'>
-                <label>Options: </label>
                 <button onClick={() => Update(Stakeholder.ID)}> SAVE</button>
                 {Index === 0 ? null : <button onClick={() => selectStakeholder(Stakeholder)}>VIEW</button>}
             </div>

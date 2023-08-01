@@ -2,10 +2,7 @@
     min-height: 100%;
     height: fit-content;
     width: 100%;
+    padding: 1rem;
+    background-color: #fff;
 
-    .forum-wrapper {
-        height: fit-content;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
 }

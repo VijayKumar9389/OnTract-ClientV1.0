@@ -5,18 +5,17 @@
 
     top: 0;
     left: 0;
+    z-index: 9999;
 
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    /* apply the same blur effect to the whole background */
     animation-name: fade-in;
-    z-index: 10000000;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     .popup-background {
         height: 100%;
@@ -25,7 +24,6 @@
     }
 
     .popup-wrapper {
-
         background-color: #fff;
         width: 40%;
         height: 100vh;
@@ -38,6 +36,14 @@
         grid-template-rows: 80px 1fr 80px;
         animation: slide-leftt .3s;
 
+        @media (max-width: 1024px) {
+            width: 100%;
+            height: 100%;
+
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
         .filter-heading {
             display: flex;
             align-items: center;
@@ -45,7 +51,6 @@
             padding: 1rem;
             border-bottom: 1px solid #ddd;
             background-color: #fff;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
             border-top-left-radius: 5px;
 
             h2 {
@@ -58,58 +63,26 @@
             }
 
             button {
-                margin-left: auto;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 4px;
-                width: 48px;
-                height: 48px;
-                background-color: #8a2be2;
-                color: #fff;
                 border: none;
-                font-size: 1.5rem;
+                border-radius: 50px;
+                height: 30px;
+                width: 30px;
+                background-color: #fff;
+                transition: ease-in-out .3s;
                 cursor: pointer;
-                transition: background-color 0.3s ease-in-out;
 
-                &:hover {
-                    background-color: #6c1c9e;
-                }
 
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            .close-filter-btn {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-right: 1rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                background-color: transparent;
-                color: #8a2be2;
-                border: 2px solid #8a2be2;
-                font-size: 1.5rem;
-                text-decoration: none;
-                transition: background-color 0.3s ease-in-out;
 
                 &:hover {
-                    background-color: #8a2be2;
                     color: #fff;
-                    box-shadow: 0px 0px 10px #8a2be2;
+                    background-color: #8a2be2;
                 }
 
-                .close-icon {
-                    height: 1rem;
-                    width: auto;
-                }
             }
+
         }
 
 
@@ -117,58 +90,73 @@
             overflow-y: scroll;
             padding: 1rem;
             overflow-y: scroll;
-            /* add scrollbar to vertical direction */
             scrollbar-width: thin;
-            /* make scrollbar thin */
             scrollbar-color: #8a2be2 transparent;
 
-            /* Hide the scrollbar track */
             &::-webkit-scrollbar-track {
                 background-color: transparent;
             }
 
-            /* Style the scrollbar thumb */
             &::-webkit-scrollbar-thumb {
                 background-color: #8a2be2;
                 border-radius: 5px;
             }
 
             .filter-wrapper {
-                display: grid;
-                grid-template-columns: 1fr 3fr;
+                display: flex;
+                flex-direction: column;
                 padding: 1rem;
                 align-items: center;
-                text-align: right;
+                text-align: left;
                 grid-gap: 1rem;
 
                 select {
                     height: 40px;
                     width: 100%;
-                    padding-left: 1rem;
                     border-radius: 5px;
                     border: 1px solid #ddd;
+                }
+
+                label {
+                    width: 100%;
+                    text-align: center;
                 }
             }
 
             .radio-container {
-                display: grid;
-                grid-template-columns: 1fr 3fr;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                align-items: center;
+                text-align: left;
                 grid-gap: 1rem;
-                padding: 1rem 0;
-                align-items: baseline;
-                text-align: right;
-                flex-wrap: wrap;
+
 
                 .radio-wrapper {
+
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
                     list-style-type: none;
-                    margin: 25px 0 0 0;
-                    padding: 0;
-                    display: flex;
+
+                    .input-wrapper {
+                        margin-bottom: 1rem;
+                        width: 100%;
+
+                        label {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            width: 100%;
+                        }
+                    }
+
 
                     .input-wrapper {
                         position: relative;
                         margin-right: 1rem;
-
 
                         input {
                             opacity: 0;
@@ -176,6 +164,7 @@
                             top: 0;
                             left: 0;
                             z-index: 100;
+                            width: 100%;
 
                             &:checked+label {
                                 background-color: #8a2be2;
@@ -184,9 +173,10 @@
                         }
 
                         label {
-                            padding: 10px;
+                            padding: 8px;
                             border: 1px solid #ddd;
-                            border-radius: 5px;
+                            border-radius: 4px;
+                            font-size: 14px;
                             cursor: pointer;
                             z-index: 90;
                             transition: background-color ease-in-out .3s, color ease-in-out .3s;
@@ -197,8 +187,8 @@
                             }
                         }
                     }
-
                 }
+
             }
         }
 
@@ -207,29 +197,65 @@
             justify-content: flex-end;
             align-items: center;
             padding: 1rem;
-            border-top: 1px solid #ddd;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
             button {
-                background-color: #8a2be2;
-                color: #fff;
+                color: black;
                 border: none;
                 padding: 10px 20px;
                 border-radius: 5px;
-                display: flex;
-                align-items: center;
-                font-size: 16px;
-                font-weight: 500;
+                background-color: #fff;
                 cursor: pointer;
-                margin-left: 1rem;
-            
+                transition: ease-in-out .3s;
+
                 &:hover {
-                    background-color: #6927a9;
+                    background-color: #f5f5f5;
+                    color: red;
                 }
             }
         }
 
     }
 
+}
+
+@keyframes slide-leftt {
+    from {
+        right: -500px;
+        opacity: 0;
+    }
+
+    to {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.filter-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-menu::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.filter-menu::-webkit-scrollbar-thumb {
+    background-color: #8a2be2;
+    border-radius: 20px;
+}
+
+.filter-menu::-webkit-scrollbar-thumb:hover {
+    background-color: darken(#8a2be2, 10%);
 }
 
 @keyframes slide-leftt {

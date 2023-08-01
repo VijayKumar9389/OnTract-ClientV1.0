@@ -33,12 +33,16 @@ function TractTable({ Stakeholder }) {
             return (
                 <div className='tract-table'>
                     <div className='tract-header'>
-                        <h2>Tract: {arr[0].TRACT}</h2>
-                        <div className='tract'>
-                            <label>Lot: {arr[0].PIN}</label>
-                            <label>Comodity: {arr[0].COMMODITY}</label>
-                            <label>Pipline: {arr[0].PIPLINESTATUS}</label>
-                        </div>
+
+
+                        <h3>Tract: {arr[0].TRACT}</h3>
+                        <p>
+                            Carrying: <span className="list-item">{arr[0].COMMODITY}</span>
+                            <span className="separator">|</span>
+                            Currently: <span className="list-item">{arr[0].PIPLINESTATUS}</span>
+                            <span className="separator">|</span>
+                            Located: <span className="list-item">{arr[0].PIN}</span>
+                        </p>
                     </div>
                     <ul>
                         {arr.map((stakeholder, index) => {

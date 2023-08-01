@@ -31,6 +31,8 @@ function StakeholderForum({ Stakeholder }) {
     const [newEmail, setNewEmail] = useState('');
     const [newStakeholderComment, setNewStakeholderComment] = useState('');
     const [newCorperation, setNewCorperation] = useState('');
+    const [newRoute, setNewRoute] = useState('');
+    const [newLocation, setNewLocation] = useState('');
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -64,7 +66,9 @@ function StakeholderForum({ Stakeholder }) {
                 FOLLOWUP: newFollowUp.trim(),
                 EMAIL: newEmail,
                 STAKEHOLDERCOMMENT: newStakeholderComment,
-                CORPERATION: newCorperation
+                CORPERATION: newCorperation,
+                ROUTE: newRoute,
+                LOCATION: newLocation
             }, {
             headers: { "access-token": localStorage.getItem("access-token") }
         }).then((response) => {
@@ -89,7 +93,9 @@ function StakeholderForum({ Stakeholder }) {
                             FOLLOWUP: newFollowUp.trim(),
                             EMAIL: newEmail.trim(),
                             STAKEHOLDERCOMMENT: newStakeholderComment.trim(),
-                            CORPERATION: newCorperation.trim()
+                            CORPERATION: newCorperation.trim(),
+                            ROUTE: newRoute.trim(),
+                            LOCATION: newLocation.trim()
                         }
                     }
                 });
@@ -156,6 +162,8 @@ function StakeholderForum({ Stakeholder }) {
         if (Stakeholder.EMAIL !== newEmail) arr = arr + 'Email' + ' >> ' + Stakeholder.EMAIL + '' + ' >> ' + ' >> ' + newEmail + '\n';
         if (Stakeholder.STAKEHOLDERCOMMENT !== newStakeholderComment) arr = arr + 'Delivery Comment' + ' >> ' + Stakeholder.STAKEHOLDERCOMMENT + ' >> ' + newStakeholderComment + '\n';
         if (Stakeholder.CORPERATION !== newCorperation) arr = arr + 'Corperation' + ' >> ' + Stakeholder.CORPERATION + ' >> ' + newCorperation + '\n';
+        if(Stakeholder.ROUTE !== newRoute) arr = arr + 'Route' + ' >> ' + Stakeholder.ROUTE + ' >> ' + newRoute + '\n';
+        if(Stakeholder.LOCATION !== newLocation) arr = arr + 'Location' + ' >> ' + Stakeholder.LOCATION + ' >> ' + newLocation + '\n';
 
         return arr;
 
@@ -208,10 +216,14 @@ function StakeholderForum({ Stakeholder }) {
             <div className='heading'>
                 <Link className='link' to='/'><BsArrowLeftShort size='2rem' /></Link><h3>{Stakeholder.NAME}</h3>
                 <div className='btn-wrapper'>
-                    {console.log(data)}
-                    {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>}
+                    {/* {console.log(data)}
+                    {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>} */}
                     <button className="survey" onClick={toggle}>Survey</button>
-                    <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
+                    {checkChanges() === '' ? (
+                        <button className="save-inactive" >Save</button>
+                    ) : (
+                        <button className="save" onClick={() => { Update(Stakeholder.NAME) }}>Save</button>
+                    )}
                 </div>
             </div>
 
@@ -302,6 +314,16 @@ function StakeholderForum({ Stakeholder }) {
                                 <div className='comment-wrapper'>
                                     <label>Stakeholder comment</label>
                                     <textarea type="text" defaultValue={Stakeholder.STAKEHOLDERCOMMENT} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
+                                </div>
+                            </div>
+                            <div className='comment-container'>
+                                <div className='input-wrapper'>
+                                    <div className='label-wrapper'><label>Route</label></div>
+                                    <input id='attempt-txt' type="text" defaultValue={Stakeholder.ROUTE} onChange={(event) => setNewRoute(event.target.value)}></input>
+                                </div>
+                                <div className='input-wrapper'>
+                                    <label>Location</label>
+                                    <input type="text" defaultValue={Stakeholder.LOCATION} onChange={(event) => setNewLocation(event.target.value)}></input>
                                 </div>
                             </div>
                         </div>

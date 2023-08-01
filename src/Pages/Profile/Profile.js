@@ -15,9 +15,7 @@ function Profile() {
 
     return (
         <div className='profile-container'>
-            <div className='form-'>
             <StakeholderForum key={name} Stakeholder={stakeholder} />
-            </div>
             <TractTable Stakeholder={name} />
             {/* <TractIndex /> */}
         </div>

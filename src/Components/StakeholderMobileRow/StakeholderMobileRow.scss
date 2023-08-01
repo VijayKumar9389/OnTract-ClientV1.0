@@ -1,0 +1,44 @@
+$primary-color: #8a2be2;
+$dot-size: 20px;
+$dot-animation-duration: 1s;
+
+.stakeholder-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    margin-bottom: 0.5rem;
+    color: $primary-color;
+    font-size: 18px;
+  }
+
+  label {
+    color: #333333;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .list-item {
+      font-weight: bold;
+    }
+
+    .separator {
+      margin: 0 0.5rem;
+      color: #999;
+    }
+  }
+}

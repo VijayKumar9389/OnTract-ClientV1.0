@@ -51,7 +51,7 @@ export default function Input() {
                 </div>
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
-            <button onClick={() => dispatch(toggle(true))}>< BsFilterRight size='2rem' /></button>
+            <button onClick={() => dispatch(toggle(true))}>< BsFilterRight className='icon' size='2rem' /> FILTER</button>
         </div></>
     )
 }

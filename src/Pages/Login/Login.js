@@ -35,7 +35,7 @@ const Login = ({ LogIn }) => {
     <div className="login-container">
       <div className="login-wrapper">
         <div className="heading">
-          <h2>Login Your Account</h2>
+          <h2>Please sign in</h2>
         </div>
 
         <div className="input-wrapper">

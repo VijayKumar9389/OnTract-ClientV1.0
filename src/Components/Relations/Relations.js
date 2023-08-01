@@ -7,6 +7,7 @@ import './Relations.scss';
 import { FaHome } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
+import { FaUserAlt } from 'react-icons/fa';
 
 const colors = [
     "#ADFF2F",
@@ -56,9 +57,7 @@ function Relations({ Stakeholder }) {
 
     return (
         <div className='relations-container'>
-            <div className='forum-heading'>
-                <h3>Connections</h3>
-            </div>
+            <div className='column-header'><h3>Connections</h3><FaUserAlt /></div>
             <ul>
                 {data.map((record, index) => {
                     return (

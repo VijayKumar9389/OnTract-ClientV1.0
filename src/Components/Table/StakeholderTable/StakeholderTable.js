@@ -1,6 +1,4 @@
-import axios from 'axios';
 import * as XLSX from 'xlsx'
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { fileType, saveAs } from 'file-saver'
@@ -16,20 +14,13 @@ import { FaPhone } from "react-icons/fa";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import Input from '../../Input/Input';
 
-function StakeholderTable() {
+function StakeholderTable({stakeholders}) {
 
-    const [data, setData] = useState([]);
     const nav = useNavigate();
     const tblFilter = useSelector((state) => state.filter);
     const Location = useSelector((state) => state.filter.location);
 
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders`, {
-            headers: {
-                "access-token": localStorage.getItem("access-token"),
-            },
-        }).then((response) => setData(response.data));
-    }, []);
+
 
     function selectStakeholder(stakeholderInfo) {
         console.log(stakeholderInfo)
@@ -62,9 +53,9 @@ function StakeholderTable() {
         return stakeholders;
     }
 
-    if (data) return (
+    if (stakeholders) return (
         <div className='table-container'>
-            <label>Results: {createReport(data, tblFilter).length}</label>
+            <label>Results: {createReport(stakeholders, tblFilter).length}</label>
             {/* <button onClick={() => Export(createReport(data, tblFilter))}>Download</button> */}
             <table className='stakeholder-tbl'>
                 <thead>
@@ -80,11 +71,8 @@ function StakeholderTable() {
                         <th></th>
                     </tr>
                 </thead>
-                <thead className='thead-input'>
-                   <th className='th-input' colSpan={9}><Input /></th> 
-                </thead>
                 <tbody>
-                    {data.map((stakeholder, index) => {
+                    {stakeholders.map((stakeholder, index) => {
 
                         let location = stakeholder.MAILING.split(",");
                         let attemps = stakeholder.ATTEMPTS.split(",");
@@ -97,7 +85,7 @@ function StakeholderTable() {
                                     <td>
                                         <div className='status-wrapper'>
                                             {stakeholder.CONTACT}
-                                            {console.log(data)}
+                                            {console.log(stakeholders)}
                                         </div>
                                     </td>
                                     <td>{checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}</td>

@@ -1,14 +1,14 @@
 .table-container {
     width: 100%;
 
-    label {
-        color: grey;
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        padding: 20px;
-        font-style: italic;
-    }
+    // label {
+    //     color: grey;
+    //     width: 100%;
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     padding: 20px;
+    //     font-style: italic;
+    // }
 
     .stakeholder-tbl {
         width: 100%;
@@ -18,11 +18,12 @@
         background-color: #fff;
         border-radius: 5px;
         border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         $primary-color: #8a2be2;
 
         thead {
-            background-color: #FBFBFB;
+            background-color: #f0f0f0;
             color: $primary-color;
             text-align: center;
             position: sticky;
@@ -87,8 +88,15 @@
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #eee;
+                    background-color: #eaeaea;
                 }
+
+                &:nth-child(even) {
+                    background-color: #f9f9f9;
+                    &:hover {
+                        background-color: #eaeaea;
+                    }
+                  }
 
                 th,
                 td {
@@ -107,7 +115,6 @@
                 }
 
                 td {
-                    border-bottom: 1px solid #ddd;
 
                     &:first-child {
                         width: 50%;
