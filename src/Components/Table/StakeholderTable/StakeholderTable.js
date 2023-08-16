@@ -20,10 +20,7 @@ function StakeholderTable({stakeholders}) {
     const tblFilter = useSelector((state) => state.filter);
     const Location = useSelector((state) => state.filter.location);
 
-
-
     function selectStakeholder(stakeholderInfo) {
-        console.log(stakeholderInfo)
         window.scrollTo(0, 0);
         nav(`/${stakeholderInfo.NAME}`, {
             state: {
@@ -68,7 +65,7 @@ function StakeholderTable({stakeholders}) {
                         <th><h5>Province</h5></th>
                         <th><h5>Attempts</h5></th>
                         <th><h5>Contacted</h5></th>
-                        <th></th>
+                        <th><h5>Consulted</h5></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,7 +82,6 @@ function StakeholderTable({stakeholders}) {
                                     <td>
                                         <div className='status-wrapper'>
                                             {stakeholder.CONTACT}
-                                            {console.log(stakeholders)}
                                         </div>
                                     </td>
                                     <td>{checkNum(stakeholder.PHONE) ? <FaPhoneSlash size='1.5rem' color='grey' className='icon' /> : <FaPhone size='1.5rem' color='grey' className='icon' />}</td>
@@ -94,7 +90,7 @@ function StakeholderTable({stakeholders}) {
                                     <td> <a>{location.length >= 3 ? location[location.length - 2] : 'MISSING'}</a></td>
                                     <td>{attemps[0] !== '' ? attemps.length : 0}</td>
                                     <td>{stakeholder.CONTACTED === 'YES' ? <MdOutlineCheck size='2rem' color='grey' className='icon' /> : <MdOutlineClose size='2rem' color='grey' className='icon' />}</td>
-                                    <td><MdKeyboardArrowRight size='1.5rem' color='grey' /></td>
+                                    <td>{stakeholder.CONSULTATION !== '' ? <MdOutlineCheck size='2rem' color='grey' className='icon' /> : <MdOutlineClose size='2rem' color='grey' className='icon' />}</td>
                                 </tr>
                             );
                         }

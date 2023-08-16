@@ -12,8 +12,8 @@ function FilterMenu({ isOpen, toggle }) {
 
     const filter = useSelector((state) => state.filter);
     const Filters = useSelector((state) => state.filter.value);
-    const Province = useSelector((state) => state.filter.location.province);
-    const City = useSelector((state) => state.filter.location.city);
+    const province = useSelector((state) => state.filter.province);
+    const city = useSelector((state) => state.filter.city);
     const Attempted = useSelector((state) => state.filter.attempted);
     const Contacted = useSelector((state) => state.filter.contacted);
     const searchType = useSelector((state) => state.filter.search.type);
@@ -28,11 +28,6 @@ function FilterMenu({ isOpen, toggle }) {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setLocationList(response.data));
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/routes`, {
-            headers: {
-                "access-token": localStorage.getItem("access-token"),
-            },
-        }).then((response) => setLocationList(response.data));
     }, []);
 
     const open = {
@@ -43,13 +38,13 @@ function FilterMenu({ isOpen, toggle }) {
         right: '-500px'
     };
 
-    function getCities() {
-        for (let index = 0; index < locationList.length; index++) {
-            if (locationList[index].province === Province) {
-                return locationList[index].cities;
+    function getCity(location, data) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].province === location) {
+                console.log(data[i])
+                return data[i];
             }
         }
-        return [];
     }
 
     if (isOpen) return (
@@ -61,35 +56,34 @@ function FilterMenu({ isOpen, toggle }) {
 
                     <div className='filter-heading'>
                         <h2>Filters</h2>
-                        <AiOutlineClose className='close-filter-btn' onClick={() => dispatch(toggle(false))} />
+                        <AiOutlineClose className='close-filter-btn' onClick={() => dispatch(toggle())} />
                     </div>
 
                     <div className='filter-menu'>
 
-                        {/* <div className='filter-wrapper'>
-                            <label>Province:</label>
-                            <select defaultValue={Province} onChange={(event) => dispatch(setProvince(event.target.value))}>
-                                <option value={null}>All</option>
+                        <div className='filter-wrapper'>
+                            <label>Province/State:</label>
+                            {console.log(locationList)}
+                            <select value={province} onChange={(event) => dispatch(setProvince(event.target.value))}>
+                                <option value="">All</option>
                                 {locationList.map((location, index) => {
                                     return <option key={index} value={location.province}>{location.province}</option>
                                 })}
                             </select>
                         </div>
 
-                        <div className='filter-wrapper'>
-
-                            {!Province
-                                ? null
-                                : <><label>City:</label>
-                                    <select defaultValue={City} onChange={(event) => dispatch(setCity(event.target.value))}>
-                                        <option value={null}>All</option>
-                                        {getCities().map((city, index) => {
-                                            return <option key={index} value={city.name}>{city.name}</option>
-                                        })}
-                                    </select>
-                                </>
-                            }
-                        </div> */}
+                        {province
+                            ? <div className='filter-wrapper'>
+                                <label>City:</label>
+                                <select defaultValue={city} onChange={(event) => dispatch(setCity(event.target.value))}>
+                                    <option value={null}>All</option>
+                                    {getCity(province, locationList).cities.map((city, index) => {
+                                        return <option key={index} value={city.name}>{city.name}</option>
+                                    })}
+                                </select>
+                            </div>
+                            : null
+                        }
 
                         <div className='radio-container'>
                             <label>Search:</label>
@@ -135,9 +129,9 @@ function FilterMenu({ isOpen, toggle }) {
                             <label>Attempted:</label>
 
                             <ul className='radio-wrapper'>
-                                <div className='input-wrapper'><input type="radio" id="attempt-all" checked={Attempted === null} onChange={() => dispatch(setAttempted(null))} /> <label for="contact-all">All</label></div>
-                                <div className='input-wrapper'><input type="radio" id="attempt-yes" checked={Attempted === true} onChange={() => dispatch(setAttempted(true))} /> <label for="contact-yes">Yes</label></div>
-                                <div className='input-wrapper'><input type="radio" id="attempt-no" checked={Attempted === false} onChange={() => dispatch(setAttempted(false))} /> <label for="contact-no">No</label></div>
+                                <div className='input-wrapper'><input type="radio" id="attempt-all" checked={Attempted === null} onChange={() => dispatch(setAttempted(null))} /> <label for="attempt-all">All</label></div>
+                                <div className='input-wrapper'><input type="radio" id="attempt-yes" checked={Attempted === true} onChange={() => dispatch(setAttempted(true))} /> <label for="attempt-yes">Yes</label></div>
+                                <div className='input-wrapper'><input type="radio" id="attempt-no" checked={Attempted === false} onChange={() => dispatch(setAttempted(false))} /> <label for="attempt-no">No</label></div>
                             </ul>
                         </div>
 

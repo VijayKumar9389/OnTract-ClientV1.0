@@ -199,7 +199,7 @@
   
                 .label-wrapper {
                   display: flex;
-                  justify-content: space-between;
+                  justify-content: flex-start;
                   align-items: center;
                   margin-bottom: 5px;
   
@@ -213,10 +213,8 @@
                     font-weight: bold;
                     position: relative;
                     cursor: pointer;
+                    margin-left: 5rem;
   
-                    &:hover {
-                      transform: scale(1.08);
-                    }
                   }
                 }
   
@@ -269,8 +267,9 @@
   
                 .label-wrapper {
                   display: flex;
-                  justify-content: space-between;
+                  justify-content: flex-start;
                   align-items: center;
+                  margin-bottom: 5px;
   
                   button.attempt {
                     color: #8a2be2;
@@ -280,6 +279,7 @@
                     padding: 0;
                     font-size: 14px;
                     font-weight: bold;
+                    margin-left: 5rem;
   
                     &:hover {
                       transform: scale(1.08);

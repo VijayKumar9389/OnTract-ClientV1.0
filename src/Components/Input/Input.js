@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle, setSearch, clearSearch as cs } from '../../Store/Filter';
+import { setRoute } from '../../Store/Filter';
 import FilterMenu from '../Filters/Filter';
 
 import './Input.scss';
@@ -13,9 +15,19 @@ import { BsDownload } from 'react-icons/bs'
 export default function Input() {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [routes, setRoutes] = useState([]);
     const tblSearch = useSelector((state) => state.filter.search.txt);
     const searchType = useSelector((state) => state.filter.search.type);
+    const route = useSelector((state) => state.filter.route);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/routes/get`, {
+            headers: {
+                "access-token": localStorage.getItem("access-token"),
+            },
+        }).then((res) => setRoutes(res.data));
+    }, [])
 
     function clearSearch() {
         document.getElementById("table-input").value = "";
@@ -38,9 +50,18 @@ export default function Input() {
     }
 
     return (
-        <><FilterMenu isOpen={isOpen} toggle={toggle} />
         <div className="input-container">
-        
+
+            <FilterMenu isOpen={isOpen} toggle={toggle} />
+
+            <select value={route} onChange={(e) => dispatch(setRoute(e.target.value))} >
+                <option value=""> No Route Selected</option>
+            {console.log(routes)}
+                {routes.map((route, index) => (
+                    <option key={index} value={route.ROUTE}>{route.ROUTE}</option>
+                ))}
+            </select>
+
             <div className='filt-wrapper'>
                 <div className="clearbtn-container">
                     {
@@ -51,7 +72,9 @@ export default function Input() {
                 </div>
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
-            <button onClick={() => dispatch(toggle(true))}>< BsFilterRight className='icon' size='2rem' /> FILTER</button>
-        </div></>
-    )
+
+            <button onClick={() => dispatch(toggle())}>< BsFilterRight className='icon' size='2rem' /> FILTER</button>
+
+        </div>
+    );
 }

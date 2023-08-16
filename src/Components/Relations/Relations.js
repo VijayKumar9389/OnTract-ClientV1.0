@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './Relations.scss';
 
 import { FaHome } from 'react-icons/fa';
-import { FaPhone } from 'react-icons/fa';
+import { FaPhone, FaTruck } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
 import { FaUserAlt } from 'react-icons/fa';
 
@@ -58,24 +58,40 @@ function Relations({ Stakeholder }) {
     return (
         <div className='relations-container'>
             <div className='column-header'><h3>Connections</h3><FaUserAlt /></div>
+            {console.log(data)}
             <ul>
                 {data.map((record, index) => {
                     return (
                         <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
                             <li className='stakeholder-item'>
                                 <h3>{record.stakeholder.NAME}</h3>
-                                <div className='info-wrapper'>
-                                    <FaPhone className={record.phone ? "icon" : "icon-active"} />
-                                    {record.phone ? <a>{record.stakeholder.PHONE}</a> : <a></a>}
-                                </div>
-                                <div className='info-wrapper'>
-                                    <MdMail className={record.address ? "icon" : "icon-active"} />
-                                    {record.address ? <a>{record.stakeholder.MAILING}</a> : <a></a>}
-                                </div>
-                                <div className='info-wrapper'>
-                                    <FaHome className={record.street ? "icon" : "icon-active"} />
-                                    {record.street ? <a>{record.stakeholder.STREET}</a> : <a></a>}
-                                </div>
+                                {record.phone && (
+                                    <div className='info-wrapper'>
+                                        <FaPhone className="icon" />
+                                        <a>{record.stakeholder.PHONE}</a>
+                                    </div>
+                                )}
+
+                                {record.address && (
+                                    <div className='info-wrapper'>
+                                        <MdMail className="icon" />
+                                        <a>{record.stakeholder.MAILING}</a>
+                                    </div>
+                                )}
+
+                                {record.street && (
+                                    <div className='info-wrapper'>
+                                        <FaHome className="icon" />
+                                        <a>{record.stakeholder.STREET}</a>
+                                    </div>
+                                )}
+                                {record.delivery && (
+                                    <div className='info-wrapper'>
+                                        <FaTruck className="icon" />
+                                        <a>{record.stakeholder.LOCATION}</a>
+                                    </div>
+                                )}
+
                             </li>
                         </Link>
                     );

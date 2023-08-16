@@ -13,3 +13,4 @@ export function getLocations() {
             return err;
         });
 }
+

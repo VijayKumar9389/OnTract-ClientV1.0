@@ -205,6 +205,8 @@ function StakeholderForum({ Stakeholder }) {
         setNewEmail(Stakeholder.EMAIL);
         setNewStakeholderComment(Stakeholder.STAKEHOLDERCOMMENT);
         setNewCorperation(Stakeholder.CORPERATION);
+        setNewRoute(Stakeholder.ROUTE);
+        setNewLocation(Stakeholder.LOCATION);
     }, [Stakeholder]);
 
     return (
@@ -277,7 +279,6 @@ function StakeholderForum({ Stakeholder }) {
                                 <label>Home Address</label>
                                 <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                             </div>
-                            {console.log(data)}
                             <div className='input-wrapper'>
                                 <label>Mailing Address</label>
                                 <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
@@ -325,7 +326,7 @@ function StakeholderForum({ Stakeholder }) {
                             <div className='comment-container'>
                                 <div className='input-wrapper'>
                                     <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
-                                    <input id='attempt-txt' type="text" defaultValue={Stakeholder.ROUTE} onChange={(event) => setNewRoute(event.target.value)}></input>
+                                    <input type="text" defaultValue={Stakeholder.ROUTE} onChange={(event) => setNewRoute(event.target.value)}></input>
                                 </div>
                                 <div className='input-wrapper'>
                                     <label>Location: (For the exact drop off/mail out location)</label>

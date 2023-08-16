@@ -1,16 +1,28 @@
 export function Filter(stakeholder, tblFilter) {
     if (search(stakeholder, tblFilter)) {
-        // if (checkLocation(stakeholder.NAME, stakeholder.MAILING, Location)) {
+        if (checkLocation(stakeholder, tblFilter)) {
             if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
-                if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
-                    if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
-                        return true;
+                if (checkRoute(stakeholder, tblFilter)) {
+                    if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
+                        if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
+                            return true;
+                        }
                     }
                 }
             }
-        // }
+        }
     }
     return false;
+}
+
+function checkRoute(stakeholder, filter) {
+    if (filter.route !== '') {
+        if (stakeholder.ROUTE === filter.route) {
+            return true;
+        }
+        return false;
+    }
+    else return true;
 }
 
 //Filter stakeholders by type
@@ -112,48 +124,40 @@ export function checkCorperation(corperation, filter) {
 }
 
 // Filter Location 
-export function checkLocation(Name, Address, Location) {
+export function checkLocation(stakeholder, filter) {
+    if (!stakeholder || typeof stakeholder.MAILING !== 'string') {
+        return false; // Return false if the stakeholder or the STREET property is missing or not a string
+    }
 
-    var stakeholderLocation = Address.split(',');
-    var stakeholderProvince = stakeholderLocation[stakeholderLocation.length - 2];
-    var stakeholderCity = stakeholderLocation[stakeholderLocation.length - 3];
-    var location = { province: stakeholderProvince, city: stakeholderCity };
+    const stakeholderLocation = stakeholder.MAILING.split(',');
+    const stakeholderProvince = stakeholderLocation[stakeholderLocation.length - 2];
+    const stakeholderCity = stakeholderLocation[stakeholderLocation.length - 3];
+    const location = { province: stakeholderProvince, city: stakeholderCity };
 
 
-    if (Location.province === 'MISSING') {
-        if (stakeholderLocation.length < 3) {
+    if (filter.province === '' && filter.city === '') {
+        return true;
+    }
+
+    if (filter.province === 'MISSING') {
+        if (stakeholderLocation.length < 3 || stakeholder.STREET === '') {
             return true;
         }
-        if (Address === '') {
-            return true;
-        }
     }
 
-    if (Location.province === null && Location.city === null) {
-        return true
-    }
-
-    if (stakeholderLocation.length < 3) {
-        return false;
-    }
-
-    if (Address !== '') {
-
-        if (Location.province !== null && Location.city === null) {
-            if (location.province.includes(Location.province)) {
-                return true;
-            }
-        }
-
-
-        if (Location.province !== null && Location.city !== null) {
-            if (location.province.includes(Location.province) && location.city.includes(Location.city)) {
+    if (filter.province !== '') {
+        if (filter.province.includes(location.province)) {
+            if (filter.city !== '') {
+                if (filter.city.includes(location.city)) {
+                    return true;
+                }
+            } else {
                 return true;
             }
         }
     }
 
-    else return false;
+    return false;
 }
 
 //Checks if stakeholder has a phone number 
