@@ -26,6 +26,7 @@ function ProjectTable({ isOpen, toggle }) {
     if (isOpen) return (
         <div className='select-container'>
             {console.log(projects)}
+            {console.log("hello")}
             <div className='select-background' onClick={toggle} ></div>
             <div className='project-popup'>
                 <div className='popup-header'>
