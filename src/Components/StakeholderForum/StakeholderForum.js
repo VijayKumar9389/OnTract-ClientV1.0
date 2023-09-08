@@ -224,9 +224,9 @@ function StakeholderForum({ Stakeholder }) {
                     {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>} */}
                     <button
                         className="survey"
-                        onClick={() => window.open('https://www.surveymonkey.com/r/57H9WRL', '_blank')}
+                        onClick={() => window.open('https://www.surveymonkey.com/r/59DJRSM', '_blank')}
                     >
-                        Survey
+                        Survey (Alberta 2023 Only)
                     </button>
 
                     {checkChanges() === '' ? (
@@ -243,11 +243,11 @@ function StakeholderForum({ Stakeholder }) {
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <label>Name</label>
-                            <textarea type="text" value={newName} onChange={(event) => setNewName(event.target.value)}></textarea>
+                            <textarea maxLength={150} type="text" value={newName} onChange={(event) => setNewName(event.target.value)}></textarea>
                         </div>
                         <div className='input-wrapper'>
                             <label>Stakeholder comment</label>
-                            <textarea type="text" value={newStakeholderComment} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
+                            <textarea maxLength={255} type="text" value={newStakeholderComment} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
                         </div>
                     </div>
                     <div className="input-container">
@@ -276,11 +276,11 @@ function StakeholderForum({ Stakeholder }) {
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <label>Home Address</label>
-                            <textarea type="text" value={newHomeAddress} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
+                            <textarea maxLength={150} type="text" value={newHomeAddress} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
                         </div>
                         <div className='input-wrapper'>
                             <label>Mailing Address</label>
-                            <textarea type="text" value={newMailingAddress} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
+                            <textarea maxLength={150} type="text" value={newMailingAddress} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
                         </div>
                     </div>
                 </div>
@@ -290,11 +290,11 @@ function StakeholderForum({ Stakeholder }) {
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <label>Phone No.</label>
-                            <textarea type="text" value={newPhoneNo} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
+                            <textarea maxLength={300} type="text" value={newPhoneNo} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
                         </div>
                         <div className='input-wrapper'>
                             <label>Email</label>
-                            <input type="text" value={newEmail} onChange={(event) => setNewEmail(event.target.value)}></input>
+                            <input maxLength={50} type="text" value={newEmail} onChange={(event) => setNewEmail(event.target.value)}></input>
                         </div>
                     </div>
                 </div>
@@ -304,11 +304,11 @@ function StakeholderForum({ Stakeholder }) {
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
-                            <input id='consultation-txt' type="text" value={newConsultationDate} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
+                            <input maxLength={50} id='consultation-txt' type="text" value={newConsultationDate} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
                         </div>
                         <div className='input-wrapper'>
                             <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
-                            <input id='attempt-txt' type="text" value={newAttemptDetails} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
+                            <input maxLength={255} id='attempt-txt' type="text" value={newAttemptDetails} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
                         </div>
                         <div className="input-wrapper">
                             <label>Contacted:</label>
@@ -327,15 +327,15 @@ function StakeholderForum({ Stakeholder }) {
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
-                            <input type="text" value={newRoute} onChange={(event) => setNewRoute(event.target.value)}></input>
+                            <input maxLength={255} type="text" value={newRoute} onChange={(event) => setNewRoute(event.target.value)}></input>
                         </div>
                         <div className='input-wrapper'>
                             <label>Location: (For the exact drop off/mail out location)</label>
-                            <input type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
+                            <input maxLength={255} type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
                         </div>
                         <div className='input-wrapper'>
                             <label>Follow Up</label>
-                            <input type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
+                            <input maxLength={50} type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
                         </div>
                     </div>
                 </div>

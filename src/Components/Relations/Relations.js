@@ -69,7 +69,14 @@ function Relations({ Stakeholder }) {
             <div className='relation-wrapper'>
                     {relations.map((relation, index) => {
                         return (
-                            <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${relation.NAME}`} state={{ stakeholder: relation }}><li key={index} className='stakeholder-item'>{relation.NAME}</li>  </Link>
+                            <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${relation.NAME}`} state={{ stakeholder: relation }}>
+                                <li key={index} className='stakeholder-item'>
+                                    <h3>{relation.NAME}</h3>
+                                    <div className='info-wrapper'>
+                                        <a>Similar Name</a>
+                                    </div>
+                                    </li>  
+                                </Link>
                         );
                     })}
 

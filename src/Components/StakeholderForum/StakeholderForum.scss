@@ -111,6 +111,26 @@
       .input-wrapper {
         padding: .5rem;
 
+        .label-wrapper{
+          display: flex;
+          justify-content: space-between;
+
+          button{
+            padding: 4px 8px;
+            background-color: #fff;
+            color: #8a2be2;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+              background-color: #f3e9fc;
+            }
+          }
+        }
+
         label {
           font-size: 14px;
           color: #666;
@@ -128,6 +148,10 @@
           font-size: 14px;
           resize: none;
           background-color: #fafafa;
+        }
+
+        textarea {
+          height: 100px;
         }
 
         select {

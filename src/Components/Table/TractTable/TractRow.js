@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 import './TractTable.scss';
 
@@ -14,11 +15,12 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
     const [newOccupants, setNewOccupants] = useState(Stakeholder.OCCUPANTS);
     const [newWorksLand, setnewWorksLand] = useState(Stakeholder.WORKED);
     const [newComments, setNewComments] = useState(Stakeholder.COMMENTS);
+    const project = Cookies.get('project');
 
     const pin = Stakeholder.PIN.split("/");
 
     const Update = (id) => {
-        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/update`,
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/update/${project}`,
             {
                 ID: id,
                 STRUCTURE_TYPE: newStructure,
@@ -61,7 +63,7 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
 
             <div className='wrapper'>
                 <label>Occupants:</label>
-                <textarea defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></textarea>
+                <textarea maxLength={50} defaultValue={Stakeholder.OCCUPANTS} onChange={(event) => setNewOccupants(event.target.value)}></textarea>
             </div>
 
 
@@ -77,13 +79,13 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
 
             <div className='wrapper'>
                 <label>Structure:</label>
-                <textarea className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea>
+                <textarea maxLength={250} className='structure' defaultValue={Stakeholder.STRUCTURE_TYPE} onChange={(event) => setNewnewStructure(event.target.value)}></textarea>
             </div>
 
 
             <div className='wrapper'>
                 <label>Comments:</label>
-                <textarea className='comment' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea>
+                <textarea maxLength={200} className='comment' defaultValue={Stakeholder.COMMENTS} onChange={(event) => setNewComments(event.target.value)}></textarea>
             </div>
 
 

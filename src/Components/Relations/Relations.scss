@@ -1,101 +1,101 @@
 .relations-container {
-    background-color: #fff;
-    height: 100%;
-    overflow: hidden;
+  background-color: #fff;
+  height: 100%;
+  overflow: hidden;
 
-    .relation-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-        justify-content: space-evenly;
-        text-align: center;
-      
-        .stakeholder-item {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 1rem;
-          border-radius: 10px;
-          text-align: left;
-          background-color: #fff;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-          transition: box-shadow 0.2s ease-in-out;
-          border: 1px solid #ddd;
-          margin-bottom: 1rem;
-      
-          h3 {
-            font-size: .9rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-          }
-      
-          .info-wrapper {
-            display: flex;
-            align-items: center;
-            margin-bottom: 4px;
-            color: black;
-      
-            .icon {
-              width: 36px;
-              height: 36px;
-              padding: 8px;
-              margin-right: 12px;
-              background-color: #8a2be2;
-              border-radius: 50%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              color: #fff;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-              transition: box-shadow 0.3s ease-in-out;
-      
-              svg {
-                width: 20px;
-                height: 20px;
-              }
-            }
-      
-            a {
-              font-size: 16px;
-              color: #666;
-              text-decoration: none;
-            }
-          }
-      
-          &:hover {
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-      
-            h3,
-            .info-wrapper a {
-              color: #8a2be2;
-            }
-          }
-        }
-      }
-      
-      // Mobile responsiveness
-      @media screen and (max-width: 767px) {
-        .relation-wrapper {
-          grid-template-columns: 1fr;
-        }
-      }
-      
+  .relation-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: space-evenly;
+    text-align: center;
 
-    .forum-heading {
+    .stakeholder-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: left;
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+      transition: box-shadow 0.2s ease-in-out;
+      border: 1px solid #ddd;
+      margin-bottom: 1rem;
+
+      h3 {
+        font-size: .9rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .info-wrapper {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 4px;
+        color: black;
 
-        h2 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 500;
-            text-align: left;
+        .icon {
+          width: 36px;
+          height: 36px;
+          padding: 8px;
+          margin-right: 12px;
+          background-color: #8a2be2;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          transition: box-shadow 0.3s ease-in-out;
         }
-    }
 
+        .icon svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        a {
+          font-size: 16px;
+          color: #666;
+          text-decoration: none;
+          /* Remove underlines from links */
+          text-decoration: none;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+
+        h3,
+        .info-wrapper a {
+          color: #8a2be2;
+        }
+      }
+    }
+  }
+
+  // Mobile responsiveness
+  @media screen and (max-width: 767px) {
+    .relation-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .forum-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 500;
+      text-align: left;
+    }
+  }
 }
