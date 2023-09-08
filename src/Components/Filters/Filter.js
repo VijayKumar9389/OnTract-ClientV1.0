@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggle, clear } from '../../Store/Filter';
 import { AiOutlineClose } from 'react-icons/ai';
 import { setSearchType, setStakeholderType, setProvince, setCity, setAttempted, setContacted } from '../../Store/Filter';
+import Cookies from 'js-cookie';
 
 import './Filter.scss';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -21,14 +22,15 @@ function FilterMenu({ isOpen, toggle }) {
 
     const [locationList, setLocationList] = useState([]);
     const dispatch = useDispatch();
+    const project = Cookies.get('project');
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/locations`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/sidebar/locations/${project}`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setLocationList(response.data));
-    }, []);
+    }, [project]);
 
     const open = {
         right: '0'

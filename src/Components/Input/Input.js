@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import { toggle, setSearch, clearSearch as cs } from '../../Store/Filter';
 import { setRoute } from '../../Store/Filter';
 import FilterMenu from '../Filters/Filter';
@@ -21,13 +22,15 @@ export default function Input() {
     const route = useSelector((state) => state.filter.route);
     const dispatch = useDispatch();
 
+    const project = Cookies.get('project');
+
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/routes/get`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/routes/get/${project}`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((res) => setRoutes(res.data));
-    }, [])
+    }, [project])
 
     function clearSearch() {
         document.getElementById("table-input").value = "";
@@ -50,7 +53,7 @@ export default function Input() {
     }
 
     return (
-        <div className="input-container">
+        <div className="filter-container">
 
             <FilterMenu isOpen={isOpen} toggle={toggle} />
 
@@ -73,7 +76,7 @@ export default function Input() {
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
 
-            <button onClick={() => dispatch(toggle())}>< BsFilterRight className='icon' size='2rem' /> FILTER</button>
+            <button onClick={() => dispatch(toggle())}>FILTER< BsFilterRight className='icon' size='2rem' /> </button>
 
         </div>
     );

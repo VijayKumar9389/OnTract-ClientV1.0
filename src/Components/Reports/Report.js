@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import './Report.scss';
@@ -9,14 +10,15 @@ function Report() {
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const tblFilter = useSelector((state) => state.filter.value);
+    const project = Cookies.get('project');
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/report`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/report/${project}`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setData(response.data));
-    }, []);
+    }, [project]);
 
     function checkActive(num) {
         if (tblFilter !== num) {

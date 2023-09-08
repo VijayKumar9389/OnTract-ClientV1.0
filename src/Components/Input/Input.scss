@@ -1,134 +1,105 @@
-.clearbtn-container {
-    position: relative;
-    left: 10px;
-    bottom: 20px;
-    border-color: 1px solid #ddd;
-
-    .clear-btn-search { 
-        position: absolute;
-        margin-top: 5px;
-        z-index: 300;
-    }
-    
-    .clear-btn-clear {
-        position: absolute;
-        z-index: 300;
-    }
-
-    @media (max-width: 1024px) {
-        .clear-btn-search { 
-            margin-top: 0;
-        }
-        
-        .clear-btn-clear {
-            position: absolute;
-            margin-top: -5px;
-            z-index: 300;
-        }
-    }
-}
-
-
-
-
-
-.ddl-filter select {
-    height: 46px;
-    width: 150px;
-    padding-left: 15px;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    margin-right: -5px;
-    position: relative;
-    z-index: 200;
-    color: gray;
-    cursor: pointer;
-}
-
-.ddl-filter select option {
-    font-size: 20px;
-}
-
-.filterbtn{
-    position: absolute;
-    margin: 0;
-    z-index: 300;
-    width: 100%;
-}
-
-.input-container {
+.filter-container {
     display: grid;
-    grid-template-columns: 20% 1fr auto ;
+    grid-template-columns: min-content auto min-content;
     grid-gap: 1rem;
-    width: 100%;
+    padding: 10px 15px;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
-     
-    select{
-        padding:0 .5rem;
-        height: 40px;
-        width: 100%;
-        font-size: 16px;
-        outline: none;
+
+    @media (max-width: 768px) {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+
+        select,
+        input,
+        button {
+            margin-top: 10px;
+        }
+    }
+
+    select {
+        padding: 8px; /* Adjusted padding */
         border: 1px solid #ccc;
         border-radius: 4px;
-        background-color: #fff;
-    }
+        background-color: white;
+        font-size: 14px;
+        width: 200px;
 
-    @media (max-width: 1024px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin-bottom: 1rem;
+        @media (max-width: 768px) {
+            width: 100%;
+            margin-bottom: .5rem;
+        }
     }
 
     .filt-wrapper {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
         width: 100%;
+        /* Make the input element as wide as its container */
+
+        .clearbtn-container {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+
+            .clear-btn-clear,
+            .clear-btn-search {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #eee;
+                }
+            }
+        }
 
         input {
-            height: 40px;
-            width: 100%;
-            padding-left: 60px;
-            font-size: 16px;
+            flex: 1;
+            padding: 8px; /* Adjusted padding */
+            border: none;
+            font-size: 14px;
             outline: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
+            vertical-align: middle;
+
+            @media (max-width: 768px) {
+                margin: 0;
+            }
         }
     }
 
     button {
-        width: fit-content;
-        align-items: center;
         display: flex;
-        padding: 0 .5rem;
-        height: 40px;
-        position: relative;
-        border-radius: 5px;
-        margin: 0;
-        border: 1px solid #ccc;
-        background-color: #fff;
-        transition: ease-in-out .3s;
-        width: 100%;
-
-        .icon{
-            margin-right: 5px;
-        }
-
-    
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px; /* Adjusted padding */
+        background-color: #8a2be2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
 
         &:hover {
-            cursor: pointer;
-            background-color: #8a2be2;
-            color: #fff;
+            background-color: #6927a9;
+        }
+
+        .icon{
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
         }
     }
 }
-
-
-

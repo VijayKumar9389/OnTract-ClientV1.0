@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import './TractTable.scss';
 
@@ -12,19 +13,20 @@ function TractTable({ Stakeholder }) {
     const [allStakeholders, setAllStakeholders] = useState([]);
     const [search, setSearch] = useState("");
     const [btnClearSearch, setbtnClearSearch] = useState(false);
+    const project = Cookies.get('project');
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/cluster/` + Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/cluster/${Stakeholder}/${project}`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => setData(response.data));
 
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/`, {
-            headers: {
-                "access-token": localStorage.getItem("access-token"),
-            },
-        }).then((response) => setAllStakeholders(response.data));
+        // axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/`, {
+        //     headers: {
+        //         "access-token": localStorage.getItem("access-token"),
+        //     },
+        // }).then((response) => setAllStakeholders(response.data));
     }, [Stakeholder]);
 
     function PrintRow(arr, ind) {

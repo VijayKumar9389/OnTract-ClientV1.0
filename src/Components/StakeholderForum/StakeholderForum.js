@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import { BsArrowLeftShort } from "react-icons/bs";
 
@@ -33,6 +34,7 @@ function StakeholderForum({ Stakeholder }) {
     const [newCorperation, setNewCorperation] = useState('');
     const [newRoute, setNewRoute] = useState('');
     const [newLocation, setNewLocation] = useState('');
+    const project = Cookies.get('project');
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -52,7 +54,7 @@ function StakeholderForum({ Stakeholder }) {
     }
 
     const Update = (name) => {
-        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/update`,
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/update/${project}`,
             {
                 NAME: name,
                 NEWNAME: newName.trim(),
@@ -162,8 +164,8 @@ function StakeholderForum({ Stakeholder }) {
         if (Stakeholder.EMAIL !== newEmail) arr = arr + 'Email' + ' >> ' + Stakeholder.EMAIL + '' + ' >> ' + ' >> ' + newEmail + '\n';
         if (Stakeholder.STAKEHOLDERCOMMENT !== newStakeholderComment) arr = arr + 'Delivery Comment' + ' >> ' + Stakeholder.STAKEHOLDERCOMMENT + ' >> ' + newStakeholderComment + '\n';
         if (Stakeholder.CORPERATION !== newCorperation) arr = arr + 'Corperation' + ' >> ' + Stakeholder.CORPERATION + ' >> ' + newCorperation + '\n';
-        if(Stakeholder.ROUTE !== newRoute) arr = arr + 'Route' + ' >> ' + Stakeholder.ROUTE + ' >> ' + newRoute + '\n';
-        if(Stakeholder.LOCATION !== newLocation) arr = arr + 'Location' + ' >> ' + Stakeholder.LOCATION + ' >> ' + newLocation + '\n';
+        if (Stakeholder.ROUTE !== newRoute) arr = arr + 'Route' + ' >> ' + Stakeholder.ROUTE + ' >> ' + newRoute + '\n';
+        if (Stakeholder.LOCATION !== newLocation) arr = arr + 'Location' + ' >> ' + Stakeholder.LOCATION + ' >> ' + newLocation + '\n';
 
         return arr;
 
@@ -220,12 +222,12 @@ function StakeholderForum({ Stakeholder }) {
                 <div className='btn-wrapper'>
                     {/* {console.log(data)}
                     {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>} */}
-                   <button
-  className="survey"
-  onClick={() => window.open('https://www.surveymonkey.com/r/57H9WRL', '_blank')}
->
-  Survey
-</button>
+                    <button
+                        className="survey"
+                        onClick={() => window.open('https://www.surveymonkey.com/r/57H9WRL', '_blank')}
+                    >
+                        Survey
+                    </button>
 
                     {checkChanges() === '' ? (
                         <button className="save-inactive" >Save</button>
@@ -236,108 +238,110 @@ function StakeholderForum({ Stakeholder }) {
             </div>
 
             <div className='forum-wrapper'>
-                <div className='forum-body'>
-                    <div className='stakeholder-column'>
-                        <div className='column-header'><h3>General</h3><FaUserAlt /></div>
-                        <div className='stakeholder-wrapper'>
-                            <div className='input-wrapper'>
-                                <label>Name</label>
-                                <textarea type="text" defaultValue={Stakeholder.NAME} onChange={(event) => setNewName(event.target.value)} ></textarea>
-                            </div>
-                            <div className="ddl-container">
-                                <div className="ddl-wrapper">
-                                    <label>Staus:</label>
-                                    <select defaultValue={Stakeholder.CONTACT} onChange={(event) => setNewContactStatus(event.target.value)}>
-                                        <option value="GREEN">GREEN</option>
-                                        <option value="YELLOW">YELLOW</option>
-                                        <option value="RED">RED</option>
-                                    </select>
-                                </div>
-                                <div className="ddl-wrapper">
-                                    <label>Contacted:</label>
-                                    <select defaultValue={Stakeholder.CONTACTED} onChange={(event) => setNewContacted(event.target.value)}>
-                                        <option value="">N/A</option>
-                                        <option value="YES">YES</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div className="ddl-wrapper">                                <label>Corporation:</label>
-                                    <select defaultValue={Stakeholder.CORPERATION} onChange={(event) => setNewCorperation(event.target.value)}>
-                                        <option value="">N/A</option>
-                                        <option value="YES">YES</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
+                <div className='stakeholder-column'>
+                    <div className='column-header'><h3>General</h3><FaUserAlt /></div>
+                    <div className='input-container'>
+                        <div className='input-wrapper'>
+                            <label>Name</label>
+                            <textarea type="text" value={newName} onChange={(event) => setNewName(event.target.value)}></textarea>
+                        </div>
+                        <div className='input-wrapper'>
+                            <label>Stakeholder comment</label>
+                            <textarea type="text" value={newStakeholderComment} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
                         </div>
                     </div>
-
-                    <div className='location-column'>
-                        <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
-                        <div className='input-container'>
-                            <div className='input-wrapper'>
-                                <label>Home Address</label>
-                                <textarea type="text" defaultValue={Stakeholder.STREET} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
-                            </div>
-                            <div className='input-wrapper'>
-                                <label>Mailing Address</label>
-                                <textarea type="text" defaultValue={Stakeholder.MAILING} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
-                            </div>
+                    <div className="input-container">
+                        <div className="input-wrapper">
+                            <label>Status:</label>
+                            <select value={newContactStatus} onChange={(event) => setNewContactStatus(event.target.value)}>
+                                <option value="GREEN">GREEN</option>
+                                <option value="YELLOW">YELLOW</option>
+                                <option value="RED">RED</option>
+                            </select>
                         </div>
-                    </div>
 
-                    <div className='contact-column'>
-                        <div className='column-header'><h3>Contact</h3><BsChatLeftTextFill /></div>
-                        <div className='input-container'>
-                            <div className='input-wrapper'>
-                                <label>Phone No.</label>
-                                <textarea type="text" defaultValue={Stakeholder.PHONE} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
-                            </div>
-                            <div className='input-wrapper'>
-                                <label>Email</label>
-                                <input type="text" defaultValue={Stakeholder.EMAIL} onChange={(event) => setNewEmail(event.target.value)}></input>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='delivery-column'>
-                        <div className='column-header'><h3>Delivery</h3><FaTruckMoving /></div>
-                        <div className='delivery-wrapper'>
-                            <div className='input-container'>
-                                <div className='input-wrapper'>
-                                    <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
-                                    <input id='consultation-txt' type="text" defaultValue={Stakeholder.CONSULTATION} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
-                                </div>
-                                <div className='input-wrapper'>
-                                    <label>Follow Up</label>
-                                    <input type="text" defaultValue={Stakeholder.FOLLOWUP} onChange={(event) => setNewFollowUp(event.target.value)}></input>
-                                </div>
-                            </div>
-                            <div className='comment-container'>
-                                <div className='input-wrapper'>
-                                    <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
-                                    <input id='attempt-txt' type="text" defaultValue={Stakeholder.ATTEMPTS} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
-                                </div>
-                                <div className='comment-wrapper'>
-                                    <label>Stakeholder comment</label>
-                                    <textarea type="text" defaultValue={Stakeholder.STAKEHOLDERCOMMENT} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
-                                </div>
-                            </div>
-                            <div className='comment-container'>
-                                <div className='input-wrapper'>
-                                    <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
-                                    <input type="text" defaultValue={Stakeholder.ROUTE} onChange={(event) => setNewRoute(event.target.value)}></input>
-                                </div>
-                                <div className='input-wrapper'>
-                                    <label>Location: (For the exact drop off/mail out location)</label>
-                                    <input type="text" defaultValue={Stakeholder.LOCATION} onChange={(event) => setNewLocation(event.target.value)}></input>
-                                </div>
-                            </div>
+                        <div className="input-wrapper">
+                            <label>Corporation:</label>
+                            <select value={newCorperation} onChange={(event) => setNewCorperation(event.target.value)}>
+                                <option value="">N/A</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <Relations Stakeholder={Stakeholder.NAME} />
+
+                <div className='location-column'>
+                    <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
+                    <div className='input-container'>
+                        <div className='input-wrapper'>
+                            <label>Home Address</label>
+                            <textarea type="text" value={newHomeAddress} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
+                        </div>
+                        <div className='input-wrapper'>
+                            <label>Mailing Address</label>
+                            <textarea type="text" value={newMailingAddress} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='contact-column'>
+                    <div className='column-header'><h3>Contact</h3><BsChatLeftTextFill /></div>
+                    <div className='input-container'>
+                        <div className='input-wrapper'>
+                            <label>Phone No.</label>
+                            <textarea type="text" value={newPhoneNo} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
+                        </div>
+                        <div className='input-wrapper'>
+                            <label>Email</label>
+                            <input type="text" value={newEmail} onChange={(event) => setNewEmail(event.target.value)}></input>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='consultation-column'>
+                    <div className='column-header'><h3>Consultation</h3><BsChatLeftTextFill /></div>
+                    <div className='input-container'>
+                        <div className='input-wrapper'>
+                            <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
+                            <input id='consultation-txt' type="text" value={newConsultationDate} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
+                        </div>
+                        <div className='input-wrapper'>
+                            <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
+                            <input id='attempt-txt' type="text" value={newAttemptDetails} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
+                        </div>
+                        <div className="input-wrapper">
+                            <label>Contacted:</label>
+                            <select value={newContacted} onChange={(event) => setNewContacted(event.target.value)}>
+                                <option value="">N/A</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div className='delivery-column'>
+                    <div className='column-header'><h3>Delivery</h3><FaTruckMoving /></div>
+                    <div className='input-container'>
+                        <div className='input-wrapper'>
+                            <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
+                            <input type="text" value={newRoute} onChange={(event) => setNewRoute(event.target.value)}></input>
+                        </div>
+                        <div className='input-wrapper'>
+                            <label>Location: (For the exact drop off/mail out location)</label>
+                            <input type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
+                        </div>
+                        <div className='input-wrapper'>
+                            <label>Follow Up</label>
+                            <input type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <Relations Stakeholder={Stakeholder.NAME} />
         </div>
     );
 }

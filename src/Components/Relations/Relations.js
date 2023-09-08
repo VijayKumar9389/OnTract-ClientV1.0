@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import './Relations.scss';
 
@@ -37,66 +38,79 @@ const colors = [
 ];
 
 var randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
+const project = Cookies.get('project');
 
 
 function Relations({ Stakeholder }) {
 
     const [data, setData] = useState([]);
+    const [relations, setRelations] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/` + Stakeholder, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/connections/${Stakeholder}/${project}`, {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
         }).then((response) => {
             setData(response.data)
-        })
-
-    }, [Stakeholder]);
+        });
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/stakeholders/relations/${Stakeholder}/${project}`, {
+            headers: {
+                "access-token": localStorage.getItem("access-token"),
+            },
+        }).then((response) => {
+            setRelations(response.data)
+        });
+    }, [Stakeholder, project]);
 
     return (
         <div className='relations-container'>
             <div className='column-header'><h3>Connections</h3><FaUserAlt /></div>
-            {console.log(data)}
-            <ul>
-                {data.map((record, index) => {
-                    return (
-                        <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
-                            <li className='stakeholder-item'>
-                                <h3>{record.stakeholder.NAME}</h3>
-                                {record.phone && (
-                                    <div className='info-wrapper'>
-                                        <FaPhone className="icon" />
-                                        <a>{record.stakeholder.PHONE}</a>
-                                    </div>
-                                )}
+            <div className='relation-wrapper'>
+                    {relations.map((relation, index) => {
+                        return (
+                            <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${relation.NAME}`} state={{ stakeholder: relation }}><li key={index} className='stakeholder-item'>{relation.NAME}</li>  </Link>
+                        );
+                    })}
 
-                                {record.address && (
-                                    <div className='info-wrapper'>
-                                        <MdMail className="icon" />
-                                        <a>{record.stakeholder.MAILING}</a>
-                                    </div>
-                                )}
+                    {data.map((record, index) => {
+                        return (
+                            <Link key={index} className='link' onClick={() => window.scrollTo(0, 0)} to={`/${record.stakeholder.NAME}`} state={{ stakeholder: record.stakeholder }}>
+                                <li className='stakeholder-item'>
+                                    <h3>{record.stakeholder.NAME}</h3>
+                                    {record.phone && (
+                                        <div className='info-wrapper'>
+                                            <FaPhone className="icon" />
+                                            <a>{record.stakeholder.PHONE}</a>
+                                        </div>
+                                    )}
 
-                                {record.street && (
-                                    <div className='info-wrapper'>
-                                        <FaHome className="icon" />
-                                        <a>{record.stakeholder.STREET}</a>
-                                    </div>
-                                )}
-                                {record.delivery && (
-                                    <div className='info-wrapper'>
-                                        <FaTruck className="icon" />
-                                        <a>{record.stakeholder.LOCATION}</a>
-                                    </div>
-                                )}
+                                    {record.address && (
+                                        <div className='info-wrapper'>
+                                            <MdMail className="icon" />
+                                            <a>{record.stakeholder.MAILING}</a>
+                                        </div>
+                                    )}
 
-                            </li>
-                        </Link>
-                    );
-                })}
-            </ul>
+                                    {record.street && (
+                                        <div className='info-wrapper'>
+                                            <FaHome className="icon" />
+                                            <a>{record.stakeholder.STREET}</a>
+                                        </div>
+                                    )}
+                                    {record.delivery && (
+                                        <div className='info-wrapper'>
+                                            <FaTruck className="icon" />
+                                            <a>{record.stakeholder.LOCATION}</a>
+                                        </div>
+                                    )}
+
+                                </li>
+                            </Link>
+                        );
+                    })}
+            </div>
+
         </div>
     );
 }

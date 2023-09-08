@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Route, Routes, } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
@@ -15,10 +16,17 @@ import Reports from './Pages/Report/Report';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Survey from './Components/Survey/Survey';
+import ProjectTable from './Components/Table/ProjectTable/ProjectTable';
+import Project from './Pages/Project/Project';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
@@ -34,7 +42,7 @@ function App() {
         Logout();
       }
     });
-  }, [loggedIn]);
+  }, [loggedIn, Cookies.get('project')]);
 
   function LogIn(Auth) {
     setLoggedIn(Auth);
@@ -48,19 +56,20 @@ function App() {
 
   if (!loggedIn) return <Login LogIn={obj => LogIn(obj)} />
 
-  return (
+  if (!Cookies.get('project')) return (
+    <Project logout={Logout} />
+  )
+
+  else return (
     <div className='app-container'>
       <ToastContainer />
+      <ProjectTable isOpen={isOpen} toggle={toggle} />
       {/* <Navbar /> */}
       {/* <Sidebar /> */}
-        <Routes>
-          <Route path='/' element={<Home LogOut={Logout} />} />
-          <Route path='/:name' element={<Profile />} />
-          <Route path='/Records' element={<Records />} />
-          <Route path='/Reports' element={<Reports />} />
-          <Route path='/Analytics' element={<Analytics />} />
-          <Route path='/survey' element={<Survey />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<Home LogOut={Logout} toggle={toggle} />} />
+        <Route path='/:name' element={<Profile />} />
+      </Routes>
 
     </div>
   );

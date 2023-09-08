@@ -1,418 +1,246 @@
 .forum-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-  
-    .column-header {
-      width: 100%;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      color: #8a2be2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
 
-
-    }
-  
-    .forum-wrapper {
-      width: 100%;
-      display: grid;
-      grid-gap: 1rem;
-      grid-template-columns: 66% 1fr;
-  
-      @media (max-width: 1024px) {
-        display: flex;
-        flex-direction: column;
-      }
-  
-      .forum-body {
-        width: 100%;
-        display: grid;
-        grid-template-rows: auto auto auto;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 1rem;
-        grid-template-areas:
-          "sf sf"
-          "lf cf"
-          "df df";
-  
-        @media (max-width: 1024px) {
-          grid-template-rows: auto auto auto auto;
-          grid-template-columns: 1fr;
-          grid-template-areas:
-            "sf"
-            "lf"
-            "cf"
-            "df";
-        }
-  
-        .stakeholder-column {
-          grid-area: sf;
-          width: 100%;
-  
-          .stakeholder-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-  
-            .input-wrapper {
-              width: 100%;
-              margin-bottom: 20px;
-  
-              textarea,
-              input[type="text"] {
-                width: 100%;
-                height: 40px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                background-color: #f8f8fc;
-                font-size: 14px;
-                margin-top: 5px;
-  
-                &:focus {
-                  outline: none;
-                  border-color: #8a2be2;
-                }
-              }
-  
-              textarea {
-                height: 100px;
-                resize: vertical;
-                resize: none;
-              }
-            }
-  
-            .ddl-container {
-              width: 100%;
-              display: grid;
-              grid-gap: 1rem;
-              grid-template-columns: 1fr 1fr 1fr;
-  
-              .ddl-wrapper {
-                width: 100%;
-                margin-bottom: 20px;
-  
-                select {
-                  width: 100%;
-                  height: 40px;
-                  padding: 10px;
-                  border: 1px solid #ddd;
-                  border-radius: 5px;
-                  background-color: #f8f8fc;
-                  font-size: 14px;
-  
-                  &:focus {
-                    outline: none;
-                    border-color: #8a2be2;
-                  }
-                }
-              }
-            }
-          }
-        }
-  
-        .contact-column {
-          grid-area: cf;
-          width: 100%;
-  
-          .input-container {
-            display: flex;
-            flex-wrap: wrap;
-  
-            .input-wrapper {
-              width: 100%;
-  
-              textarea,
-              input[type="text"] {
-                width: 100%;
-                height: 40px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                background-color: #f8f8fc;
-                font-size: 14px;
-                margin-top: 5px;
-  
-                &:focus {
-                  outline: none;
-                  border-color: #8a2be2;
-                }
-              }
-  
-              textarea {
-                height: 100px;
-                resize: vertical;
-                resize: none;
-              }
-            }
-          }
-        }
-  
-        .location-column {
-          grid-area: lf;
-          width: 100%;
-  
-          .input-container {
-            display: flex;
-            flex-wrap: wrap;
-  
-            .input-wrapper {
-              width: 100%;
-  
-              textarea {
-                width: 100%;
-                height: 100px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                resize: vertical;
-                background-color: #f8f8fc;
-                font-size: 14px;
-                margin-top: 5px;
-              }
-            }
-          }
-        }
-  
-        .delivery-column {
-          grid-area: df;
-          width: 100%;
-  
-          .delivery-wrapper {
-            width: 100%;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-  
-            .input-container {
-              display: flex;
-              flex-wrap: wrap;
-              width: 100%;
-  
-              .input-wrapper {
-                width: 100%;
-  
-                .label-wrapper {
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                  margin-bottom: 5px;
-  
-                  button.attempt {
-                    color: #8a2be2;
-                    background: none;
-                    border: none;
-                    margin: 0;
-                    padding: 0;
-                    font-size: 14px;
-                    font-weight: bold;
-                    position: relative;
-                    cursor: pointer;
-                    margin-left: 5rem;
-  
-                  }
-                }
-  
-                input[type="text"] {
-                  width: 100%;
-                  height: 40px;
-                  padding: 10px;
-                  border: 1px solid #ddd;
-                  border-radius: 5px;
-                  background-color: #f8f8fc;
-                  font-size: 14px;
-                  margin-top: 5px;
-  
-                  &:focus {
-                    outline: none;
-                    border-color: #8a2be2;
-                  }
-                }
-  
-                textarea {
-                  width: 100%;
-                  height: 100px;
-                  padding: 10px;
-                  border: 1px solid #ddd;
-                  border-radius: 5px;
-                  resize: vertical;
-                  background-color: #f8f8fc;
-                  font-size: 14px;
-                  margin-top: 5px;
-  
-                  &:focus {
-                    outline: none;
-                    border-color: #8a2be2;
-                  }
-                }
-              }
-            }
-  
-            .comment-container {
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: flex-start;
-              height: fit-content;
-              width: 100%;
-  
-              .input-wrapper {
-                width: 100%;
-                margin-bottom: 20px;
-  
-                .label-wrapper {
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                  margin-bottom: 5px;
-  
-                  button.attempt {
-                    color: #8a2be2;
-                    background: none;
-                    border: none;
-                    margin: 0;
-                    padding: 0;
-                    font-size: 14px;
-                    font-weight: bold;
-                    margin-left: 5rem;
-  
-                    &:hover {
-                      transform: scale(1.08);
-                      cursor: pointer;
-                    }
-                  }
-                }
-  
-                input[type="text"] {
-                  width: 100%;
-                  height: 40px;
-                  padding: 10px;
-                  border: 1px solid #ddd;
-                  border-radius: 5px;
-                  background-color: #f8f8fc;
-                  font-size: 14px;
-                  margin-top: 5px;
-  
-                  &:focus {
-                    outline: none;
-                    border-color: #8a2be2;
-                  }
-                }
-              }
-  
-              .comment-wrapper {
-                width: 100%;
-                margin-bottom: 20px;
-  
-                textarea {
-                  width: 100%;
-                  height: 100px;
-                  padding: 10px;
-                  border: 1px solid #ddd;
-                  border-radius: 5px;
-                  resize: vertical;
-                  background-color: #f8f8fc;
-                  font-size: 14px;
-                  margin-top: 5px;
-                  resize: none;
-  
-                  &:focus {
-                    outline: none;
-                    border-color: #8a2be2;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  .heading {
+  .column-header {
     width: 100%;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #8a2be2;
-    height: 80px;
     border-bottom: 1px solid #ddd;
-    text-align: left;
-    overflow: hidden;
-    // position: sticky;
-    // top: 0px;
-    background-color: #fff;
-    padding: 0 20px;
-  
-    h3 {
-      text-align: left;
-      margin: 0 20px;
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  
-    .btn-wrapper {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #8a2be2;
+
+
+  }
+
+  .forum-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    @media (max-width: 1024px) {
       display: flex;
-  
-      button {
-        background-color: #8a2be2;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        margin-left: 1rem;
-        
-        &:hover {
-          background-color: #6927a9;
-        }
-        
-        &.inactive {
-          background-color: #ccc;
-          cursor: not-allowed;
-          pointer-events: none; /* To prevent click events on the inactive button */
-          &:hover {
-            background-color: #ccc;
-          }
-        }
-      }
-      
-      /* Additional styles for .save-inactive class */
-      button.save-inactive {
-        /* Add your specific styles for the inactive Save button here */
-        background-color: #ccc;
-        cursor: not-allowed;
-        pointer-events: none; /* To prevent click events on the inactive button */
-        color: #fff; /* Change text color for inactive button if needed */
-        /* Add any other styles you want for the inactive Save button */
-      }
-    }
-  
-    @media (max-width: 768px) {
       flex-direction: column;
-      align-items: flex-start;
-      height: auto;
-      padding: 20px;
-  
-      h3 {
-        margin: 10px 0;
-        white-space: normal;
-      }
-  
-      .btn-wrapper {
-        margin-top: 20px;
-        justify-content: flex-start;
-      }
     }
   }
-  
-  
+
+  .stakeholder-column,
+  .consultation-column,
+  .delivery-column {
+    flex: 2;
+  }
+
+  .location-column,
+  .contact-column {
+    flex: 1;
+  }
+
+  .stakeholder-column,
+  .location-column,
+  .contact-column,
+  .consultation-column,
+  .delivery-column {
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: .5rem;
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 .5rem;
+      margin-bottom: 10px;
+
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .ddl-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+
+      .ddl-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+
+        select {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+          flex-grow: 1;
+          background-color: #fafafa;
+        }
+      }
+
+      label {
+        font-size: 14px;
+        color: #666;
+        display: flex;
+        text-align: left;
+        margin-bottom: .5rem;
+      }
+    }
+
+    .input-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+
+      .input-wrapper {
+        padding: .5rem;
+
+        label {
+          font-size: 14px;
+          color: #666;
+          display: flex;
+          text-align: left;
+          margin-bottom: .5rem;
+        }
+
+        textarea,
+        input {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+          resize: none;
+          background-color: #fafafa;
+        }
+
+        select {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+          flex-grow: 1;
+          background-color: #fafafa;
+        }
+
+      }
+
+
+    }
+  }
+
+  // Mobile responsiveness
+  @media screen and (max-width: 767px) {
+
+    .stakeholder-column,
+    .location-column,
+    .contact-column,
+    .consultation-column,
+    .delivery-column {
+      flex: 0 0 100%;
+    }
+  }
+
+
+}
+
+.heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #8a2be2;
+  height: 80px;
+  text-align: left;
+  overflow: hidden;
+  // position: sticky;
+  // top: 0px;
+  background-color: #fff;
+  padding: 0 20px;
+
+  h3 {
+    text-align: left;
+    margin: 0 20px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .btn-wrapper {
+    display: flex;
+
+    button {
+      background-color: #8a2be2;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-left: 1rem;
+
+      &:hover {
+        background-color: #6927a9;
+      }
+
+      &.inactive {
+        background-color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+
+        /* To prevent click events on the inactive button */
+        &:hover {
+          background-color: #ccc;
+        }
+      }
+    }
+
+    /* Additional styles for .save-inactive class */
+    button.save-inactive {
+      /* Add your specific styles for the inactive Save button here */
+      background-color: #ccc;
+      cursor: not-allowed;
+      pointer-events: none;
+      /* To prevent click events on the inactive button */
+      color: #fff;
+      /* Change text color for inactive button if needed */
+      /* Add any other styles you want for the inactive Save button */
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 20px;
+
+    h3 {
+      margin: 10px 0;
+      white-space: normal;
+    }
+
+    .btn-wrapper {
+      margin-top: 20px;
+      justify-content: flex-start;
+    }
+  }
+}
