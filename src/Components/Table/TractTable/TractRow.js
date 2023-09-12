@@ -57,8 +57,16 @@ function TractRow({ Stakeholder, stakeholderProfile, Index }) {
         <li className='tract-row'>
 
             <div className='name-wrapper'>
-                {Index === 0 ? <h4 style={{ color: 'red' }} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4>}
+                {Index === 0 ? <h4 style={{ backgroundColor: '#FFFF00' }} >{Stakeholder.NAME}</h4> : <h4>{Stakeholder.NAME}</h4>}
                 <label>{Stakeholder.INTEREST}</label>
+
+                {Index === 0
+                    ? null
+                    : <ul className='missing-info-list'>
+                        {Stakeholder.STREET === "" ? <li>MISSING STREET ADDRESS</li> : null}
+                        {Stakeholder.MAILING === "" ? <li>MISSING MAILING ADDRESS</li> : null}
+                        {Stakeholder.PHONE === "" ? <li>MISSING PHONE NUMBER</li> : null}
+                    </ul>}
             </div>
 
             <div className='wrapper'>

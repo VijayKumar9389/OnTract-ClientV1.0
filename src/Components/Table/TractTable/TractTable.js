@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import './TractTable.scss';
+import { FaUserAlt } from 'react-icons/fa';
 
 import TractRow from './TractRow';
 
@@ -41,7 +42,7 @@ function TractTable({ Stakeholder }) {
                         <p>
                             Carrying: <span className="list-item">{arr[0].COMMODITY}</span>
                             <span className="separator">|</span>
-                            Currently: <span className="list-item">{arr[0].PIPLINESTATUS}</span>
+                            Currently: <span className="list-item">{arr[0].PIPELINESTATUS}</span>
                             <span className="separator">|</span>
                             Located: <span className="list-item">{arr[0].PIN}</span>
                         </p>
@@ -66,13 +67,12 @@ function TractTable({ Stakeholder }) {
     }
 
     return (
-        <>
-            <div className='tract-table-container'>
+        <div className='tract-table-container'>
+            <div className='column-header'><h3>Tracts</h3><FaUserAlt /></div>
                 {data.map((stakeholder, index) => {
                     return PrintRow(stakeholder, index)
                 })}
-            </div>
-        </>
+        </div>
 
     );
 }

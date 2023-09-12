@@ -238,19 +238,23 @@ function StakeholderForum({ Stakeholder }) {
             </div>
 
             <div className='forum-wrapper'>
+
                 <div className='stakeholder-column'>
                     <div className='column-header'><h3>General</h3><FaUserAlt /></div>
-                    <div className='input-container'>
+
+                    <div className='input-container-column'>
                         <div className='input-wrapper'>
                             <label>Name</label>
                             <textarea maxLength={150} type="text" value={newName} onChange={(event) => setNewName(event.target.value)}></textarea>
                         </div>
                         <div className='input-wrapper'>
-                            <label>Stakeholder comment</label>
+                            <label>Stakeholder Comment</label>
                             <textarea maxLength={255} type="text" value={newStakeholderComment} onChange={(event) => setNewStakeholderComment(event.target.value)}></textarea>
                         </div>
                     </div>
-                    <div className="input-container">
+
+
+                    <div className="input-container-column">
                         <div className="input-wrapper">
                             <label>Status:</label>
                             <select value={newContactStatus} onChange={(event) => setNewContactStatus(event.target.value)}>
@@ -271,74 +275,82 @@ function StakeholderForum({ Stakeholder }) {
                     </div>
                 </div>
 
-                <div className='location-column'>
-                    <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
-                    <div className='input-container'>
-                        <div className='input-wrapper'>
-                            <label>Home Address</label>
-                            <textarea maxLength={150} type="text" value={newHomeAddress} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
+                <div className='column-wrapper'>
+                    <div className='location-column'>
+                        <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
+                        <div className='input-container-single'>
+                            <div className='input-wrapper'>
+                                <label>Home Address</label>
+                                <textarea maxLength={150} type="text" value={newHomeAddress} onChange={(event) => setNewHomeAddress(event.target.value)}></textarea>
+                            </div>
+                            <div className='input-wrapper'>
+                                <label>Mailing Address</label>
+                                <textarea maxLength={150} type="text" value={newMailingAddress} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
+                            </div>
                         </div>
-                        <div className='input-wrapper'>
-                            <label>Mailing Address</label>
-                            <textarea maxLength={150} type="text" value={newMailingAddress} onChange={(event) => setNewMailingAddress(event.target.value)}></textarea>
+                    </div>
+
+                    <div className='contact-column'>
+                        <div className='column-header'><h3>Contact</h3><BsChatLeftTextFill /></div>
+                        <div className='input-container-single'>
+                            <div className='input-wrapper'>
+                                <label>Phone No.</label>
+                                <textarea maxLength={300} type="text" value={newPhoneNo} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
+                            </div>
+                            <div className='input-wrapper'>
+                                <label>Email</label>
+                                <input maxLength={50} type="text" value={newEmail} onChange={(event) => setNewEmail(event.target.value)}></input>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className='contact-column'>
-                    <div className='column-header'><h3>Contact</h3><BsChatLeftTextFill /></div>
-                    <div className='input-container'>
-                        <div className='input-wrapper'>
-                            <label>Phone No.</label>
-                            <textarea maxLength={300} type="text" value={newPhoneNo} onChange={(event) => setNewPhoneNo(event.target.value)}></textarea>
+
+                <div className='column-wrapper'>
+                    <div className='consultation-column'>
+                        <div className='column-header'><h3>Consultation</h3><BsChatLeftTextFill /></div>
+                        <div className='input-container-single'>
+                            <div className='input-wrapper'>
+                                <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
+                                <input maxLength={50} id='consultation-txt' type="text" value={newConsultationDate} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
+                            </div>
+                            <div className='input-wrapper'>
+                                <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
+                                <input maxLength={255} id='attempt-txt' type="text" value={newAttemptDetails} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
+                            </div>
+                            <div className="input-wrapper">
+                                <label>Contacted:</label>
+                                <select value={newContacted} onChange={(event) => setNewContacted(event.target.value)}>
+                                    <option value="">N/A</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+
                         </div>
-                        <div className='input-wrapper'>
-                            <label>Email</label>
-                            <input maxLength={50} type="text" value={newEmail} onChange={(event) => setNewEmail(event.target.value)}></input>
+                    </div>
+
+                    <div className='delivery-column'>
+                        <div className='column-header'><h3>Delivery</h3><FaTruckMoving /></div>
+                        <div className='input-container-single'>
+                            <div className='input-wrapper'>
+                                <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
+                                <input maxLength={255} type="text" value={newRoute} onChange={(event) => setNewRoute(event.target.value)}></input>
+                            </div>
+                            <div className='input-wrapper'>
+                                <label>Location: (For the exact drop off/mail out location)</label>
+                                <input maxLength={255} type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
+                            </div>
+                            <div className='input-wrapper'>
+                                <label>Follow Up</label>
+                                <input maxLength={50} type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className='consultation-column'>
-                    <div className='column-header'><h3>Consultation</h3><BsChatLeftTextFill /></div>
-                    <div className='input-container'>
-                        <div className='input-wrapper'>
-                            <div className='label-wrapper'><label>Consultation Date</label><button className='attempt' onClick={() => stampDate()}>+ Add</button></div>
-                            <input maxLength={50} id='consultation-txt' type="text" value={newConsultationDate} onChange={(event) => setNewConsultationDate(event.target.value)}></input>
-                        </div>
-                        <div className='input-wrapper'>
-                            <div className='label-wrapper'><label>Attempt Details</label><button className='attempt' onClick={() => addAttempt()}>+ Add</button></div>
-                            <input maxLength={255} id='attempt-txt' type="text" value={newAttemptDetails} onChange={(event) => setNewAttemptDetails(event.target.value)}></input>
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Contacted:</label>
-                            <select value={newContacted} onChange={(event) => setNewContacted(event.target.value)}>
-                                <option value="">N/A</option>
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
 
-                    </div>
-                </div>
 
-                <div className='delivery-column'>
-                    <div className='column-header'><h3>Delivery</h3><FaTruckMoving /></div>
-                    <div className='input-container'>
-                        <div className='input-wrapper'>
-                            <div className='label-wrapper'><label>Route: (For grouping deliveries)</label></div>
-                            <input maxLength={255} type="text" value={newRoute} onChange={(event) => setNewRoute(event.target.value)}></input>
-                        </div>
-                        <div className='input-wrapper'>
-                            <label>Location: (For the exact drop off/mail out location)</label>
-                            <input maxLength={255} type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
-                        </div>
-                        <div className='input-wrapper'>
-                            <label>Follow Up</label>
-                            <input maxLength={50} type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <Relations Stakeholder={Stakeholder.NAME} />

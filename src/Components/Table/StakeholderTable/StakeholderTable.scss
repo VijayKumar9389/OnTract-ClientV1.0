@@ -1,72 +1,80 @@
 .table-container {
-    width: 100%;
+  width: 100%;
 
-    // label {
-    //     color: grey;
-    //     width: 100%;
-    //     display: flex;
-    //     justify-content: flex-end;
-    //     padding: 20px;
-    //     font-style: italic;
+  // label {
+  //     color: grey;
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: flex-end;
+  //     padding: 20px;
+  //     font-style: italic;
+  // }
+
+  .stakeholder-tbl {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin: 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+      text-align: left;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+
+
+    th:not(:first-child) {
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e0e0e0;
+    }
+  }
+
+  /* StakeholderTableRow.scss */
+
+  tr {
+    transition: background-color 0.2s ease-in-out;
+    height: 60px;
+    cursor: pointer;
+
+    td {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    td:not(:first-child) {
+      text-align: center;
+    }
+
+    td:nth-child(2) {
+      font-weight: bold;
+    }
+
+    // td:nth-child(3) {
+    //   color: green; // Customize the colors as needed
+    //   font-weight: bold;
     // }
 
-    .stakeholder-tbl {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #fff;
-        margin: 0;
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      
-        th {
-          background-color: #f5f5f5;
-          font-weight: bold;
-          text-align: left;
-          padding: 10px;
-          font-size: 18px;
-        }
-      
-        td {
-          padding: 10px;
-          text-align: left;
-        }
-      
-        tr:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-      
-        tbody tr:hover {
-          background-color: #e0e0e0;
-        }
-      }
-    
-      /* StakeholderTableRow.scss */
-    
-    tr {
-        transition: background-color 0.2s ease-in-out;
-        height: 60px;
-        cursor: pointer;
-      
-        td {
-          padding: 10px;
-          text-align: left;
-          font-size: 14px;
-        }
-      
-        td:nth-child(2) {
-          font-weight: bold;
-        }
-      
-        // td:nth-child(3) {
-        //   color: green; // Customize the colors as needed
-        //   font-weight: bold;
-        // }
-      
-        // td:nth-child(4) {
-        //   font-weight: bold;
-        //   color: #007bff; // Customize the color
-        //   cursor: pointer;
-        //   text-decoration: underline;
-        // }
-      }
+    // td:nth-child(4) {
+    //   font-weight: bold;
+    //   color: #007bff; // Customize the color
+    //   cursor: pointer;
+    //   text-decoration: underline;
+    // }
+  }
 }

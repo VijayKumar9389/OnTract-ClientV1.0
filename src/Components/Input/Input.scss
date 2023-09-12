@@ -20,7 +20,7 @@
     }
 
     select {
-        padding: 8px; /* Adjusted padding */
+        padding: .5rem; /* Adjusted padding */
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: white;
@@ -64,7 +64,7 @@
 
         input {
             flex: 1;
-            padding: 8px; /* Adjusted padding */
+            padding: .5rem; /* Adjusted padding */
             border: none;
             font-size: 14px;
             outline: none;
@@ -79,8 +79,8 @@
     button {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 8px; /* Adjusted padding */
+        justify-content: center;
+        padding: .5rem; /* Adjusted padding */
         background-color: #8a2be2;
         color: white;
         border: none;
@@ -92,10 +92,6 @@
 
         &:hover {
             background-color: #6927a9;
-        }
-
-        .icon{
-            margin-left: 1rem;
         }
 
         @media (max-width: 768px) {
