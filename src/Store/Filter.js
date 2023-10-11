@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateValue = {
+export const initialStateValue = {
     value: false,
     contacted: null,
     attempted: null,
     tracts: null,
-    
+
     route: "",
     province: "",
     city: "",
@@ -15,6 +15,8 @@ const initialStateValue = {
     },
     stakeholder: 0
 }
+
+
 
 export const filterSlice = createSlice({
     name: 'filter',
@@ -62,12 +64,21 @@ export const filterSlice = createSlice({
         clear: (state) => {
             return initialStateValue;
         },
+
+        hasStateChanged: (state) => {
+            if (state === initialStateValue) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        
         export: (state, action) => {
-            
+
         }
     }
 });
 
-export const { toggle, clear, setAttempted, setContacted, setProvince, setCity, setSearchType, setRoute, setStakeholderType, setSearch, changeLocation, clearSearch, clearLocation } = filterSlice.actions;
+export const { toggle, clear, setAttempted, setContacted, setProvince, setCity, setSearchType, setRoute, setStakeholderType, setSearch, changeLocation, clearSearch, clearLocation, hasStateChanged } = filterSlice.actions;
 
 export default filterSlice.reducer;

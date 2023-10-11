@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
-import { toggle, setSearch, clearSearch as cs } from '../../Store/Filter';
+import { toggle, setSearch, hasStateChanged, clearSearch as cs } from '../../Store/Filter';
 import { setRoute } from '../../Store/Filter';
 import FilterMenu from '../Filters/Filter';
 
@@ -12,6 +12,7 @@ import { BiX } from 'react-icons/bi';
 import { CgSearch } from 'react-icons/cg';
 import { BsFilterRight } from 'react-icons/bs'
 import { BsDownload } from 'react-icons/bs'
+import { initialStateValue } from '../../Store/Filter';
 
 export default function Input() {
 
@@ -19,6 +20,18 @@ export default function Input() {
     const [routes, setRoutes] = useState([]);
     const tblSearch = useSelector((state) => state.filter.search.txt);
     const searchType = useSelector((state) => state.filter.search.type);
+    const stateChanged = useSelector((state) => state.filter);
+
+    function deepEqual(obj1, obj2) {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
+      }
+      
+
+      const stateval = () => {
+        return !deepEqual(stateChanged, initialStateValue);
+    }
+    
+
     const route = useSelector((state) => state.filter.route);
     const dispatch = useDispatch();
 
@@ -59,13 +72,13 @@ export default function Input() {
 
             <select value={route} onChange={(e) => dispatch(setRoute(e.target.value))} >
                 <option value=""> No Route Selected</option>
-            {console.log(routes)}
                 {routes.map((route, index) => (
                     <option key={index} value={route.ROUTE}>{route.ROUTE}</option>
                 ))}
             </select>
 
             <div className='filt-wrapper'>
+                {console.log("test", stateChanged)}
                 <div className="clearbtn-container">
                     {
                         tblSearch !== ''
@@ -76,7 +89,7 @@ export default function Input() {
                 <input type="text" id="table-input" defaultValue={tblSearch} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder={getSearchType()} />
             </div>
 
-            <button onClick={() => dispatch(toggle())}>< BsFilterRight className='icon' size='2rem' /> </button>
+            <button onClick={() => dispatch(toggle())}  className={stateval() ? 'changed-button' : 'unchanged-button'} >< BsFilterRight className='icon' size='2rem' /> </button>
 
         </div>
     );
