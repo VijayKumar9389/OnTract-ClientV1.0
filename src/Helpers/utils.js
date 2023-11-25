@@ -1,18 +1,37 @@
 export function Filter(stakeholder, tblFilter) {
-    if (search(stakeholder, tblFilter)) {
-        if (checkLocation(stakeholder, tblFilter)) {
-            if (stakeholderType(stakeholder, tblFilter.stakeholder)) {
-                if (checkRoute(stakeholder, tblFilter)) {
-                    if (checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
-                        if (checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
+    if (!search(stakeholder, tblFilter)) {
+        return false;
     }
-    return false;
+
+    if (!checkLocation(stakeholder, tblFilter)) {
+        return false;
+    }
+
+    if (!stakeholderType(stakeholder, tblFilter.stakeholder)) {
+        return false;
+    }
+
+    if (!checkRoute(stakeholder, tblFilter)) {
+        return false;
+    }
+
+    if (!checkContactStatus(stakeholder.CONTACTED, tblFilter.contacted)) {
+        return false;
+    }
+
+    if (!checkAttempts(stakeholder.ATTEMPTS, tblFilter.attempted)) {
+        return false;
+    }
+
+    if (!checkDelivery(stakeholder.LOCATION, tblFilter.delivery)) {
+        return false;
+    }
+
+    if (!checkConsultation(stakeholder.CONSULTATION, tblFilter.consultation)) {
+        return false;
+    }
+
+    return true;
 }
 
 function checkRoute(stakeholder, filter) {
@@ -187,6 +206,51 @@ export function checkCount(count, single) {
     }
 }
 
+export function checkDelivery(location, filter) {
+    if (filter === null) {
+        return true;
+    }
+
+    if (filter === true) {
+        if (location !== "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    if (filter === false) {
+        if (location === "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+export function checkConsultation(consultation, filter) {
+    if (filter === null) {
+        return true;
+    }
+    if (filter === true) {
+        if (consultation !== "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (filter === false) {
+        if (consultation === "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+
+
 export function search(stakeholder, filter) {
 
     if (stakeholder.NAME !== '') {
@@ -200,11 +264,59 @@ export function search(stakeholder, filter) {
                 return true
             }
         }
+        if (filter.search.type == 2) {
+            if (searchLocation({ street: stakeholder.STREET, mailing: stakeholder.MAILING }, filter.search.txt)) {
+                return true
+            }
+        }
+        if (filter.search.type == 3) {
+            if (searchTracts(stakeholder.tracts, filter.search.txt)) {
+                return true
+            }
+        }
     }
 
     return false;
 
 }
+
+
+export function searchTracts(tracts, inputTxt) {
+    if (inputTxt === '') {
+        return true;
+    }
+
+    const allTracts = tracts.split(',');
+
+    if (allTracts.includes(inputTxt)) {
+        return true;
+    }
+
+    return false;
+}
+
+
+export function searchLocation(location, inputTxt) {
+    if (!location) {
+        // Handle the case where location is undefined
+        return false;
+    }
+
+    if (inputTxt === '') {
+        return true;
+    }
+
+    // Combine relevant address properties into a single string
+    const fullAddress = [location.street, location.mailing].filter(Boolean).join(', ');
+
+    // Perform case-insensitive search
+    const searchText = inputTxt.toLowerCase();
+    const fullAddressLowerCase = fullAddress.toLowerCase();
+
+    return fullAddressLowerCase.includes(searchText);
+}
+
+
 
 export function searchName(name, inputTxt) {
 

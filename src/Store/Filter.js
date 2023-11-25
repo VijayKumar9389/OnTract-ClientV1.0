@@ -5,7 +5,8 @@ export const initialStateValue = {
     contacted: null,
     attempted: null,
     tracts: null,
-
+    delivery: null,
+    consultation: null,
     route: "",
     province: "",
     city: "",
@@ -15,8 +16,6 @@ export const initialStateValue = {
     },
     stakeholder: 0
 }
-
-
 
 export const filterSlice = createSlice({
     name: 'filter',
@@ -50,6 +49,12 @@ export const filterSlice = createSlice({
         setContacted: (state, action) => {
             state.contacted = action.payload;
         },
+        setConsultation: (state, action) => {
+            state.consultation = action.payload;
+        },
+        setDelivery: (state, action) => {
+            state.delivery = action.payload;
+        },
         clearSearch: (state) => {
             state.search.txt = '';
         },
@@ -79,6 +84,6 @@ export const filterSlice = createSlice({
     }
 });
 
-export const { toggle, clear, setAttempted, setContacted, setProvince, setCity, setSearchType, setRoute, setStakeholderType, setSearch, changeLocation, clearSearch, clearLocation, hasStateChanged } = filterSlice.actions;
+export const { toggle, clear, setAttempted, setContacted, setProvince, setCity, setSearchType, setRoute, setStakeholderType, setSearch, setDelivery, setConsultation, changeLocation, clearSearch, clearLocation, hasStateChanged } = filterSlice.actions;
 
 export default filterSlice.reducer;

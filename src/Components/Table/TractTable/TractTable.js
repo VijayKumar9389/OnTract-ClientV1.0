@@ -21,15 +21,24 @@ function TractTable({ Stakeholder }) {
             headers: {
                 "access-token": localStorage.getItem("access-token"),
             },
-        }).then((response) => setData(response.data));
-
+        }).then((response) => {
+            // Log the response data to the console
+            console.log("Response from server:", response.data);
+            
+            // Set the data in your state
+            setData(response.data);
+        });
+    
+        // You can also log the response for the other axios request if needed
         // axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tracts/`, {
         //     headers: {
         //         "access-token": localStorage.getItem("access-token"),
-        //     },
-        // }).then((response) => setAllStakeholders(response.data));
+        // }).then((response) => {
+        //     console.log("Response from server:", response.data);
+        //     setAllStakeholders(response.data);
+        // });
     }, [Stakeholder]);
-
+    
     function PrintRow(arr, ind) {
         // const pin = arr[0].PIN.split("/");
         if (arr[0] !== undefined) {

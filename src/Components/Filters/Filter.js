@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle, clear } from '../../Store/Filter';
 import { AiOutlineClose } from 'react-icons/ai';
-import { setSearchType, setStakeholderType, setProvince, setCity, setAttempted, setContacted } from '../../Store/Filter';
+import { setSearchType, setStakeholderType, setProvince, setCity, setAttempted, setContacted, setDelivery, setConsultation } from '../../Store/Filter';
 import Cookies from 'js-cookie';
 
 import './Filter.scss';
@@ -19,6 +19,8 @@ function FilterMenu({ isOpen, toggle }) {
     const Contacted = useSelector((state) => state.filter.contacted);
     const searchType = useSelector((state) => state.filter.search.type);
     const stakeholderType = useSelector((state) => state.filter.stakeholder);
+    const delivery = useSelector((state) => state.filter.delivery);
+    const consultation = useSelector((state) => state.filter.consultation);
 
     const [locationList, setLocationList] = useState([]);
     const dispatch = useDispatch();
@@ -91,10 +93,13 @@ function FilterMenu({ isOpen, toggle }) {
                             <label>Search:</label>
 
                             <div className='radio-wrapper'>
-                                <div className='input-wrapper'><input type="radio" id="search-name" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))} /> <label for="search-name">Name</label></div>
-                                <div className='input-wrapper'><input type="radio" id="search-phone" checked={searchType === 1} onChange={() => dispatch(setSearchType(1))} /> <label for="search-phone">Phone</label></div>
+                                <div className='input-wrapper'><input type="radio" id="search-name" checked={searchType === 0} onChange={() => dispatch(setSearchType(0))} /> <label htmlFor="search-name">Name</label></div>
+                                <div className='input-wrapper'><input type="radio" id="search-phone" checked={searchType === 1} onChange={() => dispatch(setSearchType(1))} /> <label htmlFor="search-phone">Phone</label></div>
+                                <div className='input-wrapper'><input type="radio" id="search-location" checked={searchType === 2} onChange={() => dispatch(setSearchType(2))} /> <label htmlFor="search-location">Location</label></div>
+                                <div className='input-wrapper'><input type="radio" id="search-tract" checked={searchType === 3} onChange={() => dispatch(setSearchType(3))} /> <label htmlFor="search-tract">Tract Number</label></div>
                             </div>
                         </div>
+
 
                         <div className='radio-container'>
                             <label>Type:</label>
@@ -136,6 +141,27 @@ function FilterMenu({ isOpen, toggle }) {
                                 <div className='input-wrapper'><input type="radio" id="attempt-no" checked={Attempted === false} onChange={() => dispatch(setAttempted(false))} /> <label for="attempt-no">No</label></div>
                             </ul>
                         </div>
+
+                        <div className='radio-container'>
+                            <label>Delivery Planned:</label>
+
+                            <ul className='radio-wrapper'>
+                                <div className='input-wrapper'><input type="radio" id="delivery-all" checked={delivery === null} onChange={() => dispatch(setDelivery(null))} /> <label htmlFor="delivery-all">All</label></div>
+                                <div className='input-wrapper'><input type="radio" id="delivery-yes" checked={delivery === true} onChange={() => dispatch(setDelivery(true))} /> <label htmlFor="delivery-yes">Yes</label></div>
+                                <div className='input-wrapper'><input type="radio" id="delivery-no" checked={delivery === false} onChange={() => dispatch(setDelivery(false))} /> <label htmlFor="delivery-no">No</label></div>
+                            </ul>
+                        </div>
+
+                        <div className='radio-container'>
+                            <label>Consultated:</label>
+
+                            <ul className='radio-wrapper'>
+                                <div className='input-wrapper'><input type="radio" id="consultation-all" checked={consultation === null} onChange={() => dispatch(setConsultation(null))} /> <label htmlFor="consultation-all">All</label></div>
+                                <div className='input-wrapper'><input type="radio" id="consultation-yes" checked={consultation === true} onChange={() => dispatch(setConsultation(true))} /> <label htmlFor="consultation-yes">Yes</label></div>
+                                <div className='input-wrapper'><input type="radio" id="consultation-no" checked={consultation === false} onChange={() => dispatch(setConsultation(false))} /> <label htmlFor="consultation-no">No</label></div>
+                            </ul>
+                        </div>
+
 
                     </div>
                     <div className='filter-btn-menu'>
