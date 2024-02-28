@@ -224,7 +224,7 @@ function StakeholderForum({ Stakeholder }) {
                     {data.length === 0 ? <p>Survey Incomplete</p> : <p>Survey Completed</p>} */}
                     <button
                         className="survey"
-                        onClick={() => window.open('https://www.surveymonkey.com/r/59DJRSM', '_blank')}
+                        onClick={() => window.open('https://www.surveymonkey.com/r/M92XXPP', '_blank')}
                     >
                         Survey (Alberta 2023 Only)
                     </button>
