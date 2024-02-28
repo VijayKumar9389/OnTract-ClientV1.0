@@ -226,7 +226,7 @@ function StakeholderForum({ Stakeholder }) {
                         className="survey"
                         onClick={() => window.open('https://www.surveymonkey.com/r/M92XXPP', '_blank')}
                     >
-                        Survey (Ontario 2023 Only)
+                        Survey (Ontario 2023)
                     </button>
 
                     {checkChanges() === '' ? (
