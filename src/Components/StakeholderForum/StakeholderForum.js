@@ -263,15 +263,10 @@ function StakeholderForum({ Stakeholder }) {
                                 <option value="RED">RED</option>
                             </select>
                         </div>
-
-                        <div className="input-wrapper">
-                            <label>Delivered:</label>
-                            <select value={newCorperation} onChange={(event) => setNewCorperation(event.target.value)}>
-                                <option value="">N/A</option>
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
+                            <div className='input-wrapper'>
+                                <label>Follow Up</label>
+                                <input maxLength={50} type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
+                            </div>
                     </div>
                 </div>
 
@@ -341,10 +336,15 @@ function StakeholderForum({ Stakeholder }) {
                                 <label>Location: (For the exact drop off/mail out location)</label>
                                 <input maxLength={255} type="text" value={newLocation} onChange={(event) => setNewLocation(event.target.value)}></input>
                             </div>
-                            <div className='input-wrapper'>
-                                <label>Follow Up</label>
-                                <input maxLength={50} type="text" value={newFollowUp} onChange={(event) => setNewFollowUp(event.target.value)}></input>
-                            </div>
+                        <div className="input-wrapper">
+                            <label>Delivered:</label>
+                            <select value={newCorperation} onChange={(event) => setNewCorperation(event.target.value)}>
+                                <option value="">N/A</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                            </select>
+                        </div>
+
                         </div>
                     </div>
                 </div>
