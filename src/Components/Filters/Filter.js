@@ -113,10 +113,10 @@ function FilterMenu({ isOpen, toggle }) {
                         </div>
 
                         <div className='radio-container'>
-                            <label>Corperation</label>
+                            <label>Delivery</label>
                             <ul className='radio-wrapper'>
-                                <div className='input-wrapper'><input type="radio" id="type-corp" checked={stakeholderType === 3} onChange={() => dispatch(setStakeholderType(3))} /> <label for="type-corp">Corperation</label></div>
-                                <div className='input-wrapper'><input type="radio" id="type-person" checked={stakeholderType === 4} onChange={() => dispatch(setStakeholderType(4))} /> <label for="type-person">Person</label></div>
+                                <div className='input-wrapper'><input type="radio" id="type-corp" checked={stakeholderType === 3} onChange={() => dispatch(setStakeholderType(3))} /> <label for="type-corp">Delivered</label></div>
+                                <div className='input-wrapper'><input type="radio" id="type-person" checked={stakeholderType === 4} onChange={() => dispatch(setStakeholderType(4))} /> <label for="type-person">Not Delivered</label></div>
                                 <div className='input-wrapper'><input type="radio" id="type-nophone" checked={stakeholderType === 5} onChange={() => dispatch(setStakeholderType(5))} /> <label for="type-nophone">No Phone</label></div>
 
                             </ul>
