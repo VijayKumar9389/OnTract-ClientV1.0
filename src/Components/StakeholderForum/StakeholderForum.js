@@ -265,7 +265,7 @@ function StakeholderForum({ Stakeholder }) {
                         </div>
 
                         <div className="input-wrapper">
-                            <label>Corporation:</label>
+                            <label>Delivered:</label>
                             <select value={newCorperation} onChange={(event) => setNewCorperation(event.target.value)}>
                                 <option value="">N/A</option>
                                 <option value="YES">YES</option>
